@@ -12,7 +12,7 @@ export const useLogin = () => {
 	const { callToast } = useToast();
 	const router = useRouter();
 
-	const { mutate, data, isPending, isError, error } = useMutation({
+	const { mutate, isError, error } = useMutation({
 		mutationFn: async (payload: LoginPayload) => {
 			return await api({
 				method: 'POST',
@@ -20,7 +20,7 @@ export const useLogin = () => {
 				payload,
 			});
 		},
-		async onSuccess(data, variables, context) {
+		async onSuccess() {
 			await router.push({
 				name: 'home',
 			});
@@ -36,8 +36,6 @@ export const useLogin = () => {
 	};
 
 	return {
-		isPending,
-		data,
 		isError,
 		error,
 		login,
