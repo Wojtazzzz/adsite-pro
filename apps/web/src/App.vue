@@ -1,12 +1,12 @@
 <script setup lang="ts">
-import { RouterView } from 'vue-router'
-import { Toaster } from '@/components/ui-library/toast'
+import { RouterView } from 'vue-router';
+import { Toaster } from '@/components/ui-library/toast';
 </script>
 
 <template>
-  <div class="bg-slate-800">
-    <RouterView />
+	<div class="bg-slate-800">
+		<RouterView />
 
-    <Toaster />
-  </div>
+		<Toaster />
+	</div>
 </template>
