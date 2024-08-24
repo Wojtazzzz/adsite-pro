@@ -26,7 +26,7 @@ export const useLogin = () => {
 			});
 
 			callToast({
-				title: 'Witaj ponownie!',
+				title: 'Welcome back!',
 			});
 		},
 	});
