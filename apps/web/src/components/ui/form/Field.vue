@@ -15,7 +15,7 @@ defineProps<{
 	description?: string;
 	name: string;
 	placeholder: string;
-	type: 'email' | 'password';
+	type: 'text'|'email' | 'password';
 }>();
 </script>
 

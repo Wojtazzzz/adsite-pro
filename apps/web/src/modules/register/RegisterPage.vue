@@ -1,5 +1,10 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import RegisterForm from '@/modules/register/RegisterForm.vue';
+</script>
 
 <template>
-	<div class="text-red-400">Hello Register Page</div>
+  <div class="space-y-4">
+    <h1 class="font-bold text-2xl">Register</h1>
+    <RegisterForm />
+  </div>
 </template>

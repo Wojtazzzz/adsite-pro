@@ -13,6 +13,11 @@ const axios = Axios.create({
 	xsrfCookieName: 'XSRF-TOKEN',
 	xsrfHeaderName: 'X-XSRF-TOKEN',
 	withXSRFToken: true,
+	headers: {
+		"Content-Type": 'application/json',
+		Accept: 'application/json',
+"X-Requested-With":"XMLHttpRequest"
+	}
 });
 
 type ApiCallOptions =
@@ -27,7 +32,7 @@ type ApiCallOptions =
 	  };
 
 export const api = async (options: ApiCallOptions) => {
-	const response = await axios.get('/sanctum/csrf-cookie');
+	await axios.get('/sanctum/csrf-cookie');
 
 	if (options.method === 'PATCH') {
 		return axios.patch(options.url, options.payload);

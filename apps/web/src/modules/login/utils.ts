@@ -5,7 +5,7 @@ export const loginFormSchema = z.object({
 		.string({
 			message: 'This field is required.',
 		})
-		.email('Invalid email adress.'),
+		.email('Invalid email address.'),
 	password: z.string({
 		message: 'This field is required.',
 	}),

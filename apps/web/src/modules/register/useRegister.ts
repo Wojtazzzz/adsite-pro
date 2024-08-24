@@ -3,20 +3,22 @@ import { useToast } from '@/composables/useToast';
 import { api } from '@/utils/functions';
 import { useRouter } from 'vue-router';
 
-type LoginPayload = {
+type RegisterPayload = {
+	name: string;
 	email: string;
+	password_confirmation: string;
 	password: string;
 };
 
-export const useLogin = () => {
+export const useRegister = () => {
 	const { callToast } = useToast();
 	const router = useRouter();
 
 	const { mutate, isError, error } = useMutation({
-		mutationFn: async (payload: LoginPayload) => {
+		mutationFn: async (payload: RegisterPayload) => {
 			return await api({
 				method: 'POST',
-				url: '/api/login',
+				url: '/api/register',
 				payload,
 			});
 		},
@@ -26,18 +28,18 @@ export const useLogin = () => {
 			});
 
 			callToast({
-				title: 'Welcome back!',
+				title: 'Welcome!',
 			});
 		},
 	});
 
-	const login = (credentials: LoginPayload) => {
+	const register = (credentials: RegisterPayload) => {
 		mutate(credentials);
 	};
 
 	return {
 		isError,
 		error,
-		login,
+		register,
 	};
 };
