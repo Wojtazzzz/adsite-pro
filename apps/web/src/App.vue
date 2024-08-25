@@ -4,7 +4,7 @@ import { Toaster } from '@/components/ui-library/toast';
 </script>
 
 <template>
-	<div class="bg-slate-800">
+	<div>
 		<RouterView />
 
 		<Toaster />
