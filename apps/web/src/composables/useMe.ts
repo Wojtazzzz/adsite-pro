@@ -1,14 +1,16 @@
-import { useQuery } from '@tanstack/vue-query';
-import { api } from '@/utils/functions';
+import { useQuery } from '@/composables/useQuery';
+import { z } from 'zod';
+
+const schema = z.object({
+	id: z.number(),
+	name: z.string(),
+});
 
 export const useMe = () => {
 	const { isSuccess, data } = useQuery({
-		queryKey: ['me'],
-		queryFn: async () =>
-			await api({
-				url: '/api/me',
-				method: 'GET',
-			}),
+		cacheKey: ['me'],
+		url: '/api/me',
+		schema,
 	});
 
 	return {
