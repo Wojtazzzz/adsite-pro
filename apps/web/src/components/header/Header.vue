@@ -2,14 +2,13 @@
 import Logo from '@/components/ui/Logo.vue';
 import DesktopNav from '@/components/header/DesktopNav.vue';
 import MobileNavDialog from '@/components/header/mobileNav/MobileNavDialog.vue';
+import Container from '@/components/ui/Container.vue';
 </script>
 
 <template>
 	<div class="border-b fixed top-0 left-0 z-30 bg-white w-full">
-		<header
-			class="px-4 py-5 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8"
-		>
-			<div class="relative flex items-center justify-between">
+		<Container>
+			<header class="relative flex items-center justify-between">
 				<RouterLink to="/" aria-label="Home page" class="inline-flex items-center">
 					<Logo />
 
@@ -25,7 +24,7 @@ import MobileNavDialog from '@/components/header/mobileNav/MobileNavDialog.vue';
 				<div class="md:hidden">
 					<MobileNavDialog />
 				</div>
-			</div>
-		</header>
+			</header>
+		</Container>
 	</div>
 </template>
