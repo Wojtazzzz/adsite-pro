@@ -4,12 +4,17 @@ declare(strict_types=1);
 
 namespace Modules\Task\Queries;
 
-use App\Models\Team;
+use Illuminate\Support\Collection;
+use Modules\Task\Domain\TeamRepository;
 
-class GetUserTasksQueryHandler
+readonly class GetUserTasksQueryHandler
 {
-    public function handle(GetUserTasksQuery $query)
+    public function __construct(private TeamRepository $team)
     {
-        return Team::query()->with(['categories', 'categories.tasks'])->userRelated($query->user_id)->get();
+    }
+
+    public function handle(GetUserTasksQuery $query): Collection
+    {
+        return $this->team->getUserTeamsWithTasks($query->user_id);
     }
 }

@@ -8,8 +8,10 @@ use App\Bus\IlluminateQueryBus;
 use App\Bus\QueryBus;
 use Illuminate\Auth\Notifications\ResetPassword;
 use Illuminate\Support\ServiceProvider;
+use Modules\Task\Domain\TeamRepository;
 use Modules\Task\Queries\GetUserTasksQuery;
 use Modules\Task\Queries\GetUserTasksQueryHandler;
+use Modules\Task\Repositories\EloquentTeamRepository;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -25,6 +27,8 @@ class AppServiceProvider extends ServiceProvider
         foreach ($singletons as $abstract => $concrete) {
             $this->app->singleton($abstract, $concrete);
         }
+
+        $this->app->bind(TeamRepository::class, EloquentTeamRepository::class);
     }
 
     /**
