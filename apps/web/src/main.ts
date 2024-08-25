@@ -8,7 +8,15 @@ import { VueQueryPlugin } from '@tanstack/vue-query';
 const app = createApp(App);
 
 app.use(createPinia());
-app.use(VueQueryPlugin);
+app.use(VueQueryPlugin, {
+	queryClientConfig: {
+		defaultOptions: {
+			queries: {
+				retry: 0,
+			},
+		},
+	},
+});
 app.use(router);
 
 app.mount('#app');
