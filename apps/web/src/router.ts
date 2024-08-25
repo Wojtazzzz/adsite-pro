@@ -49,7 +49,11 @@ export const router = createRouter({
 const onlyAuthRoutes = ['/tasks'];
 const onlyGuestRoutes = ['/login', '/register'];
 
-router.beforeEach(async (to) => {
+router.beforeEach(async (to, from) => {
+	if (to.path === from.path) {
+		return true;
+	}
+
 	const queryClient = useQueryClient();
 
 	await queryClient.prefetchQuery({
