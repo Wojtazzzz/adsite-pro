@@ -2,7 +2,7 @@ import { useQuery } from '@tanstack/vue-query';
 import { api } from '@/utils/functions';
 
 export const useMe = () => {
-	const { isSuccess } = useQuery({
+	const { isSuccess, data } = useQuery({
 		queryKey: ['me'],
 		queryFn: async () =>
 			await api({
@@ -13,5 +13,6 @@ export const useMe = () => {
 
 	return {
 		isUserLogged: isSuccess,
+		user: data,
 	};
 };
