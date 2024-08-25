@@ -5,6 +5,9 @@ import NavItem from '@/components/ui/navigation/NavItem.vue';
 import NavItemLink from '@/components/ui/navigation/NavItemLink.vue';
 import { links } from '@/components/header/utils';
 import DialogTrigger from '@/components/dialog/DialogTrigger.vue';
+import { useMe } from '@/composables/useMe';
+
+const { isUserLogged } = useMe();
 </script>
 
 <template>
@@ -22,9 +25,16 @@ import DialogTrigger from '@/components/dialog/DialogTrigger.vue';
 
 			<NavItem>
 				<DialogTrigger>
-					<NavItemLink to="/login">
-						<span class="text-base">Login</span>
-					</NavItemLink>
+					<template v-if="isUserLogged">
+						<NavItemLink to="/tasks">
+							<span class="text-base">My tasks</span>
+						</NavItemLink>
+					</template>
+					<template v-else>
+						<NavItemLink to="/login">
+							<span class="text-base">Login</span>
+						</NavItemLink>
+					</template>
 				</DialogTrigger>
 			</NavItem>
 		</Navbar>

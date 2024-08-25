@@ -5,6 +5,9 @@ import Navbar from '@/components/ui/navigation/Navbar.vue';
 import NavItem from '@/components/ui/navigation/NavItem.vue';
 import NavItemLink from '@/components/ui/navigation/NavItemLink.vue';
 import { links } from '@/components/header/utils';
+import { useMe } from '@/composables/useMe';
+
+const { isUserLogged } = useMe();
 </script>
 
 <template>
@@ -18,9 +21,16 @@ import { links } from '@/components/header/utils';
 				</NavItem>
 			</template>
 
-			<NavItem>
-				<ButtonLink to="/login">Login</ButtonLink>
-			</NavItem>
+			<template v-if="isUserLogged">
+				<NavItem>
+					<ButtonLink to="/tasks">My tasks</ButtonLink>
+				</NavItem>
+			</template>
+			<template v-else>
+				<NavItem>
+					<ButtonLink to="/login">Login</ButtonLink>
+				</NavItem>
+			</template>
 		</Navbar>
 	</Nav>
 </template>

@@ -14,10 +14,10 @@ const axios = Axios.create({
 	xsrfHeaderName: 'X-XSRF-TOKEN',
 	withXSRFToken: true,
 	headers: {
-		"Content-Type": 'application/json',
+		'Content-Type': 'application/json',
 		Accept: 'application/json',
-		"X-Requested-With": "XMLHttpRequest"
-	}
+		'X-Requested-With': 'XMLHttpRequest',
+	},
 });
 
 type ApiCallOptions =
@@ -35,11 +35,11 @@ export const api = async (options: ApiCallOptions) => {
 	await axios.get('/sanctum/csrf-cookie');
 
 	if (options.method === 'PATCH') {
-		return axios.patch(options.url, options.payload);
+		return axios.patch(options.url, options.payload).then((res) => res.data);
 	}
 
 	if (options.method === 'POST') {
-		return axios.post(options.url, options.payload);
+		return axios.post(options.url, options.payload).then((res) => res.data);
 	}
 
 	if (options.method === 'PUT') {
@@ -47,8 +47,8 @@ export const api = async (options: ApiCallOptions) => {
 	}
 
 	if (options.method === 'DELETE') {
-		return axios.delete(options.url);
+		return axios.delete(options.url).then((res) => res.data);
 	}
 
-	return axios.get(options.url);
+	return axios.get(options.url).then((res) => res.data);
 };

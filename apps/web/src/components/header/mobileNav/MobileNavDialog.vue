@@ -27,7 +27,7 @@ import MobileNav from '@/components/header/mobileNav/MobileNav.vue';
 			</RouterLink>
 			<DialogHeader>
 				<DialogTitle>
-					<span class="sr-only"> Navigation </span>
+					<span class="sr-only">Navigation</span>
 				</DialogTitle>
 				<DialogDescription>
 					<MobileNav />
