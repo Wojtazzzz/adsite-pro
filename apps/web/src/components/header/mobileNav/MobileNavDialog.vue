@@ -18,13 +18,15 @@ import MobileNav from '@/components/header/mobileNav/MobileNav.vue';
 			</button>
 		</DialogTrigger>
 		<DialogContent vertical-position="top">
-			<RouterLink to="/" aria-label="Home page" class="inline-flex items-center">
-				<Logo />
+			<DialogTrigger>
+				<RouterLink to="/" aria-label="Home page" class="inline-flex items-center w-fit">
+					<Logo />
 
-				<span class="ml-2.5 text-xl font-bold tracking-wide text-gray-800 uppercase">
-					Teamer
-				</span>
-			</RouterLink>
+					<span class="ml-2.5 text-xl font-bold tracking-wide text-gray-800 uppercase">
+						Teamer
+					</span>
+				</RouterLink></DialogTrigger
+			>
 			<DialogHeader>
 				<DialogTitle>
 					<span class="sr-only">Navigation</span>
