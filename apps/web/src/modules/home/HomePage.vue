@@ -1,5 +1,5 @@
 <script setup lang="ts"></script>
 
 <template>
-	<span>Hello World!</span>
+	<span>This will be a solid introductory landing page in the future!</span>
 </template>

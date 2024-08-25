@@ -4,8 +4,7 @@ import LoginPage from '@/modules/login/LoginPage.vue';
 import RegisterPage from '@/modules/register/RegisterPage.vue';
 import MainLayout from '@/components/layouts/MainLayout.vue';
 import HomePage from '@/modules/home/HomePage.vue';
-import axios from 'axios';
-import { useQuery, useQueryClient } from '@tanstack/vue-query';
+import { useQueryClient } from '@tanstack/vue-query';
 import { api } from '@/utils/functions';
 
 export const router = createRouter({
@@ -44,7 +43,7 @@ export const router = createRouter({
 const onlyAuthRoutes = ['/my-teams'];
 const onlyGuestRoutes = ['/login', '/register'];
 
-router.beforeEach(async (to, from) => {
+router.beforeEach(async (to) => {
 	const queryClient = useQueryClient();
 
 	await queryClient.prefetchQuery({
