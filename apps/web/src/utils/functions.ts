@@ -16,7 +16,7 @@ const axios = Axios.create({
 	headers: {
 		"Content-Type": 'application/json',
 		Accept: 'application/json',
-"X-Requested-With":"XMLHttpRequest"
+		"X-Requested-With": "XMLHttpRequest"
 	}
 });
 
