@@ -26,9 +26,10 @@ class UserTeamTasksByStatus extends JsonResource
                     'id' => $category->id,
                     'name' => $category->name,
                     'team_id' => $category->team_id,
-                    'tasks' => $tasks_groups->merge($category->tasks->mapToGroups(function (object $task) {
-                        return [mb_strtolower($task->status) => $task];
-                    }))
+//                    'tasks' => $tasks_groups->merge($category->tasks->mapToGroups(function (object $task) {
+//                        return [mb_strtolower($task->status) => $task];
+//                    })),
+                    'tasks' => $category->tasks
                 ];
             })
         ];
