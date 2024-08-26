@@ -2,10 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Modules\Task\Queries;
+namespace Modules\Task\Application\Queries;
 
 use Illuminate\Support\Collection;
-use Modules\Task\Domain\TeamRepository;
+use Modules\Task\Domain\Repositories\TeamRepository;
+use Modules\Task\Queries\UpdateTaskStatusCommand;
 
 readonly class GetUserTasksQueryHandler
 {

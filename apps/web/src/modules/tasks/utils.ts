@@ -6,7 +6,7 @@ export const mapTeamsToComboboxOptions = (data: Ref<GetTasksResponse | undefined
 		return [];
 	}
 
-	return data.value.map((team) => ({
+	return data.value.data.map((team) => ({
 		value: team.id,
 		label: team.name,
 	}));

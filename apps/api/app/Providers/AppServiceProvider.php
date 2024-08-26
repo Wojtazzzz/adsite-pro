@@ -4,14 +4,23 @@ declare(strict_types=1);
 
 namespace App\Providers;
 
+use App\Bus\CommandBus;
+use App\Bus\IlluminateCommandBus;
 use App\Bus\IlluminateQueryBus;
 use App\Bus\QueryBus;
+use App\Models\Task;
 use Illuminate\Auth\Notifications\ResetPassword;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\ServiceProvider;
-use Modules\Task\Domain\TeamRepository;
-use Modules\Task\Queries\GetUserTasksQuery;
-use Modules\Task\Queries\GetUserTasksQueryHandler;
-use Modules\Task\Repositories\EloquentTeamRepository;
+use Modules\Task\Application\Commands\UpdateTaskStatusCommand;
+use Modules\Task\Application\Commands\UpdateTaskStatusCommandHandler;
+use Modules\Task\Application\Policies\TaskPolicy;
+use Modules\Task\Application\Queries\GetUserTasksQuery;
+use Modules\Task\Application\Queries\GetUserTasksQueryHandler;
+use Modules\Task\Domain\Repositories\TaskRepository;
+use Modules\Task\Domain\Repositories\TeamRepository;
+use Modules\Task\Infrastructure\Repositories\EloquentTaskRepository;
+use Modules\Task\Infrastructure\Repositories\EloquentTeamRepository;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -21,7 +30,8 @@ class AppServiceProvider extends ServiceProvider
     public function register(): void
     {
         $singletons = [
-            QueryBus::class => IlluminateQueryBus::class
+            QueryBus::class => IlluminateQueryBus::class,
+            CommandBus::class => IlluminateCommandBus::class,
         ];
 
         foreach ($singletons as $abstract => $concrete) {
@@ -29,6 +39,7 @@ class AppServiceProvider extends ServiceProvider
         }
 
         $this->app->bind(TeamRepository::class, EloquentTeamRepository::class);
+        $this->app->bind(TaskRepository::class, EloquentTaskRepository::class);
     }
 
     /**
@@ -45,5 +56,13 @@ class AppServiceProvider extends ServiceProvider
         $queryBus->register([
             GetUserTasksQuery::class => GetUserTasksQueryHandler::class,
         ]);
+
+        $commandBus = app(CommandBus::class);
+
+        $commandBus->register([
+            UpdateTaskStatusCommand::class => UpdateTaskStatusCommandHandler::class,
+        ]);
+
+        Gate::policy(Task::class, TaskPolicy::class);
     }
 }

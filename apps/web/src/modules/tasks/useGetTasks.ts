@@ -1,24 +1,30 @@
 import { useQuery } from '@tanstack/vue-query';
 import { api } from '@/utils/functions';
 
-export type GetTasksResponse = {
+export type Category = {
 	id: number;
 	name: string;
-	categories: {
+	team_id: number;
+	tasks: Task[];
+};
+
+export type Task = {
+	id: number;
+	category_id: number;
+	name: string;
+	description: string;
+	estimation: number;
+	status: 'IDLE' | 'IN_PROGRESS' | 'COMPLETED';
+	created_at: string;
+};
+
+export type GetTasksResponse = {
+	data: {
 		id: number;
 		name: string;
-		team_id: number;
-		tasks: {
-			id: number;
-			category_id: number;
-			name: string;
-			description: string;
-			estimation: number;
-			status: string;
-			created_at: string;
-		}[];
+		categories: Category[];
 	}[];
-}[];
+};
 
 export const useGetTasks = () => {
 	const { isSuccess, isLoading, isError, data, error } = useQuery({

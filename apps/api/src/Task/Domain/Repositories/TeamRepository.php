@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Modules\Task\Domain;
+namespace Modules\Task\Domain\Repositories;
 
 use Illuminate\Support\Collection;
 

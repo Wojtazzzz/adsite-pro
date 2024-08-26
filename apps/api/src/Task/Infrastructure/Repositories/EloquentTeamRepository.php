@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Modules\Task\Repositories;
+namespace Modules\Task\Infrastructure\Repositories;
 
 use App\Models\Team;
 use Illuminate\Support\Collection;
-use Modules\Task\Domain\TeamRepository;
+use Modules\Task\Domain\Repositories\TeamRepository;
 
 class EloquentTeamRepository implements TeamRepository
 {
