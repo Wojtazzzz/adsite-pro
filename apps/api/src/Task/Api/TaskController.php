@@ -6,8 +6,8 @@ namespace Modules\Task\Api;
 
 use App\Bus\QueryBus;
 use App\Http\Controllers\Controller;
-use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use Modules\Task\Queries\GetUserTasksQuery;
 
 class TaskController extends Controller
@@ -16,10 +16,10 @@ class TaskController extends Controller
     {
     }
 
-    public function index(Request $request): JsonResponse
+    public function index(Request $request): AnonymousResourceCollection
     {
-        return response()->json(
-            $this->queryBus->query(new GetUserTasksQuery($request->user()->id))
-        );
+        $data = $this->queryBus->query(new GetUserTasksQuery($request->user()->id));
+
+        return UserTeamTasksByStatus::collection($data);
     }
 }
