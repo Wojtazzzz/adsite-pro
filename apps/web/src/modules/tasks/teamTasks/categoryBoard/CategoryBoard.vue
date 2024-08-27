@@ -2,12 +2,10 @@
 import type { Category, Task } from '@/modules/tasks/teamTasks/useGetTasks';
 import { computed, ref, toRaw } from 'vue';
 import { useChangeTaskStatus } from '@/modules/tasks/teamTasks/categoryBoard/useChangeTaskStatus';
-import Card from '@/components/ui/card/Card.vue';
-import CardHeader from '@/components/ui/card/CardHeader.vue';
-import CardTitle from '@/components/ui/card/CardTitle.vue';
-import CardContent from '@/components/ui/card/CardContent.vue';
 import CategoryBox from '@/modules/tasks/teamTasks/categoryBoard/CategoryBox.vue';
 import TaskBox from '@/modules/tasks/teamTasks/categoryBoard/TaskBox.vue';
+import Draggable from '@/components/ui/dragAndDrop/Draggable.vue';
+import Droppable from '@/components/ui/dragAndDrop/Droppable.vue';
 
 const props = defineProps<{
 	category: Category;
@@ -53,45 +51,33 @@ const onDragStart = (event: DragEvent, task: Task) => {
 <template>
 	<div class="flex w-full justify-evenly gap-x-8">
 		<CategoryBox category-name="idle tasks">
-			<ul
-				class="min-w-64 min-h-64 space-y-4"
-				@drop.prevent="onDrop($event, 'IDLE')"
-				@dragover.prevent
-			>
+			<Droppable as="ul" @dragover.prevent @drop.prevent="onDrop($event, 'IDLE')">
 				<template v-for="task in idleTasks" :key="task.id">
-					<li draggable="true" @dragstart="onDragStart($event, task)">
+					<Draggable as="li" @dragstart="onDragStart($event, task)">
 						<TaskBox :task-name="task.name" />
-					</li>
+					</Draggable>
 				</template>
-			</ul>
+			</Droppable>
 		</CategoryBox>
 
 		<CategoryBox category-name="in progress">
-			<ul
-				class="min-w-64 min-h-64 space-y-4"
-				@drop.prevent="onDrop($event, 'IN_PROGRESS')"
-				@dragover.prevent
-			>
+			<Droppable as="ul" @dragover.prevent @drop.prevent="onDrop($event, 'IN_PROGRESS')">
 				<template v-for="task in inProgressTasks" :key="task.id">
-					<li draggable="true" @dragstart="onDragStart($event, task)">
+					<Draggable as="li" @dragstart="onDragStart($event, task)">
 						<TaskBox :task-name="task.name" />
-					</li>
+					</Draggable>
 				</template>
-			</ul>
+			</Droppable>
 		</CategoryBox>
 
 		<CategoryBox category-name="completed">
-			<ul
-				class="min-w-64 min-h-64 space-y-4"
-				@drop.prevent="onDrop($event, 'COMPLETED')"
-				@dragover.prevent
-			>
+			<Droppable as="ul" @dragover.prevent @drop.prevent="onDrop($event, 'COMPLETED')">
 				<template v-for="task in completedTasks" :key="task.id">
-					<li draggable="true" @dragstart="onDragStart($event, task)">
+					<Draggable as="li" @dragstart="onDragStart($event, task)">
 						<TaskBox :task-name="task.name" />
-					</li>
+					</Draggable>
 				</template>
-			</ul>
+			</Droppable>
 		</CategoryBox>
 	</div>
 </template>
