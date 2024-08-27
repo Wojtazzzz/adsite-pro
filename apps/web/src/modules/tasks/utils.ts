@@ -1,7 +1,7 @@
-import { type GetTasksResponse } from '@/modules/tasks/useGetTasks';
 import type { Ref } from 'vue';
+import type { GetMemberTeamsResponse } from '@/modules/tasks/selectTeam/useGetMemberTeams';
 
-export const mapTeamsToComboboxOptions = (data: Ref<GetTasksResponse | undefined>) => {
+export const mapTeamsToComboboxOptions = (data: Ref<GetMemberTeamsResponse | undefined>) => {
 	if (!data.value) {
 		return [];
 	}

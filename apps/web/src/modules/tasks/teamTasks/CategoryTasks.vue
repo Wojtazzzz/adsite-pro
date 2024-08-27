@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import type { Category, Task } from '@/modules/tasks/useGetTasks';
+import type { Category, Task } from '@/modules/tasks/teamTasks/useGetTasks';
 import { computed, ref, toRaw } from 'vue';
-import { useChangeTaskStatus } from '@/modules/tasks/useChangeTaskStatus';
+import { useChangeTaskStatus } from '@/modules/tasks/teamTasks/useChangeTaskStatus';
 
 const props = defineProps<{
 	category: Category;
