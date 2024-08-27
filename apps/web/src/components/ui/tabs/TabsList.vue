@@ -3,7 +3,7 @@ import { TabsList } from '@/components/ui-library/tabs';
 </script>
 
 <template>
-	<TabsList>
+	<TabsList class="space-x-4 bg-transparent">
 		<slot />
 	</TabsList>
 </template>

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import Button from '@/components/ui/Button.vue';
-import CategoryTasks from '@/modules/tasks/teamTasks/CategoryTasks.vue';
+import CategoryBoard from '@/modules/tasks/teamTasks/categoryBoard/CategoryBoard.vue';
 import TabsContent from '@/components/ui/tabs/TabsContent.vue';
 import TabsList from '@/components/ui/tabs/TabsList.vue';
 import TabTrigger from '@/components/ui/tabs/TabsTrigger.vue';
@@ -28,7 +28,7 @@ const { data } = useGetTasks(computed(() => props.team));
 
 			<template v-for="category in data.data.categories" :key="category.id">
 				<TabsContent :value="category.id">
-					<CategoryTasks :category="category" />
+					<CategoryBoard :category="category" />
 				</TabsContent>
 			</template>
 		</Tabs>
