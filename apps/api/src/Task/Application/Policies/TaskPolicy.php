@@ -11,7 +11,7 @@ class TaskPolicy
 {
     public function updateStatus(User $user, Task $task): bool
     {
-        if ($user->id === $task->id) {
+        if ($user->id === $task->user_id) {
             return true;
         }
 
