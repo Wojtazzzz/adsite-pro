@@ -1,4 +1,4 @@
-import { useMutation } from '@tanstack/vue-query';
+import { useMutation, useQueryClient } from '@tanstack/vue-query';
 import { api } from '@/utils/functions';
 
 type ChangeTaskStatusPayload = {
@@ -7,6 +7,8 @@ type ChangeTaskStatusPayload = {
 };
 
 export const useChangeTaskStatus = () => {
+	const queryClient = useQueryClient();
+
 	const { mutate } = useMutation({
 		mutationFn: async (payload: ChangeTaskStatusPayload) => {
 			return await api({
@@ -15,6 +17,11 @@ export const useChangeTaskStatus = () => {
 				payload: {
 					newStatus: payload.newStatus,
 				},
+			});
+		},
+		async onSettled() {
+			await queryClient.invalidateQueries({
+				queryKey: ['team-tasks'],
 			});
 		},
 	});
