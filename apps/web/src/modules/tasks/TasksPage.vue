@@ -10,7 +10,7 @@ const { currentTeam, updateTeam } = useCurrentTeam();
 
 <template>
 	<Container>
-		<div class="w-full flex justify-between">
+		<div class="w-full flex items-center justify-between">
 			<SelectTeam @update="updateTeam" />
 			<CreateTeam />
 		</div>

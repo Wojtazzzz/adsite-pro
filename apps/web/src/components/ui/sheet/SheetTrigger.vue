@@ -3,7 +3,7 @@ import { SheetTrigger } from '@/components/ui-library/sheet';
 </script>
 
 <template>
-	<SheetTrigger>
+	<SheetTrigger as-child>
 		<slot />
 	</SheetTrigger>
 </template>
