@@ -1,18 +1,15 @@
 <script setup lang="ts">
-import type { HTMLAttributes } from 'vue'
-import { cn } from '@/utils/functions'
+import type { HTMLAttributes } from 'vue';
+import { cn } from '@/utils/functions';
 
 const props = defineProps<{
-  class?: HTMLAttributes['class']
-}>()
+	tag: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
+	class?: HTMLAttributes['class'];
+}>();
 </script>
 
 <template>
-  <h3
-    :class="
-      cn('font-semibold leading-none tracking-tight', props.class)
-    "
-  >
-    <slot />
-  </h3>
+	<component :is="tag" :class="cn('font-semibold leading-none tracking-tight', props.class)">
+		<slot />
+	</component>
 </template>

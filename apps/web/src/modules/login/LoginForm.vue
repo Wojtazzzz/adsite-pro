@@ -20,7 +20,14 @@ const onSubmit = (values: LoginFormData) => {
 			<Field type="email" name="email" label="E-mail" placeholder="john.smith@gmail.com" />
 			<Field type="password" name="password" label="Password" placeholder="********" />
 
-			<div class="flex justify-end">
+			<div class="flex justify-between gap-x-3">
+				<span class="text-sm">
+					Don't have an account?
+					<RouterLink class="underline" :to="{ name: 'register' }">
+						Register now!
+					</RouterLink>
+				</span>
+
 				<Button type="submit">Login</Button>
 			</div>
 		</div>

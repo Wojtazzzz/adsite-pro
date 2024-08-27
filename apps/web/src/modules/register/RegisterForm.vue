@@ -9,7 +9,7 @@ import { type RegisterFormData, registerFormSchema } from '@/modules/register/ut
 const { isError, error, register } = useRegister();
 
 const onSubmit = (values: RegisterFormData) => {
-  register(values);
+	register(values);
 };
 </script>
 
@@ -21,9 +21,18 @@ const onSubmit = (values: RegisterFormData) => {
 			<Field type="text" name="name" label="Name" placeholder="John Smith" />
 			<Field type="email" name="email" label="E-mail" placeholder="john.smith@gmail.com" />
 			<Field type="password" name="password" label="Password" placeholder="********" />
-      <Field type="password" name="password_confirmation" label="Repeat password" placeholder="********" />
+			<Field
+				type="password"
+				name="password_confirmation"
+				label="Repeat password"
+				placeholder="********"
+			/>
 
-			<div class="flex justify-end">
+			<div class="flex justify-between gap-x-3">
+				<span class="text-sm">
+					Already have an account?
+					<RouterLink class="underline" :to="{ name: 'login' }"> Login now! </RouterLink>
+				</span>
 				<Button type="submit">Register</Button>
 			</div>
 		</div>

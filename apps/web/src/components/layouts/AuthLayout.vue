@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import Header from '@/components/header/Header.vue';
+import Container from '@/components/ui/Container.vue';
 </script>
 
 <template>
@@ -7,8 +8,10 @@ import Header from '@/components/header/Header.vue';
 		<Header />
 
 		<div class="min-w-screen min-h-screen flex justify-center items-center">
-			<section class="max-w-xl w-full rounded-xl border p-7">
-				<RouterView />
+			<section class="max-w-xl w-full">
+				<Container>
+					<RouterView />
+				</Container>
 			</section>
 		</div>
 	</main>
