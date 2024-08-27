@@ -10,13 +10,14 @@ use Modules\Task\Domain\Repositories\TeamRepository;
 
 class EloquentTeamRepository implements TeamRepository
 {
-    public function getUserTeamsWithTasks(int $user_id): Collection
+    public function getTeamTasks(int $user_id, int $team_id): Collection
     {
         return Team::query()
             ->with([
                 'categories:id,name,team_id',
                 'categories.tasks:id,category_id,name,description,estimation,status,created_at'
             ])
+            ->where('team_id', $team_id)
             ->userRelated($user_id)
             ->get([
                 'id',

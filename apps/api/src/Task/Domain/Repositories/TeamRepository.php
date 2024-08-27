@@ -8,5 +8,5 @@ use Illuminate\Support\Collection;
 
 interface TeamRepository
 {
-    public function getUserTeamsWithTasks(int $user_id): Collection;
+    public function getTeamTasks(int $user_id, int $team_id): Collection;
 }

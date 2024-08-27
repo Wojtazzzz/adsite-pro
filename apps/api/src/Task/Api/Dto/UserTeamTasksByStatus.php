@@ -16,19 +16,14 @@ class UserTeamTasksByStatus extends JsonResource
      */
     public function toArray(Request $request): array
     {
-        $tasks_groups = collect(['idle' => [], 'in_progress' => [], 'completed' => []]);
-
         return [
             'id' => $this->id,
             'name' => $this->name,
-            'categories' => $this->categories->map(function (object $category) use ($tasks_groups) {
+            'categories' => $this->categories->map(function (object $category) {
                 return [
                     'id' => $category->id,
                     'name' => $category->name,
                     'team_id' => $category->team_id,
-//                    'tasks' => $tasks_groups->merge($category->tasks->mapToGroups(function (object $task) {
-//                        return [mb_strtolower($task->status) => $task];
-//                    })),
                     'tasks' => $category->tasks
                 ];
             })
