@@ -1,23 +1,21 @@
 <script setup lang="ts">
 import Combobox from '@/components/ui/Combobox.vue';
 import { useGetMemberTeams } from '@/modules/tasks/selectTeam/useGetMemberTeams';
-import { computed, watch } from 'vue';
+import { computed, onMounted, ref, watch } from 'vue';
 import { mapTeamsToComboboxOptions } from '@/modules/tasks/utils';
 
 const emit = defineEmits<{
 	(e: 'update', id: number): void;
 }>();
 
-const currentTeam = defineModel<number | null>({
-	default: null,
-});
+const currentTeam = ref<number | null>(null);
 
 const { data } = useGetMemberTeams();
 
 const teamsOptions = computed(() => mapTeamsToComboboxOptions(data));
 
-watch(data, () => {
-	if (currentTeam.value !== null) {
+const setDefaultTeam = () => {
+	if (currentTeam.value) {
 		return;
 	}
 
@@ -26,7 +24,11 @@ watch(data, () => {
 
 		emit('update', data.value.data[0].id);
 	}
-});
+};
+
+onMounted(setDefaultTeam);
+
+watch(data, setDefaultTeam);
 </script>
 
 <template>
@@ -35,6 +37,6 @@ watch(data, () => {
 		:options="teamsOptions"
 		not-found-message="No team found"
 		placeholder="Select team"
-		@update:model-value="(value) => console.log('sss: ', value)"
+		@update:model-value="({ value }) => $emit('update', value)"
 	/>
 </template>
