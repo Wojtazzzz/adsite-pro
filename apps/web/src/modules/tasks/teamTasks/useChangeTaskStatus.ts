@@ -11,7 +11,7 @@ export const useChangeTaskStatus = () => {
 		mutationFn: async (payload: ChangeTaskStatusPayload) => {
 			return await api({
 				method: 'PATCH',
-				url: `/api/tasks/status/${payload.id}`,
+				url: `/api/tasks/${payload.id}/status`,
 				payload: {
 					newStatus: payload.newStatus,
 				},
