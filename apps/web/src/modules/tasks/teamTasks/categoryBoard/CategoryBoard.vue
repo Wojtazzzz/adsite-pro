@@ -17,7 +17,7 @@ const { idleTasks, inProgressTasks, completedTasks, onDragStart, onDrop } = useC
 </script>
 
 <template>
-	<div class="flex w-full justify-evenly gap-x-8">
+	<div class="flex w-full justify-center gap-8">
 		<CategoryBox category-name="idle tasks">
 			<Droppable as="ul" @dragover.prevent @drop.prevent="onDrop($event, 'IDLE')">
 				<template v-for="task in idleTasks" :key="task.id">

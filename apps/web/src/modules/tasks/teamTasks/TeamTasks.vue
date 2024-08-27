@@ -18,19 +18,21 @@ const { data } = useGetTasks(computed(() => props.team));
 <template>
 	<template v-if="data">
 		<Tabs :default-tab="1">
-			<TabsList>
-				<template v-for="category in data.data.categories" :key="category.id">
-					<TabTrigger :value="category.id">
-						<Button type="button">{{ category.name }}</Button>
-					</TabTrigger>
-				</template>
-			</TabsList>
+			<div class="w-full space-y-8">
+				<TabsList>
+					<template v-for="category in data.data.categories" :key="category.id">
+						<TabTrigger :value="category.id">
+							<Button type="button">{{ category.name }}</Button>
+						</TabTrigger>
+					</template>
+				</TabsList>
 
-			<template v-for="category in data.data.categories" :key="category.id">
-				<TabsContent :value="category.id">
-					<CategoryBoard :category="category" />
-				</TabsContent>
-			</template>
+				<template v-for="category in data.data.categories" :key="category.id">
+					<TabsContent :value="category.id">
+						<CategoryBoard :category="category" />
+					</TabsContent>
+				</template>
+			</div>
 		</Tabs>
 	</template>
 </template>

@@ -9,7 +9,7 @@ defineProps<{
 </script>
 
 <template>
-	<Tabs :default-value="defaultTab" class="w-full space-y-6">
+	<Tabs :default-value="defaultTab">
 		<slot />
 	</Tabs>
 </template>

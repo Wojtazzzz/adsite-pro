@@ -16,7 +16,7 @@ const { currentTeam, updateTeam } = useCurrentTeam();
 		</div>
 
 		<template v-if="currentTeam">
-			<div class="mt-6">
+			<div class="mt-8">
 				<TeamTasks :team="currentTeam" />
 			</div>
 		</template>
