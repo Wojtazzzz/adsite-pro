@@ -4,9 +4,8 @@ declare(strict_types=1);
 
 namespace Modules\Task\Application\Queries;
 
-use Illuminate\Support\Collection;
+use App\Models\Team;
 use Modules\Task\Domain\Repositories\TeamRepository;
-use Modules\Task\Queries\UpdateTaskStatusCommand;
 
 readonly class GetUserTasksQueryHandler
 {
@@ -14,8 +13,8 @@ readonly class GetUserTasksQueryHandler
     {
     }
 
-    public function handle(GetUserTasksQuery $query): Collection
+    public function handle(GetUserTasksQuery $query): Team
     {
-        return $this->team->getUserTeamsWithTasks($query->user_id);
+        return $this->team->getTasks($query->user_id, $query->team_id);
     }
 }

@@ -13,6 +13,7 @@ require_once __DIR__ . '/auth.php';
 
 Route::middleware('auth')->name('.api')->group(function () {
     Route::controller(TeamController::class)->prefix('/teams')->name('.teams')->group(function () {
+        Route::get('/', 'index')->name('.index');
         Route::get('/{team}', 'show')->name('.show');
     });
 
