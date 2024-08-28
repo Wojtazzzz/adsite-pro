@@ -1,26 +1,34 @@
 <script setup lang="ts">
 import Button from '@/components/ui/Button.vue';
-import Sheet from '@/components/ui/sheet/Sheet.vue';
-import SheetTrigger from '@/components/ui/sheet/SheetTrigger.vue';
-import { SheetContent } from '@/components/ui-library/sheet';
-import SheetHeader from '@/components/ui/sheet/SheetHeader.vue';
-import SheetTitle from '@/components/ui/sheet/SheetTitle.vue';
-import SheetDescription from '@/components/ui/sheet/SheetDescription.vue';
+import Field from '@/components/ui/form/Field.vue';
+import Form from '@/components/ui/form/Form.vue';
+import Popover from '@/components/ui/popover/Popover.vue';
+import PopoverTrigger from '@/components/ui/popover/PopoverTrigger.vue';
+import { PopoverContent } from '@/components/ui-library/popover';
+import { useCreateTeam } from '@/modules/tasks/createTeam/useCreateTeam';
+import { type CreateTeamFormData, createTeamFormSchema } from '@/modules/tasks/createTeam/utils';
+
+const { createTeam } = useCreateTeam();
+const onSubmit = (values: CreateTeamFormData) => {
+	createTeam(values);
+};
 </script>
 
 <template>
-	<Sheet>
-		<SheetTrigger>
+	<Popover>
+		<PopoverTrigger>
 			<Button type="button">Create team</Button>
-		</SheetTrigger>
-		<SheetContent>
-			<SheetHeader>
-				<SheetTitle>Are you absolutely sure?</SheetTitle>
-				<SheetDescription>
-					This action cannot be undone. This will permanently delete your account and
-					remove your data from our servers.
-				</SheetDescription>
-			</SheetHeader>
-		</SheetContent>
-	</Sheet>
+		</PopoverTrigger>
+		<PopoverContent>
+			<Form :schema="createTeamFormSchema" :on-submit="onSubmit">
+				<div class="space-y-6">
+					<Field type="text" name="name" placeholder="My Super Team" label="Name" />
+
+					<div class="flex justify-end">
+						<Button type="submit">Create</Button>
+					</div>
+				</div>
+			</Form>
+		</PopoverContent>
+	</Popover>
 </template>

@@ -17,6 +17,11 @@ class Team extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'user_id',
+        'name'
+    ];
+
     public function newEloquentBuilder($query): TeamQueryBuilder
     {
         return new TeamQueryBuilder($query);

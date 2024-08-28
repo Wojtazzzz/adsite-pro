@@ -12,6 +12,8 @@ use App\Models\Task;
 use Illuminate\Auth\Notifications\ResetPassword;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\ServiceProvider;
+use Modules\Task\Application\Commands\CreateTeamCommand;
+use Modules\Task\Application\Commands\CreateTeamCommandHandler;
 use Modules\Task\Application\Commands\UpdateTaskStatusCommand;
 use Modules\Task\Application\Commands\UpdateTaskStatusCommandHandler;
 use Modules\Task\Application\Policies\TaskPolicy;
@@ -64,6 +66,7 @@ class AppServiceProvider extends ServiceProvider
 
         $commandBus->register([
             UpdateTaskStatusCommand::class => UpdateTaskStatusCommandHandler::class,
+            CreateTeamCommand::class => CreateTeamCommandHandler::class,
         ]);
 
         Gate::policy(Task::class, TaskPolicy::class);

@@ -1,0 +1,23 @@
+<?php
+
+declare(strict_types=1);
+
+namespace Modules\Task\Application\Commands;
+
+use App\Bus\Command;
+use App\Models\Task;
+
+class CreateTeamCommand extends Command
+{
+    public function __construct(
+        public readonly int $user_id,
+        public readonly string $name,
+    )
+    {
+    }
+
+    public static function from(array $payloads): self
+    {
+        return new self($payloads['name']);
+    }
+}
