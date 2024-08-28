@@ -27,7 +27,7 @@ export type GetTasksResponse = {
 	};
 };
 
-export const useGetTasks = (teamId: ComputedRef<number>) => {
+export const useGetTeamTasks = (teamId: ComputedRef<number>) => {
 	const { isSuccess, isLoading, isError, data, error } = useQuery({
 		queryKey: ['team-tasks', teamId],
 		queryFn: async () =>
@@ -41,7 +41,7 @@ export const useGetTasks = (teamId: ComputedRef<number>) => {
 		isLoading,
 		isSuccess,
 		isError,
-		data,
+		tasks: data,
 		error,
 	};
 };

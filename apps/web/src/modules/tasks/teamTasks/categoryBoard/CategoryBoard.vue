@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { Category } from '@/modules/tasks/teamTasks/useGetTasks';
+import type { Category } from '@/modules/tasks/teamTasks/useGetTeamTasks';
 import TaskBox from '@/modules/tasks/teamTasks/categoryBoard/TaskBox.vue';
 import Draggable from '@/components/ui/dragAndDrop/Draggable.vue';
 import Droppable from '@/components/ui/dragAndDrop/Droppable.vue';

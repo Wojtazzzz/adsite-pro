@@ -1,4 +1,4 @@
-import type { Category, Task } from '@/modules/tasks/teamTasks/useGetTasks';
+import type { Category, Task } from '@/modules/tasks/teamTasks/useGetTeamTasks';
 import { useChangeTaskStatus } from '@/modules/tasks/teamTasks/categoryBoard/useChangeTaskStatus';
 import { computed, type ComputedRef } from 'vue';
 

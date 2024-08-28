@@ -1,12 +1,12 @@
 import type { Ref } from 'vue';
-import type { GetMemberTeamsResponse } from '@/modules/tasks/selectTeam/useGetMemberTeams';
+import type { Team } from '@/modules/tasks/useGetUserTeams';
 
-export const mapTeamsToComboboxOptions = (data: Ref<GetMemberTeamsResponse | undefined>) => {
-	if (!data.value) {
+export const mapTeamsToComboboxOptions = (teams: Ref<Team[] | undefined>) => {
+	if (!teams.value) {
 		return [];
 	}
 
-	return data.value.data.map((team) => ({
+	return teams.value.map((team) => ({
 		value: team.id,
 		label: team.name,
 	}));

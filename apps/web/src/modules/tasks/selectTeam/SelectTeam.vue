@@ -1,8 +1,12 @@
 <script setup lang="ts">
 import Combobox from '@/components/ui/Combobox.vue';
-import { useGetMemberTeams } from '@/modules/tasks/selectTeam/useGetMemberTeams';
-import { computed, onMounted, ref, watch } from 'vue';
+import { type Team } from '@/modules/tasks/useGetUserTeams';
+import { computed, onMounted, ref, toRef, watch } from 'vue';
 import { mapTeamsToComboboxOptions } from '@/modules/tasks/utils';
+
+const props = defineProps<{
+	teams: Team[];
+}>();
 
 const emit = defineEmits<{
 	(e: 'update', id: number): void;
@@ -10,25 +14,23 @@ const emit = defineEmits<{
 
 const currentTeam = ref<number | null>(null);
 
-const { data } = useGetMemberTeams();
-
-const teamsOptions = computed(() => mapTeamsToComboboxOptions(data));
+const teamsOptions = computed(() => mapTeamsToComboboxOptions(toRef(props.teams)));
 
 const setDefaultTeam = () => {
 	if (currentTeam.value) {
 		return;
 	}
 
-	if (data.value && data.value.data.length > 0) {
-		currentTeam.value = data.value.data[0].id;
+	if (props.teams && props.teams.length > 0) {
+		currentTeam.value = props.teams[0].id;
 
-		emit('update', data.value.data[0].id);
+		emit('update', props.teams[0].id);
 	}
 };
 
 onMounted(setDefaultTeam);
 
-watch(data, setDefaultTeam);
+watch(() => props.teams, setDefaultTeam);
 </script>
 
 <template>

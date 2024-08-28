@@ -4,21 +4,37 @@ import SelectTeam from '@/modules/tasks/selectTeam/SelectTeam.vue';
 import { useCurrentTeam } from '@/modules/tasks/useCurrentTeam';
 import TeamTasks from '@/modules/tasks/teamTasks/TeamTasks.vue';
 import CreateTeam from '@/modules/tasks/createTeam/CreateTeam.vue';
+import { useGetUserTeams } from '@/modules/tasks/useGetUserTeams';
+import SpinnerLoader from '@/components/ui/SpinnerLoader.vue';
+import Alert from '@/components/ui/Alert.vue';
 
+const { teams, isError, isLoading } = useGetUserTeams();
 const { currentTeam, updateTeam } = useCurrentTeam();
 </script>
 
 <template>
 	<Container>
 		<div class="w-full flex items-center justify-between">
-			<SelectTeam @update="updateTeam" />
+			<SelectTeam :teams="teams?.data ?? []" @update="updateTeam" />
 			<CreateTeam />
 		</div>
 
-		<template v-if="currentTeam">
-			<div class="mt-8">
+		<div class="mt-8">
+			<template v-if="isLoading">
+				<SpinnerLoader />
+			</template>
+			<template v-else-if="isError || !teams?.data">
+				<Alert variant="destructive" content="Something went wrong on the server" />
+			</template>
+			<template v-else-if="teams.data.length <= 0">
+				<Alert
+					variant="default"
+					content="You have no teams to collaborate. Wait for an invitation or create your one."
+				/>
+			</template>
+			<template v-else-if="currentTeam">
 				<TeamTasks :team="currentTeam" />
-			</div>
-		</template>
+			</template>
+		</div>
 	</Container>
 </template>
