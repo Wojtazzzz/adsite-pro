@@ -3,16 +3,21 @@ import { Alert, AlertDescription, AlertTitle } from '@/components/ui-library/ale
 import { ExclamationTriangleIcon } from '@radix-icons/vue';
 
 defineProps<{
-	content?: string | undefined;
+	content: string;
+	variant: 'default' | 'destructive';
 }>();
 </script>
 
 <template>
-	<Alert variant="destructive">
+	<Alert :variant="variant">
 		<ExclamationTriangleIcon class="w-4 h-4" />
-		<AlertTitle>Error</AlertTitle>
+		<AlertTitle>
+			<span class="font-semibold text-base">
+				{{ variant === 'destructive' ? 'Error' : 'Warning' }}
+			</span>
+		</AlertTitle>
 		<AlertDescription>
-			{{ content ?? '' }}
+			{{ content }}
 		</AlertDescription>
 	</Alert>
 </template>
