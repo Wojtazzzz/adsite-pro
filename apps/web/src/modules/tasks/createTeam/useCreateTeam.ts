@@ -1,5 +1,5 @@
 import { useToast } from '@/composables/useToast';
-import { useMutation } from '@tanstack/vue-query';
+import { useMutation, useQueryClient } from '@tanstack/vue-query';
 import { api } from '@/utils/functions';
 import { responseErrorSchema } from '@/utils/schemas';
 
@@ -9,6 +9,7 @@ type CreateTeamPayload = {
 
 export const useCreateTeam = () => {
 	const { callToast } = useToast();
+	const queryClient = useQueryClient();
 
 	const { mutate, isError, error } = useMutation({
 		mutationFn: async (payload: CreateTeamPayload) => {
@@ -21,6 +22,10 @@ export const useCreateTeam = () => {
 		async onSuccess() {
 			callToast({
 				title: 'Team successfully created',
+			});
+
+			await queryClient.invalidateQueries({
+				queryKey: ['teams'],
 			});
 		},
 		async onError(error) {
