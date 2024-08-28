@@ -5,11 +5,3 @@ export const createTeamFormSchema = z.object({
 });
 
 export type CreateTeamFormData = z.infer<typeof createTeamFormSchema>;
-
-export const createTeamErrorSchema = z.object({
-	response: z.object({
-		data: z.object({
-			message: z.string({}),
-		}),
-	}),
-});
