@@ -27,6 +27,7 @@ defineProps<{
 	options: ComboboxOption[];
 	placeholder: string;
 	notFoundMessage: string;
+	search?: boolean;
 }>();
 
 const { state: isOpen, setFalse: close } = useBoolean();
@@ -63,7 +64,7 @@ const onSelect = (ev: SelectEvent) => {
 		</PopoverTrigger>
 		<PopoverContent class="w-[200px] p-0">
 			<Command>
-				<CommandInput class="h-9" :placeholder="placeholder" />
+				<CommandInput v-if="search" class="h-9" :placeholder="placeholder" />
 				<CommandEmpty>{{ notFoundMessage }}</CommandEmpty>
 				<CommandList>
 					<CommandGroup>
