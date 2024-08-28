@@ -3,7 +3,7 @@ import { PopoverTrigger } from '@/components/ui-library/popover';
 </script>
 
 <template>
-	<PopoverTrigger>
+	<PopoverTrigger as-child>
 		<slot />
 	</PopoverTrigger>
 </template>

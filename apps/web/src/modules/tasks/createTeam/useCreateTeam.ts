@@ -1,6 +1,7 @@
 import { useToast } from '@/composables/useToast';
 import { useMutation } from '@tanstack/vue-query';
 import { api } from '@/utils/functions';
+import { createTeamErrorSchema } from '@/modules/tasks/createTeam/utils';
 
 type CreateTeamPayload = {
 	name: string;
@@ -22,10 +23,27 @@ export const useCreateTeam = () => {
 				title: 'Team successfully created',
 			});
 		},
+		async onError(error) {
+			const { success, data } = await createTeamErrorSchema.safeParseAsync(error);
+
+			if (success) {
+				return callToast({
+					title: 'Error!',
+					description: data.response.data.message,
+				});
+			}
+
+			return callToast({
+				title: 'Error!',
+				description: 'Something went wrong',
+			});
+		},
 	});
 
-	const createTeam = (credentials: CreateTeamPayload) => {
-		mutate(credentials);
+	const createTeam = (credentials: CreateTeamPayload, onSuccess: () => void) => {
+		mutate(credentials, {
+			onSuccess,
+		});
 	};
 
 	return {

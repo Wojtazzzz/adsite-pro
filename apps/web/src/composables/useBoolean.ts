@@ -8,7 +8,7 @@ export const useBoolean = (defaultValue = false) => {
 	};
 
 	const setFalse = () => {
-		state.value = true;
+		state.value = false;
 	};
 
 	const toggle = () => {

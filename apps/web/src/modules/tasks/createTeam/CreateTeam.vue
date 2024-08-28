@@ -4,22 +4,31 @@ import Field from '@/components/ui/form/Field.vue';
 import Form from '@/components/ui/form/Form.vue';
 import Popover from '@/components/ui/popover/Popover.vue';
 import PopoverTrigger from '@/components/ui/popover/PopoverTrigger.vue';
-import { PopoverContent } from '@/components/ui-library/popover';
+import PopoverContent from '@/components/ui/popover/PopoverContent.vue';
 import { useCreateTeam } from '@/modules/tasks/createTeam/useCreateTeam';
 import { type CreateTeamFormData, createTeamFormSchema } from '@/modules/tasks/createTeam/utils';
+import { usePopover } from '@/modules/tasks/createTeam/usePopover';
+
+const { isOpen, open, close } = usePopover();
 
 const { createTeam } = useCreateTeam();
+
 const onSubmit = (values: CreateTeamFormData) => {
-	createTeam(values);
+	createTeam(values, close);
 };
 </script>
 
 <template>
-	<Popover>
+	<Popover :open="isOpen">
 		<PopoverTrigger>
-			<Button type="button">Create team</Button>
+			<Button type="button" @click="open">Create team</Button>
 		</PopoverTrigger>
-		<PopoverContent>
+		<PopoverContent
+			@interactOutside="close"
+			@pointerDownOutside="close"
+			@escapeKeyDown="close"
+			@focusOutside="close"
+		>
 			<Form :schema="createTeamFormSchema" :on-submit="onSubmit">
 				<div class="space-y-6">
 					<Field type="text" name="name" placeholder="My Super Team" label="Name" />
