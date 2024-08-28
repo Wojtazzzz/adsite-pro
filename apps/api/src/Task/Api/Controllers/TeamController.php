@@ -15,7 +15,7 @@ use Modules\Task\Api\Dto\MemberTeams;
 use Modules\Task\Api\Dto\UserTeamTasksByStatus;
 use Modules\Task\Api\Requests\StoreTeamRequest;
 use Modules\Task\Application\Commands\CreateTeamCommand;
-use Modules\Task\Application\Queries\GetMemberTeamsQuery;
+use Modules\Task\Application\Queries\GetUserTeamsQuery;
 use Modules\Task\Application\Queries\GetUserTasksQuery;
 
 class TeamController extends Controller
@@ -29,7 +29,7 @@ class TeamController extends Controller
 
     public function index(Request $request): AnonymousResourceCollection
     {
-        $query = new GetMemberTeamsQuery($request->user()->id);
+        $query = new GetUserTeamsQuery($request->user()->id);
 
         $data = $this->queryBus->query($query);
 

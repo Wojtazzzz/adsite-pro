@@ -8,14 +8,14 @@ use Illuminate\Support\Collection;
 use Modules\Task\Domain\Repositories\TeamRepository;
 use Modules\Task\Queries\UpdateTaskStatusCommand;
 
-readonly class GetMemberTeamsQueryHandler
+readonly class GetUserTeamsQueryHandler
 {
     public function __construct(private TeamRepository $team)
     {
     }
 
-    public function handle(GetMemberTeamsQuery $query): Collection
+    public function handle(GetUserTeamsQuery $query): Collection
     {
-        return $this->team->getMemberTeams($query->user_id);
+        return $this->team->getConnectedWithUsers($query->user_id);
     }
 }

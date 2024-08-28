@@ -27,10 +27,13 @@ class EloquentTeamRepository implements TeamRepository
             ]);
     }
 
-    public function getMemberTeams(int $user_id): Collection
+    public function getConnectedWithUsers(int $user_id): Collection
     {
         return Team::query()
-            ->whereHas('users', fn(Builder $query) => $query->where('users.id', $user_id))
+            ->where(function (Builder $query) use ($user_id) {
+                return $query->whereHas('users', fn(Builder $query) => $query->where('users.id', $user_id))
+                    ->orWhereHas('user', fn(Builder $query) => $query->where('users.id', $user_id));
+            })
             ->get([
                 'id',
                 'name'

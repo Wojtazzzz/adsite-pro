@@ -17,8 +17,8 @@ use Modules\Task\Application\Commands\CreateTeamCommandHandler;
 use Modules\Task\Application\Commands\UpdateTaskStatusCommand;
 use Modules\Task\Application\Commands\UpdateTaskStatusCommandHandler;
 use Modules\Task\Application\Policies\TaskPolicy;
-use Modules\Task\Application\Queries\GetMemberTeamsQuery;
-use Modules\Task\Application\Queries\GetMemberTeamsQueryHandler;
+use Modules\Task\Application\Queries\GetUserTeamsQuery;
+use Modules\Task\Application\Queries\GetUserTeamsQueryHandler;
 use Modules\Task\Application\Queries\GetUserTasksQuery;
 use Modules\Task\Application\Queries\GetUserTasksQueryHandler;
 use Modules\Task\Domain\Repositories\TaskRepository;
@@ -59,7 +59,7 @@ class AppServiceProvider extends ServiceProvider
 
         $queryBus->register([
             GetUserTasksQuery::class => GetUserTasksQueryHandler::class,
-            GetMemberTeamsQuery::class => GetMemberTeamsQueryHandler::class,
+            GetUserTeamsQuery::class => GetUserTeamsQueryHandler::class,
         ]);
 
         $commandBus = app(CommandBus::class);
