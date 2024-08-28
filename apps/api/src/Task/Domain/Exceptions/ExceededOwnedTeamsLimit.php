@@ -9,7 +9,7 @@ use Throwable;
 
 class ExceededOwnedTeamsLimit extends DomainException
 {
-    public function __construct(string $message = "Exceeded owned teams limit", int $code = 0, ?Throwable $previous = null)
+    public function __construct(string $message = "Exceeded owned teams maximum limit", int $code = 0, ?Throwable $previous = null)
     {
         parent::__construct($message, $code, $previous);
     }
