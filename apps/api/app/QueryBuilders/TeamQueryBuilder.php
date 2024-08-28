@@ -16,8 +16,9 @@ class TeamQueryBuilder extends Builder
 
     public function userRelated(int $user_id): self
     {
-        return $this->whereHas('users', function (Builder $query) use ($user_id) {
-            return $query->where('user_id', $user_id);
+        return $this->where(function (Builder $query) use ($user_id) {
+            return $query->whereHas('users', fn(Builder $query) => $query->where('users.id', $user_id))
+                ->orWhereHas('user', fn(Builder $query) => $query->where('users.id', $user_id));
         });
     }
 }

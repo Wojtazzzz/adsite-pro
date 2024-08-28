@@ -30,10 +30,7 @@ class EloquentTeamRepository implements TeamRepository
     public function getConnectedWithUsers(int $user_id): Collection
     {
         return Team::query()
-            ->where(function (Builder $query) use ($user_id) {
-                return $query->whereHas('users', fn(Builder $query) => $query->where('users.id', $user_id))
-                    ->orWhereHas('user', fn(Builder $query) => $query->where('users.id', $user_id));
-            })
+            ->userRelated($user_id)
             ->get([
                 'id',
                 'name'

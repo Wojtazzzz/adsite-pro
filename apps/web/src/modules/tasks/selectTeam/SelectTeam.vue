@@ -37,6 +37,11 @@ watch(data, setDefaultTeam);
 		:options="teamsOptions"
 		not-found-message="No team found"
 		placeholder="Select team"
-		@update:model-value="({ value }) => $emit('update', value)"
+		@update:model-value="
+			(value) => {
+				currentTeam = value;
+				$emit('update', value);
+			}
+		"
 	/>
 </template>

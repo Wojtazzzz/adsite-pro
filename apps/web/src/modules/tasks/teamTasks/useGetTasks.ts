@@ -29,7 +29,7 @@ export type GetTasksResponse = {
 
 export const useGetTasks = (teamId: ComputedRef<number>) => {
 	const { isSuccess, isLoading, isError, data, error } = useQuery({
-		queryKey: ['team-tasks'],
+		queryKey: ['team-tasks', teamId],
 		queryFn: async () =>
 			(await api({
 				url: computed(() => `/api/teams/${teamId.value}`).value,
