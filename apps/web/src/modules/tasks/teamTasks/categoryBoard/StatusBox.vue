@@ -5,7 +5,7 @@ import CardHeader from '@/components/ui/card/CardHeader.vue';
 import Card from '@/components/ui/card/Card.vue';
 
 defineProps<{
-	categoryName: string;
+	statusName: string;
 }>();
 </script>
 
@@ -13,7 +13,7 @@ defineProps<{
 	<Card>
 		<CardHeader>
 			<CardTitle tag="h2">
-				<span class="text-xl uppercase">{{ categoryName }}</span>
+				<span class="text-xl uppercase">{{ statusName }}</span>
 			</CardTitle>
 		</CardHeader>
 
