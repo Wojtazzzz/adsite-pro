@@ -1,11 +1,11 @@
 <script setup lang="ts">
-import DialogContent from '@/components/dialog/DialogContent.vue';
-import DialogDescription from '@/components/dialog/DialogDescription.vue';
-import DialogHeader from '@/components/dialog/DialogHeader.vue';
+import DialogContent from '@/components/ui/card/dialog/DialogContent.vue';
+import DialogDescription from '@/components/ui/card/dialog/DialogDescription.vue';
+import DialogHeader from '@/components/ui/card/dialog/DialogHeader.vue';
 import Logo from '@/components/ui/Logo.vue';
-import DialogTitle from '@/components/dialog/DialogTitle.vue';
-import Dialog from '@/components/dialog/Dialog.vue';
-import DialogTrigger from '@/components/dialog/DialogTrigger.vue';
+import DialogTitle from '@/components/ui/card/dialog/DialogTitle.vue';
+import Dialog from '@/components/ui/card/dialog/Dialog.vue';
+import DialogTrigger from '@/components/ui/card/dialog/DialogTrigger.vue';
 import IconBars from '@/components/icons/IconBars.vue';
 import MobileNav from '@/components/header/mobileNav/MobileNav.vue';
 </script>
@@ -25,8 +25,8 @@ import MobileNav from '@/components/header/mobileNav/MobileNav.vue';
 					<span class="ml-2.5 text-xl font-bold tracking-wide text-gray-800 uppercase">
 						Teamer
 					</span>
-				</RouterLink></DialogTrigger
-			>
+				</RouterLink>
+			</DialogTrigger>
 			<DialogHeader>
 				<DialogTitle>
 					<span class="sr-only">Navigation</span>

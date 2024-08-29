@@ -4,7 +4,7 @@ import Navbar from '@/components/ui/navigation/Navbar.vue';
 import NavItem from '@/components/ui/navigation/NavItem.vue';
 import NavItemLink from '@/components/ui/navigation/NavItemLink.vue';
 import { links } from '@/components/header/utils';
-import DialogTrigger from '@/components/dialog/DialogTrigger.vue';
+import DialogTrigger from '@/components/ui/card/dialog/DialogTrigger.vue';
 import { useMe } from '@/composables/useMe';
 
 const { isUserLogged } = useMe();
