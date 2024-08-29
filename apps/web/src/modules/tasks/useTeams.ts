@@ -1,4 +1,4 @@
-import { ref, watch } from 'vue';
+import { ref } from 'vue';
 import { type Team, useGetUserTeams } from '@/modules/tasks/useGetUserTeams';
 
 export const useTeams = () => {

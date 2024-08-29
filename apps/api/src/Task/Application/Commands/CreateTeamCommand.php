@@ -14,9 +14,4 @@ class CreateTeamCommand extends Command
     )
     {
     }
-
-    public static function from(array $payloads): self
-    {
-        return new self($payloads['name']);
-    }
 }
