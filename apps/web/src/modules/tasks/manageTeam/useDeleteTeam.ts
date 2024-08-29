@@ -1,7 +1,7 @@
-import { useMutation, useQueryClient } from '@tanstack/vue-query';
+import { useQueryClient } from '@tanstack/vue-query';
 import { useToast } from '@/composables/useToast';
 import { api } from '@/utils/functions';
-import { responseErrorSchema } from '@/utils/schemas';
+import { useMutate } from '@/composables/useMutate';
 
 type DeleteTeamPayload = {
 	teamId: number;
@@ -11,14 +11,14 @@ export const useDeleteTeam = () => {
 	const { callToast } = useToast();
 	const queryClient = useQueryClient();
 
-	const { mutate } = useMutation({
-		mutationFn: async (payload: DeleteTeamPayload) => {
+	const { mutate } = useMutate({
+		apiCall: async (payload: DeleteTeamPayload) => {
 			return await api({
 				method: 'DELETE',
 				url: `/api/teams/${payload.teamId}`,
 			});
 		},
-		async onSuccess() {
+		onSuccess: async () => {
 			await queryClient.invalidateQueries({
 				queryKey: ['teams'],
 			});
@@ -28,28 +28,10 @@ export const useDeleteTeam = () => {
 				description: 'Your team has been deleted successfully!',
 			});
 		},
-		async onError(error) {
-			const { success, data } = await responseErrorSchema.safeParseAsync(error);
-
-			if (success) {
-				return callToast({
-					title: 'Error!',
-					description: data.response.data.message,
-				});
-			}
-
-			return callToast({
-				title: 'Error!',
-				description: 'Something went wrong',
-			});
-		},
+		toastErrors: true,
 	});
 
-	const deleteTeam = (payload: DeleteTeamPayload) => {
-		mutate(payload);
-	};
-
 	return {
-		deleteTeam,
+		deleteTeam: mutate,
 	};
 };

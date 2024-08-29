@@ -1,7 +1,7 @@
 import { useToast } from '@/composables/useToast';
-import { useMutation, useQueryClient } from '@tanstack/vue-query';
+import { useQueryClient } from '@tanstack/vue-query';
 import { api } from '@/utils/functions';
-import { responseErrorSchema } from '@/utils/schemas';
+import { useMutate } from '@/composables/useMutate';
 
 type CreateTeamPayload = {
 	name: string;
@@ -11,15 +11,15 @@ export const useCreateTeam = () => {
 	const { callToast } = useToast();
 	const queryClient = useQueryClient();
 
-	const { mutate, isError, error } = useMutation({
-		mutationFn: async (payload: CreateTeamPayload) => {
+	const { mutate } = useMutate({
+		apiCall: async (payload: CreateTeamPayload) => {
 			return await api({
 				method: 'POST',
 				url: '/api/teams',
 				payload,
 			});
 		},
-		async onSuccess() {
+		onSuccess: async () => {
 			callToast({
 				title: 'Team successfully created',
 			});
@@ -28,32 +28,10 @@ export const useCreateTeam = () => {
 				queryKey: ['teams'],
 			});
 		},
-		async onError(error) {
-			const { success, data } = await responseErrorSchema.safeParseAsync(error);
-
-			if (success) {
-				return callToast({
-					title: 'Error!',
-					description: data.response.data.message,
-				});
-			}
-
-			return callToast({
-				title: 'Error!',
-				description: 'Something went wrong',
-			});
-		},
+		toastErrors: true,
 	});
 
-	const createTeam = (credentials: CreateTeamPayload, onSuccess: () => void) => {
-		mutate(credentials, {
-			onSuccess,
-		});
-	};
-
 	return {
-		isError,
-		error,
-		createTeam,
+		createTeam: mutate,
 	};
 };

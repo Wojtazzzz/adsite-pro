@@ -1,5 +1,6 @@
-import { useMutation, useQueryClient } from '@tanstack/vue-query';
+import { useQueryClient } from '@tanstack/vue-query';
 import { api } from '@/utils/functions';
+import { useMutate } from '@/composables/useMutate';
 
 type ChangeTaskStatusPayload = {
 	id: number;
@@ -9,8 +10,8 @@ type ChangeTaskStatusPayload = {
 export const useChangeTaskStatus = () => {
 	const queryClient = useQueryClient();
 
-	const { mutate } = useMutation({
-		mutationFn: async (payload: ChangeTaskStatusPayload) => {
+	const { mutate } = useMutate({
+		apiCall: async (payload: ChangeTaskStatusPayload) => {
 			return await api({
 				method: 'PATCH',
 				url: `/api/tasks/${payload.id}/status`,
@@ -19,18 +20,15 @@ export const useChangeTaskStatus = () => {
 				},
 			});
 		},
-		async onSettled() {
+		onSettled: async () => {
 			await queryClient.invalidateQueries({
 				queryKey: ['team-tasks'],
 			});
 		},
+		toastErrors: true,
 	});
 
-	function changeStatus(payload: ChangeTaskStatusPayload) {
-		mutate(payload);
-	}
-
 	return {
-		changeStatus,
+		changeStatus: mutate,
 	};
 };

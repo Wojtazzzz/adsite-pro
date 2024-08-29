@@ -1,7 +1,7 @@
-import { useMutation } from '@tanstack/vue-query';
 import { useToast } from '@/composables/useToast';
 import { api } from '@/utils/functions';
 import { useRouter } from 'vue-router';
+import { useMutate } from '@/composables/useMutate';
 
 type RegisterPayload = {
 	name: string;
@@ -14,15 +14,15 @@ export const useRegister = () => {
 	const { callToast } = useToast();
 	const router = useRouter();
 
-	const { mutate, isError, error } = useMutation({
-		mutationFn: async (payload: RegisterPayload) => {
+	const { isError, error, mutate } = useMutate({
+		apiCall: async (payload: RegisterPayload) => {
 			return await api({
 				method: 'POST',
 				url: '/api/register',
 				payload,
 			});
 		},
-		async onSuccess() {
+		onSuccess: async () => {
 			await router.push({
 				name: 'home',
 			});
@@ -31,15 +31,12 @@ export const useRegister = () => {
 				title: 'Welcome!',
 			});
 		},
+		toastErrors: false,
 	});
-
-	const register = (credentials: RegisterPayload) => {
-		mutate(credentials);
-	};
 
 	return {
 		isError,
 		error,
-		register,
+		register: mutate,
 	};
 };

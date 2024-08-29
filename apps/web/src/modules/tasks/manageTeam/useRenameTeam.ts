@@ -1,7 +1,7 @@
-import { useMutation, useQueryClient } from '@tanstack/vue-query';
+import { useQueryClient } from '@tanstack/vue-query';
 import { useToast } from '@/composables/useToast';
 import { api } from '@/utils/functions';
-import { responseErrorSchema } from '@/utils/schemas';
+import { useMutate } from '@/composables/useMutate';
 
 type RenameTeamPayload = {
 	teamId: number;
@@ -12,8 +12,8 @@ export const useRenameTeam = () => {
 	const { callToast } = useToast();
 	const queryClient = useQueryClient();
 
-	const { mutate } = useMutation({
-		mutationFn: async (payload: RenameTeamPayload) => {
+	const { mutate } = useMutate({
+		apiCall: async (payload: RenameTeamPayload) => {
 			return await api({
 				method: 'PATCH',
 				url: `/api/teams/${payload.teamId}/rename`,
@@ -22,7 +22,7 @@ export const useRenameTeam = () => {
 				},
 			});
 		},
-		async onSuccess() {
+		onSuccess: async () => {
 			await queryClient.invalidateQueries({
 				queryKey: ['teams'],
 			});
@@ -32,30 +32,10 @@ export const useRenameTeam = () => {
 				description: 'Your team has been renamed successfully!',
 			});
 		},
-		async onError(error) {
-			const { success, data } = await responseErrorSchema.safeParseAsync(error);
-
-			if (success) {
-				return callToast({
-					title: 'Error!',
-					description: data.response.data.message,
-				});
-			}
-
-			return callToast({
-				title: 'Error!',
-				description: 'Something went wrong',
-			});
-		},
+		toastErrors: true,
 	});
 
-	const renameTeam = (payload: RenameTeamPayload, onSuccess: () => void) => {
-		mutate(payload, {
-			onSuccess,
-		});
-	};
-
 	return {
-		renameTeam,
+		renameTeam: mutate,
 	};
 };
