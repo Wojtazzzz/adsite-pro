@@ -19,7 +19,7 @@ class MemberTeams extends JsonResource
         return [
             'id' => $this->id,
             'name' => $this->name,
-            'isOwned' => $this->user_id === $request->user()->id,
+            'isOwner' => $this->user_id === $request->user()->id,
         ];
     }
 }
