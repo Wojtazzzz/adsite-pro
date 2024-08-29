@@ -20,15 +20,16 @@ import ToggleTheme from '@/components/ui/ToggleTheme.vue';
 					</span>
 				</RouterLink>
 
-				<div class="flex gap-x-5">
+				<div class="flex gap-x-3 md:gap-x-5">
 					<div class="hidden md:block">
 						<DesktopNav />
 					</div>
 
+					<ToggleTheme />
+
 					<div class="md:hidden">
 						<MobileNavDialog />
 					</div>
-					<ToggleTheme />
 				</div>
 			</header>
 		</Container>
