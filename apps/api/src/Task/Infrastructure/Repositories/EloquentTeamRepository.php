@@ -33,7 +33,8 @@ class EloquentTeamRepository implements TeamRepository
             ->userRelated($user_id)
             ->get([
                 'id',
-                'name'
+                'name',
+                'user_id'
             ]);
     }
 
