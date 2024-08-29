@@ -1,6 +1,7 @@
 import { useQuery } from '@tanstack/vue-query';
 import { api } from '@/utils/functions';
 import { computed, type ComputedRef } from 'vue';
+import type { Team } from '@/modules/tasks/useGetUserTeams';
 
 export type Category = {
 	id: number;
@@ -27,12 +28,12 @@ export type GetTasksResponse = {
 	};
 };
 
-export const useGetTeamTasks = (teamId: ComputedRef<number>) => {
+export const useGetTeamTasks = (team: ComputedRef<Team>) => {
 	const { isSuccess, isLoading, isError, data, error } = useQuery({
-		queryKey: ['team-tasks', teamId],
+		queryKey: ['team-tasks', team],
 		queryFn: async () =>
 			(await api({
-				url: computed(() => `/api/teams/${teamId.value}`).value,
+				url: computed(() => `/api/teams/${team.value.id}`).value,
 				method: 'GET',
 			})) as Promise<GetTasksResponse>,
 	});

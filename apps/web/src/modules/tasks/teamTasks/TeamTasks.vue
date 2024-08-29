@@ -9,9 +9,10 @@ import { useGetTeamTasks } from '@/modules/tasks/teamTasks/useGetTeamTasks';
 import { computed } from 'vue';
 import SpinnerLoader from '@/components/ui/SpinnerLoader.vue';
 import Alert from '@/components/ui/Alert.vue';
+import type { Team } from '@/modules/tasks/useGetUserTeams';
 
 const props = defineProps<{
-	team: number;
+	team: Team;
 }>();
 
 const { tasks, isLoading, isError } = useGetTeamTasks(computed(() => props.team));

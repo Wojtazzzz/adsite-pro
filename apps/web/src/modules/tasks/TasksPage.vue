@@ -1,22 +1,28 @@
 <script setup lang="ts">
 import Container from '@/components/ui/Container.vue';
 import SelectTeam from '@/modules/tasks/selectTeam/SelectTeam.vue';
-import { useCurrentTeam } from '@/modules/tasks/useCurrentTeam';
+import { useTeams } from '@/modules/tasks/useTeams';
 import TeamTasks from '@/modules/tasks/teamTasks/TeamTasks.vue';
 import CreateTeam from '@/modules/tasks/createTeam/CreateTeam.vue';
-import { useGetUserTeams } from '@/modules/tasks/useGetUserTeams';
 import SpinnerLoader from '@/components/ui/SpinnerLoader.vue';
 import Alert from '@/components/ui/Alert.vue';
+import ManageTeam from '@/modules/tasks/manageTeam/ManageTeam.vue';
 
-const { teams, isError, isLoading } = useGetUserTeams();
-const { currentTeam, updateTeam } = useCurrentTeam();
+const { teams, isLoading, isError, currentTeam, updateTeam } = useTeams();
 </script>
 
 <template>
 	<Container>
 		<div class="w-full flex items-center justify-between">
 			<SelectTeam :teams="teams?.data ?? []" @update="updateTeam" />
-			<CreateTeam />
+
+			<div class="flex justify-center items-center gap-x-3">
+				<template v-if="currentTeam">
+					<ManageTeam :current-team="currentTeam" />
+				</template>
+
+				<CreateTeam />
+			</div>
 		</div>
 
 		<div class="mt-8">
