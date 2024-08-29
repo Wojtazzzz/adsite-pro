@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Modules\Task\Application\Commands;
 
 use App\Bus\Command;
-use App\Models\Task;
 
 class CreateTeamCommand extends Command
 {

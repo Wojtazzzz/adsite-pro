@@ -16,6 +16,7 @@ Route::middleware('auth')->name('.api')->group(function () {
         Route::get('/', 'index')->name('.index');
         Route::post('/', 'store')->name('.store');
         Route::get('/{team}', 'show')->name('.show');
+        Route::delete('/{team}', 'destroy')->name('.delete');
     });
 
     Route::controller(TaskController::class)->prefix('/tasks')->name('.tasks')->group(function () {

@@ -10,9 +10,11 @@ use Illuminate\Support\Collection;
 
 interface TeamRepository
 {
-    public function getTasks(int $user_id, int $team_id): Team;
+    public function getTasks(int $userId, int $teamId): Team;
 
-    public function getConnectedWithUsers(int $user_id): Collection;
+    public function getConnectedWithUsers(int $userId): Collection;
 
-    public function createTeam(int $user_id, TeamEntity $teamEntity);
+    public function createTeam(int $userId, TeamEntity $teamEntity);
+
+    public function delete(int $teamId);
 }

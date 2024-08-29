@@ -3,7 +3,7 @@ import { AlertDialogCancel } from '@/components/ui-library/alert-dialog';
 </script>
 
 <template>
-	<AlertDialogCancel>
+	<AlertDialogCancel as-child>
 		<slot />
 	</AlertDialogCancel>
 </template>

@@ -9,14 +9,18 @@ use App\Bus\IlluminateCommandBus;
 use App\Bus\IlluminateQueryBus;
 use App\Bus\QueryBus;
 use App\Models\Task;
+use App\Models\Team;
 use Illuminate\Auth\Notifications\ResetPassword;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\ServiceProvider;
 use Modules\Task\Application\Commands\CreateTeamCommand;
 use Modules\Task\Application\Commands\CreateTeamCommandHandler;
+use Modules\Task\Application\Commands\DeleteTeamCommand;
+use Modules\Task\Application\Commands\DeleteTeamCommandHandler;
 use Modules\Task\Application\Commands\UpdateTaskStatusCommand;
 use Modules\Task\Application\Commands\UpdateTaskStatusCommandHandler;
 use Modules\Task\Application\Policies\TaskPolicy;
+use Modules\Task\Application\Policies\TeamPolicy;
 use Modules\Task\Application\Queries\GetUserTeamsQuery;
 use Modules\Task\Application\Queries\GetUserTeamsQueryHandler;
 use Modules\Task\Application\Queries\GetUserTasksQuery;
@@ -67,8 +71,10 @@ class AppServiceProvider extends ServiceProvider
         $commandBus->register([
             UpdateTaskStatusCommand::class => UpdateTaskStatusCommandHandler::class,
             CreateTeamCommand::class => CreateTeamCommandHandler::class,
+            DeleteTeamCommand::class => DeleteTeamCommandHandler::class,
         ]);
 
         Gate::policy(Task::class, TaskPolicy::class);
+        Gate::policy(Team::class, TeamPolicy::class);
     }
 }

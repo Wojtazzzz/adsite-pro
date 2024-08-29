@@ -3,7 +3,7 @@ import { DropdownMenuItem } from '@/components/ui-library/dropdown-menu';
 </script>
 
 <template>
-	<DropdownMenuItem>
+	<DropdownMenuItem as-child>
 		<slot />
 	</DropdownMenuItem>
 </template>

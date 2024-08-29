@@ -3,7 +3,7 @@ import { AlertDialogAction } from '@/components/ui-library/alert-dialog';
 </script>
 
 <template>
-	<AlertDialogAction>
+	<AlertDialogAction as-child>
 		<slot />
 	</AlertDialogAction>
 </template>
