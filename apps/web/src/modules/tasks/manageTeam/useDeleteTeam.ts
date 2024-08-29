@@ -24,7 +24,8 @@ export const useDeleteTeam = () => {
 			});
 
 			callToast({
-				title: 'Your team has been deleted successfully!',
+				title: 'Success!',
+				description: 'Your team has been deleted successfully!',
 			});
 		},
 		async onError(error) {

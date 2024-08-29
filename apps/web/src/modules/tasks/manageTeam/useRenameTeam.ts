@@ -28,7 +28,8 @@ export const useRenameTeam = () => {
 			});
 
 			callToast({
-				title: 'Your team has been renamed successfully!',
+				title: 'Success!',
+				description: 'Your team has been renamed successfully!',
 			});
 		},
 		async onError(error) {
