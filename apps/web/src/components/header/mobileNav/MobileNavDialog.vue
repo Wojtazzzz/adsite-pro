@@ -8,14 +8,16 @@ import Dialog from '@/components/ui/card/dialog/Dialog.vue';
 import DialogTrigger from '@/components/ui/card/dialog/DialogTrigger.vue';
 import IconBars from '@/components/icons/IconBars.vue';
 import MobileNav from '@/components/header/mobileNav/MobileNav.vue';
+import Button from '@/components/ui/Button.vue';
 </script>
 
 <template>
 	<Dialog>
 		<DialogTrigger>
-			<button aria-label="Open Menu" class="p-2 -mr-1 rounded">
+			<Button class="p-2 -mr-1 rounded" type="button">
+				<span class="sr-only">Open menu</span>
 				<IconBars />
-			</button>
+			</Button>
 		</DialogTrigger>
 		<DialogContent vertical-position="top">
 			<DialogTrigger>
