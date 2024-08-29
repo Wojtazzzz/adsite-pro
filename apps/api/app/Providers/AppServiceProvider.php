@@ -17,6 +17,8 @@ use Modules\Task\Application\Commands\CreateTeamCommand;
 use Modules\Task\Application\Commands\CreateTeamCommandHandler;
 use Modules\Task\Application\Commands\DeleteTeamCommand;
 use Modules\Task\Application\Commands\DeleteTeamCommandHandler;
+use Modules\Task\Application\Commands\RenameTeamCommand;
+use Modules\Task\Application\Commands\RenameTeamCommandHandler;
 use Modules\Task\Application\Commands\UpdateTaskStatusCommand;
 use Modules\Task\Application\Commands\UpdateTaskStatusCommandHandler;
 use Modules\Task\Application\Policies\TaskPolicy;
@@ -72,6 +74,7 @@ class AppServiceProvider extends ServiceProvider
             UpdateTaskStatusCommand::class => UpdateTaskStatusCommandHandler::class,
             CreateTeamCommand::class => CreateTeamCommandHandler::class,
             DeleteTeamCommand::class => DeleteTeamCommandHandler::class,
+            RenameTeamCommand::class => RenameTeamCommandHandler::class,
         ]);
 
         Gate::policy(Task::class, TaskPolicy::class);

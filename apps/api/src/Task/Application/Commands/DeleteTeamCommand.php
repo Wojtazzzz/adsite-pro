@@ -10,7 +10,6 @@ use App\Models\Team;
 class DeleteTeamCommand extends Command
 {
     public function __construct(
-        public readonly int $userId,
         public readonly Team $team,
     )
     {

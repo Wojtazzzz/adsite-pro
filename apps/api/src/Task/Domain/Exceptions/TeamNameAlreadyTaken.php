@@ -7,9 +7,9 @@ namespace Modules\Task\Domain\Exceptions;
 use App\Exceptions\DomainException;
 use Throwable;
 
-class OwnedTeamNameAlreadyTaken extends DomainException
+class TeamNameAlreadyTaken extends DomainException
 {
-    public function __construct(string $message = "Owned team name already taken", int $code = 0, ?Throwable $previous = null)
+    public function __construct(string $message = "Team name already taken", int $code = 0, ?Throwable $previous = null)
     {
         parent::__construct($message, $code, $previous);
     }

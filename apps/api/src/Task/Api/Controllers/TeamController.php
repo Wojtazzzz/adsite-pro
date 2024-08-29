@@ -13,9 +13,11 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use Modules\Task\Api\Dto\MemberTeams;
 use Modules\Task\Api\Dto\UserTeamTasksByStatus;
+use Modules\Task\Api\Requests\RenameTeamRequest;
 use Modules\Task\Api\Requests\StoreTeamRequest;
 use Modules\Task\Application\Commands\CreateTeamCommand;
 use Modules\Task\Application\Commands\DeleteTeamCommand;
+use Modules\Task\Application\Commands\RenameTeamCommand;
 use Modules\Task\Application\Queries\GetUserTeamsQuery;
 use Modules\Task\Application\Queries\GetUserTasksQuery;
 
@@ -55,12 +57,25 @@ class TeamController extends Controller
         return response()->json([], 201);
     }
 
-    public function destroy(Request $request, Team $team): JsonResponse
+    public function destroy(Team $team): JsonResponse
     {
-        $command = new DeleteTeamCommand($request->user()->id, $team);
+        $command = new DeleteTeamCommand($team);
 
         $this->commandBus->dispatch($command);
 
-        return response()->json([], 201);
+        return response()->json([], 204);
+    }
+
+    public function rename(RenameTeamRequest $request, Team $team): JsonResponse
+    {
+        $command = RenameTeamCommand::from([
+            'team' => $team,
+            'userId' => $request->user()->id,
+            ...$request->validated()
+        ]);
+
+        $this->commandBus->dispatch($command);
+
+        return response()->json([]);
     }
 }

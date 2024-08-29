@@ -17,6 +17,7 @@ Route::middleware('auth')->name('.api')->group(function () {
         Route::post('/', 'store')->name('.store');
         Route::get('/{team}', 'show')->name('.show');
         Route::delete('/{team}', 'destroy')->name('.delete');
+        Route::patch('/{team}/rename', 'rename')->name('.rename');
     });
 
     Route::controller(TaskController::class)->prefix('/tasks')->name('.tasks')->group(function () {

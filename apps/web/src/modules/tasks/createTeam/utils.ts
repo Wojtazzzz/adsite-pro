@@ -1,7 +1,8 @@
 import { z } from 'zod';
+import { teamNameSchema } from '@/utils/schemas';
 
 export const createTeamFormSchema = z.object({
-	name: z.string().min(5, 'Name should be more than 5 characters'),
+	name: teamNameSchema,
 });
 
 export type CreateTeamFormData = z.infer<typeof createTeamFormSchema>;

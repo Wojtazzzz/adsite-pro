@@ -6,15 +6,21 @@ type DialogContentVerticalPosition = 'top' | 'center';
 withDefaults(
 	defineProps<{
 		verticalPosition: DialogContentVerticalPosition;
+		close?: boolean;
 	}>(),
 	{
 		verticalPosition: 'center',
 	},
 );
+
+defineEmits<{
+	(e: 'closeClick'): void;
+}>();
 </script>
 
 <template>
 	<DialogContent
+		@closeClick="$emit('closeClick')"
 		:class="{
 			'top-40': verticalPosition === 'top',
 		}"

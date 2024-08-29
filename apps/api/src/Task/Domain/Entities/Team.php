@@ -6,7 +6,7 @@ namespace Modules\Task\Domain\Entities;
 
 readonly class Team
 {
-    public function __construct(public string $name)
+    public function __construct(public string $name, public ?int $id = null)
     {
     }
 }

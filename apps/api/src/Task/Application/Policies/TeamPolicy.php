@@ -17,4 +17,13 @@ class TeamPolicy
 
         return false;
     }
+
+    public function updateName(User $user, Team $team): bool
+    {
+        if ($user->id === $team->user_id) {
+            return true;
+        }
+
+        return false;
+    }
 }

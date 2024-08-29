@@ -59,4 +59,11 @@ class EloquentTeamRepository implements TeamRepository
     {
         Team::query()->where('id', $teamId)->delete();
     }
+
+    public function updateName(int $teamId, string $newName): int
+    {
+        return Team::query()
+            ->where('id', $teamId)
+            ->update(['name' => $newName]);
+    }
 }

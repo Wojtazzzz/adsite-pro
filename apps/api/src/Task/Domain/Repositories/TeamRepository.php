@@ -17,4 +17,6 @@ interface TeamRepository
     public function createTeam(int $userId, TeamEntity $teamEntity);
 
     public function delete(int $teamId);
+
+    public function updateName(int $teamId, string $newName);
 }
