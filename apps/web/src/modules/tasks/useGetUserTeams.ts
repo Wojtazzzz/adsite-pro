@@ -4,6 +4,7 @@ import { api } from '@/utils/functions';
 export type Team = {
 	id: number;
 	name: string;
+	isOwner: boolean;
 };
 
 export type GetMemberTeamsResponse = {

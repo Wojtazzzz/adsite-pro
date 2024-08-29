@@ -17,7 +17,7 @@ const { teams, isLoading, isError, currentTeam, updateTeam } = useTeams();
 			<SelectTeam :teams="teams?.data ?? []" @update="updateTeam" />
 
 			<div class="flex justify-center items-center gap-x-3">
-				<template v-if="currentTeam">
+				<template v-if="currentTeam && currentTeam.isOwner">
 					<ManageTeam :current-team="currentTeam" />
 				</template>
 
