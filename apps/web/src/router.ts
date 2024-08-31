@@ -27,7 +27,7 @@ export const router = createRouter({
 					component: TasksPage,
 				},
 				{
-					path: '/users',
+					path: '/users/:teamId',
 					name: 'users',
 					component: UsersPage,
 				},
