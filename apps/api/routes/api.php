@@ -1,15 +1,10 @@
 <?php
 
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Modules\Task\Api\Controllers\CategoryController;
 use Modules\Task\Api\Controllers\TaskController;
 use Modules\Task\Api\Controllers\TeamController;
 use Modules\Task\Api\Controllers\UserController;
-
-Route::middleware(['auth:sanctum'])->get('/user', function (Request $request) {
-    return $request->user();
-});
 
 require_once __DIR__ . '/auth.php';
 
