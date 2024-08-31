@@ -12,9 +12,11 @@ defineProps<{
 <template>
 	<Card>
 		<CardHeader>
-			<CardTitle tag="h2">
-				<span class="text-xl uppercase">{{ statusName }}</span>
-			</CardTitle>
+			<div class="flex justify-between">
+				<CardTitle tag="h2">
+					<span class="text-xl uppercase">{{ statusName }}</span>
+				</CardTitle>
+			</div>
 		</CardHeader>
 
 		<CardContent>

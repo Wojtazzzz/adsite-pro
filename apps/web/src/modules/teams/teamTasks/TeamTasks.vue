@@ -11,6 +11,7 @@ import SpinnerLoader from '@/components/ui/SpinnerLoader.vue';
 import Alert from '@/components/ui/Alert.vue';
 import type { Team } from '@/modules/teams/useGetUserTeams';
 import CreateCategory from '@/modules/teams/teamTasks/createCategory/CreateCategory.vue';
+import IconPlus from '@/components/icons/IconPlus.vue';
 
 const props = defineProps<{
 	team: Team;
@@ -43,6 +44,13 @@ const { tasks, isLoading, isError } = useGetTeamTasks(computed(() => props.team)
 							<Button type="button">{{ category.name }}</Button>
 						</TabTrigger>
 					</template>
+
+					<CreateCategory :team-id="tasks.data.id" v-slot="{ open }">
+						<Button type="button" @click="open">
+							<span class="sr-only">Add category</span>
+							<IconPlus />
+						</Button>
+					</CreateCategory>
 				</TabsList>
 
 				<template v-for="category in tasks.data.categories" :key="category.id">
