@@ -41,7 +41,7 @@ class TeamController extends Controller
 
     public function show(Request $request, Team $team): UserTeamTasksByStatus
     {
-        $query = new GetUserTasksQuery($request->user()->id, $team->id);
+        $query = new GetUserTasksQuery($request->user()->id, $team);
 
         $data = $this->queryBus->query($query);
 

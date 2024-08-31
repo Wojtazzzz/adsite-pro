@@ -10,7 +10,7 @@ use Illuminate\Support\Collection;
 
 interface TeamRepository
 {
-    public function getTasks(int $userId, int $teamId): Team;
+    public function getTeamTasks(int $teamId, int $userId, bool $onlyUserTasks): Team;
 
     public function getConnectedWithUsers(int $userId): Collection;
 

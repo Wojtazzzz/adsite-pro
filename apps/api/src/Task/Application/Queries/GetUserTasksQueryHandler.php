@@ -15,6 +15,10 @@ readonly class GetUserTasksQueryHandler
 
     public function handle(GetUserTasksQuery $query): Team
     {
-        return $this->team->getTasks($query->user_id, $query->team_id);
+        return $this->team->getTeamTasks(
+            teamId: $query->team->id,
+            userId: $query->userId,
+            onlyUserTasks: $query->userId !== $query->team->user_id,
+        );
     }
 }

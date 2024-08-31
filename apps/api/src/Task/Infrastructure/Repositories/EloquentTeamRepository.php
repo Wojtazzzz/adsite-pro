@@ -11,12 +11,16 @@ use Modules\Task\Domain\Entities\Team as TeamEntity;
 
 class EloquentTeamRepository implements TeamRepository
 {
-    public function getTasks(int $userId, int $teamId): Team
+    public function getTeamTasks(int $teamId, int $userId, bool $onlyUserTasks): Team
     {
         return Team::query()
             ->with([
-                'categories:id,name,team_id',
-                'categories.tasks:id,category_id,name,description,estimation,status,created_at'
+                'categories',
+                'categories.tasks' => function ($query) use ($userId, $onlyUserTasks) {
+                    $query->when($onlyUserTasks, function ($query) use ($userId) {
+                        $query->where('user_id', $userId);
+                    });
+                }
             ])
             ->where('id', $teamId)
             ->userRelated($userId)
