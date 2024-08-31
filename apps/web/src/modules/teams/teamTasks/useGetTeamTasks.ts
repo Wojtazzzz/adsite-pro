@@ -1,7 +1,7 @@
 import { useQuery } from '@tanstack/vue-query';
 import { api } from '@/utils/functions';
 import { computed, type ComputedRef } from 'vue';
-import type { Team } from '@/modules/tasks/useGetUserTeams';
+import type { Team } from '@/modules/teams/useGetUserTeams';
 
 export type Category = {
 	id: number;

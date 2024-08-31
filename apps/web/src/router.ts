@@ -6,7 +6,7 @@ import MainLayout from '@/components/layouts/MainLayout.vue';
 import HomePage from '@/modules/home/HomePage.vue';
 import { useQueryClient } from '@tanstack/vue-query';
 import { api } from '@/utils/functions';
-import TasksPage from '@/modules/tasks/TasksPage.vue';
+import TasksPage from '@/modules/teams/TasksPage.vue';
 
 export const router = createRouter({
 	history: createWebHistory(import.meta.env.BASE_URL),

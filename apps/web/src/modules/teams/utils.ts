@@ -1,5 +1,5 @@
 import type { Ref } from 'vue';
-import type { Team } from '@/modules/tasks/useGetUserTeams';
+import type { Team } from '@/modules/teams/useGetUserTeams';
 
 export const mapTeamsToComboboxOptions = (teams: Ref<Team[] | undefined>) => {
 	if (!teams.value) {

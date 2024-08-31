@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import Combobox from '@/components/ui/Combobox.vue';
-import { type Team } from '@/modules/tasks/useGetUserTeams';
+import { type Team } from '@/modules/teams/useGetUserTeams';
 import { computed, onMounted, toRef, watch } from 'vue';
-import { mapTeamsToComboboxOptions } from '@/modules/tasks/utils';
+import { mapTeamsToComboboxOptions } from '@/modules/teams/utils';
 
 const props = defineProps<{
 	teams: Team[];

@@ -10,7 +10,7 @@ import AlertDialogFooter from '@/components/ui/alertDialog/AlertDialogFooter.vue
 import AlertDialogCancel from '@/components/ui/alertDialog/AlertDialogCancel.vue';
 import AlertDialogAction from '@/components/ui/alertDialog/AlertDialogAction.vue';
 import AlertDialogDescription from '@/components/ui/alertDialog/AlertDialogDescription.vue';
-import { useDeleteTeam } from '@/modules/tasks/manageTeam/useDeleteTeam';
+import { useDeleteTeam } from '@/modules/teams/manageTeam/useDeleteTeam';
 
 defineProps<{
 	teamId: number;

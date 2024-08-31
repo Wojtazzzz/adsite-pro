@@ -1,12 +1,12 @@
 <script setup lang="ts">
 import Container from '@/components/ui/Container.vue';
-import SelectTeam from '@/modules/tasks/selectTeam/SelectTeam.vue';
-import { useTeams } from '@/modules/tasks/useTeams';
-import TeamTasks from '@/modules/tasks/teamTasks/TeamTasks.vue';
-import CreateTeam from '@/modules/tasks/createTeam/CreateTeam.vue';
+import SelectTeam from '@/modules/teams/selectTeam/SelectTeam.vue';
+import { useTeams } from '@/modules/teams/useTeams';
+import TeamTasks from '@/modules/teams/teamTasks/TeamTasks.vue';
+import CreateTeam from '@/modules/teams/createTeam/CreateTeam.vue';
 import SpinnerLoader from '@/components/ui/SpinnerLoader.vue';
 import Alert from '@/components/ui/Alert.vue';
-import ManageTeam from '@/modules/tasks/manageTeam/ManageTeam.vue';
+import ManageTeam from '@/modules/teams/manageTeam/ManageTeam.vue';
 
 const { teams, isLoading, isError, currentTeam, updateTeam } = useTeams();
 </script>

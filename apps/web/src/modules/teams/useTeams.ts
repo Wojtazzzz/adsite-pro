@@ -1,5 +1,5 @@
 import { ref } from 'vue';
-import { type Team, useGetUserTeams } from '@/modules/tasks/useGetUserTeams';
+import { type Team, useGetUserTeams } from '@/modules/teams/useGetUserTeams';
 
 export const useTeams = () => {
 	const { teams, isError, isLoading } = useGetUserTeams();

@@ -1,15 +1,15 @@
 <script setup lang="ts">
 import Button from '@/components/ui/Button.vue';
-import CategoryBoard from '@/modules/tasks/teamTasks/categoryBoard/CategoryBoard.vue';
+import CategoryBoard from '@/modules/teams/teamTasks/categoryBoard/CategoryBoard.vue';
 import TabsContent from '@/components/ui/tabs/TabsContent.vue';
 import TabsList from '@/components/ui/tabs/TabsList.vue';
 import TabTrigger from '@/components/ui/tabs/TabsTrigger.vue';
 import Tabs from '@/components/ui/tabs/Tabs.vue';
-import { useGetTeamTasks } from '@/modules/tasks/teamTasks/useGetTeamTasks';
+import { useGetTeamTasks } from '@/modules/teams/teamTasks/useGetTeamTasks';
 import { computed } from 'vue';
 import SpinnerLoader from '@/components/ui/SpinnerLoader.vue';
 import Alert from '@/components/ui/Alert.vue';
-import type { Team } from '@/modules/tasks/useGetUserTeams';
+import type { Team } from '@/modules/teams/useGetUserTeams';
 
 const props = defineProps<{
 	team: Team;

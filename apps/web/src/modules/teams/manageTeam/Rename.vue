@@ -7,11 +7,11 @@ import Dialog from '@/components/ui/card/dialog/Dialog.vue';
 import DialogTrigger from '@/components/ui/card/dialog/DialogTrigger.vue';
 import IconPencil from '@/components/icons/IconPencil.vue';
 import Button from '@/components/ui/Button.vue';
-import type { Team } from '@/modules/tasks/useGetUserTeams';
+import type { Team } from '@/modules/teams/useGetUserTeams';
 import Form from '@/components/ui/form/Form.vue';
 import Field from '@/components/ui/form/Field.vue';
-import { type RenameTeamFormValues, renameTeamSchema } from '@/modules/tasks/manageTeam/utils';
-import { useRenameTeam } from '@/modules/tasks/manageTeam/useRenameTeam';
+import { type RenameTeamFormValues, renameTeamSchema } from '@/modules/teams/manageTeam/utils';
+import { useRenameTeam } from '@/modules/teams/manageTeam/useRenameTeam';
 import { useBoolean } from '@/composables/useBoolean';
 
 const props = defineProps<{

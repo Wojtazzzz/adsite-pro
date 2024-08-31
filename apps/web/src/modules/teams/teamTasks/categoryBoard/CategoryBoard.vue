@@ -1,11 +1,11 @@
 <script setup lang="ts">
-import type { Category } from '@/modules/tasks/teamTasks/useGetTeamTasks';
-import TaskBox from '@/modules/tasks/teamTasks/categoryBoard/TaskBox.vue';
+import type { Category } from '@/modules/teams/teamTasks/useGetTeamTasks';
+import TaskBox from '@/modules/teams/teamTasks/categoryBoard/TaskBox.vue';
 import Draggable from '@/components/ui/dragAndDrop/Draggable.vue';
 import Droppable from '@/components/ui/dragAndDrop/Droppable.vue';
-import { useCategoryBoard } from '@/modules/tasks/teamTasks/categoryBoard/useCategoryBoard';
+import { useCategoryBoard } from '@/modules/teams/teamTasks/categoryBoard/useCategoryBoard';
 import { computed, toValue } from 'vue';
-import StatusBox from '@/modules/tasks/teamTasks/categoryBoard/StatusBox.vue';
+import StatusBox from '@/modules/teams/teamTasks/categoryBoard/StatusBox.vue';
 
 const props = defineProps<{
 	category: Category;

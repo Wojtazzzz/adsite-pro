@@ -5,9 +5,9 @@ import Form from '@/components/ui/form/Form.vue';
 import Popover from '@/components/ui/popover/Popover.vue';
 import PopoverTrigger from '@/components/ui/popover/PopoverTrigger.vue';
 import PopoverContent from '@/components/ui/popover/PopoverContent.vue';
-import { useCreateTeam } from '@/modules/tasks/createTeam/useCreateTeam';
-import { type CreateTeamFormData, createTeamFormSchema } from '@/modules/tasks/createTeam/utils';
-import { usePopover } from '@/modules/tasks/createTeam/usePopover';
+import { useCreateTeam } from '@/modules/teams/createTeam/useCreateTeam';
+import { type CreateTeamFormData, createTeamFormSchema } from '@/modules/teams/createTeam/utils';
+import { usePopover } from '@/modules/teams/createTeam/usePopover';
 
 const { isOpen, open, close } = usePopover();
 

@@ -1,5 +1,5 @@
-import type { Category, Task } from '@/modules/tasks/teamTasks/useGetTeamTasks';
-import { useChangeTaskStatus } from '@/modules/tasks/teamTasks/categoryBoard/useChangeTaskStatus';
+import type { Category, Task } from '@/modules/teams/teamTasks/useGetTeamTasks';
+import { useChangeTaskStatus } from '@/modules/teams/teamTasks/categoryBoard/useChangeTaskStatus';
 import { computed, type ComputedRef } from 'vue';
 
 export const useCategoryBoard = (category: ComputedRef<Category>) => {
