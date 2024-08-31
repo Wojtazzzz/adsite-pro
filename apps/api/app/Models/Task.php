@@ -13,11 +13,6 @@ class Task extends Model
 {
     use HasFactory;
 
-    public function category(): BelongsTo
-    {
-        return $this->belongsTo(Category::class);
-    }
-
     protected $fillable = [
         'user_id',
         'category_id',
@@ -26,4 +21,9 @@ class Task extends Model
         'status',
         'estimation'
     ];
+
+    public function category(): BelongsTo
+    {
+        return $this->belongsTo(Category::class);
+    }
 }

@@ -15,7 +15,7 @@ class TaskPolicy
             return true;
         }
 
-        $team_owner_id = 1;
+        $team_owner_id = $task->category()->first()->team()->value('user_id');
 
         if ($user->id === $team_owner_id) {
             return true;
