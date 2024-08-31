@@ -10,5 +10,7 @@ interface UserRepository
 {
     public function getTeamMembers(int $teamId): Collection;
 
+    public function getTeamMembersDetails(int $teamId): Collection;
+
     public function getTasksByTeamFromCurrentMonth(int $userId, int $teamId): Collection;
 }

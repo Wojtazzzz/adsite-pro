@@ -26,6 +26,7 @@ Route::middleware('auth')->name('.api')->group(function () {
 
         Route::controller(UserController::class)->prefix('/{team}/users')->name('.users')->group(function () {
             Route::get('/', 'members')->name('.index');
+            Route::get('/details', 'details')->name('.details');
         });
     });
 

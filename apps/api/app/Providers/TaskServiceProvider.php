@@ -26,6 +26,8 @@ use Modules\Task\Application\Commands\UpdateTaskStatusCommandHandler;
 use Modules\Task\Application\Policies\CategoryPolicy;
 use Modules\Task\Application\Policies\TaskPolicy;
 use Modules\Task\Application\Policies\TeamPolicy;
+use Modules\Task\Application\Queries\GetTeamMembersDetailsQuery;
+use Modules\Task\Application\Queries\GetTeamMembersDetailsQueryHandler;
 use Modules\Task\Application\Queries\GetTeamMembersQuery;
 use Modules\Task\Application\Queries\GetTeamMembersQueryHandler;
 use Modules\Task\Application\Queries\GetUserTasksQuery;
@@ -65,6 +67,7 @@ class TaskServiceProvider extends ServiceProvider
             GetUserTasksQuery::class => GetUserTasksQueryHandler::class,
             GetUserTeamsQuery::class => GetUserTeamsQueryHandler::class,
             GetTeamMembersQuery::class => GetTeamMembersQueryHandler::class,
+            GetTeamMembersDetailsQuery::class => GetTeamMembersDetailsQueryHandler::class,
         ]);
 
         $commandBus = app(CommandBus::class);
