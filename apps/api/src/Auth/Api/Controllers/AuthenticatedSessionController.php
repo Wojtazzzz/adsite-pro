@@ -2,20 +2,18 @@
 
 declare(strict_types=1);
 
-namespace Modules\Auth\Api;
+namespace Modules\Auth\Api\Controllers;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Auth\LoginRequest;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
-use function App\Http\Controllers\Auth\response;
+use Modules\Auth\Api\Requests\LoginRequest;
+use Symfony\Component\HttpFoundation\Response as ResponseAlias;
 
 class AuthenticatedSessionController extends Controller
 {
-    /**
-     * Handle an incoming authentication request.
-     */
     public function store(LoginRequest $request): Response
     {
         $request->authenticate();
@@ -25,9 +23,6 @@ class AuthenticatedSessionController extends Controller
         return response()->noContent();
     }
 
-    /**
-     * Destroy an authenticated session.
-     */
     public function destroy(Request $request): Response
     {
         Auth::guard('web')->logout();
@@ -39,15 +34,12 @@ class AuthenticatedSessionController extends Controller
         return response()->noContent();
     }
 
-    /**
-     * Get authenticated user
-     */
-    public function me(Request $request)
+    public function me(Request $request): JsonResponse
     {
         $user = $request->user();
 
         if (!$user) {
-            return response()->unauthorized();
+            return response()->json([], ResponseAlias::HTTP_UNAUTHORIZED);
         }
 
         return response()->json([

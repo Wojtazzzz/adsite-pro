@@ -1,8 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use Modules\Auth\Api\AuthenticatedSessionController;
-use Modules\Auth\Api\RegisteredUserController;
+use Modules\Auth\Api\Controllers\AuthenticatedSessionController;
+use Modules\Auth\Api\Controllers\RegisteredUserController;
 
 Route::middleware('guest')->group(function () {
     Route::post('/register', [RegisteredUserController::class, 'store'])->name('register');
