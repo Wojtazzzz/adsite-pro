@@ -10,7 +10,7 @@ defineProps<{
 </script>
 
 <template>
-	<Users />
+	<Users :team-id="currentTeam.id" />
 	<Rename :team="currentTeam" />
 	<Delete :team-id="currentTeam.id" />
 </template>
