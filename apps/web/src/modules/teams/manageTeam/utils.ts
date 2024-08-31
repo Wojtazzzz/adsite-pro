@@ -1,8 +1,8 @@
-import {z} from 'zod';
-import {teamNameSchema} from '@/utils/schemas';
+import { z } from 'zod';
+import { teamNameSchema } from '@/utils/schemas';
 
 export const renameTeamSchema = z.object({
-    name: teamNameSchema,
+	name: teamNameSchema,
 });
 
-export type RenameTeamFormValues = z.infer<typeof renameTeamSchema>
+export type RenameTeamFormValues = z.infer<typeof renameTeamSchema>;
