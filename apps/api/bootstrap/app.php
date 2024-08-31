@@ -2,7 +2,6 @@
 
 declare(strict_types=1);
 
-use App\Http\Middleware\EnsureEmailIsVerified;
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
@@ -24,12 +23,6 @@ return Application::configure(basePath: dirname(__DIR__))
             Illuminate\Session\Middleware\StartSession::class,
 
         ]);
-
-        $middleware->alias([
-            'verified' => EnsureEmailIsVerified::class,
-        ]);
-
-        //
     })
     ->withExceptions(function (Exceptions $exceptions) {
         $exceptions->render(function (DomainException $exception) {
