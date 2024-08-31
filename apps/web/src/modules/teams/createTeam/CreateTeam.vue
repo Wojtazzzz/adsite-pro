@@ -7,9 +7,9 @@ import PopoverTrigger from '@/components/ui/popover/PopoverTrigger.vue';
 import PopoverContent from '@/components/ui/popover/PopoverContent.vue';
 import { useCreateTeam } from '@/modules/teams/createTeam/useCreateTeam';
 import { type CreateTeamFormData, createTeamFormSchema } from '@/modules/teams/createTeam/utils';
-import { usePopover } from '@/modules/teams/createTeam/usePopover';
+import { useBoolean } from '@/composables/useBoolean';
 
-const { isOpen, open, close } = usePopover();
+const { state: isOpen, setTrue: open, setFalse: close } = useBoolean();
 
 const { createTeam } = useCreateTeam();
 

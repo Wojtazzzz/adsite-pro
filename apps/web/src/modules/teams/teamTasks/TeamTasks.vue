@@ -10,6 +10,7 @@ import { computed } from 'vue';
 import SpinnerLoader from '@/components/ui/SpinnerLoader.vue';
 import Alert from '@/components/ui/Alert.vue';
 import type { Team } from '@/modules/teams/useGetUserTeams';
+import CreateCategory from '@/modules/teams/teamTasks/createCategory/CreateCategory.vue';
 
 const props = defineProps<{
 	team: Team;
@@ -26,7 +27,12 @@ const { tasks, isLoading, isError } = useGetTeamTasks(computed(() => props.team)
 		<Alert variant="destructive">Something went wrong on the server</Alert>
 	</template>
 	<template v-else-if="tasks.data.categories.length <= 0">
-		<Alert variant="default">Your team has no task categories</Alert>
+		<Alert variant="default">
+			<div>Your team has no task categories.</div>
+			<CreateCategory :teamId="team.id" v-slot:default="{ open }">
+				<button type="button" class="underline" @click="open">Create category</button>
+			</CreateCategory>
+		</Alert>
 	</template>
 	<template v-else>
 		<Tabs :default-tab="1">

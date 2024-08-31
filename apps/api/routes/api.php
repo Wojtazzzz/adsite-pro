@@ -1,7 +1,9 @@
 <?php
 
+use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use Modules\Task\Api\Controllers\CategoryController;
 use Modules\Task\Api\Controllers\TaskController;
 use Modules\Task\Api\Controllers\TeamController;
 
@@ -18,11 +20,17 @@ Route::middleware('auth')->name('.api')->group(function () {
         Route::get('/{team}', 'show')->name('.show');
         Route::delete('/{team}', 'destroy')->name('.delete');
         Route::patch('/{team}/rename', 'rename')->name('.rename');
+
+        Route::controller(CategoryController::class)->prefix('/{team}/categories')->name('.categories')->group(function () {
+            Route::post('/', 'store')->name('.store');
+        });
     });
 
     Route::controller(TaskController::class)->prefix('/tasks')->name('.tasks')->group(function () {
         Route::patch('/{task}/status', 'updateStatus')->name('.update.status');
     });
+
+
 });
 
 
