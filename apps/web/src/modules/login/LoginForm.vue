@@ -16,7 +16,9 @@ const onSubmit = (values: LoginFormData) => {
 <template>
 	<Form :schema="loginFormSchema" :on-submit="onSubmit">
 		<div class="space-y-6">
-			<Alert variant="destructive" v-show="isError" :content="error?.response.data.message" />
+			<Alert variant="destructive" v-show="isError">
+				{{ error?.response.data.message }}
+			</Alert>
 			<Field type="email" name="email" label="E-mail" placeholder="john.smith@gmail.com" />
 			<Field type="password" name="password" label="Password" placeholder="********" />
 

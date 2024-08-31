@@ -30,13 +30,12 @@ const { teams, isLoading, isError, currentTeam, updateTeam } = useTeams();
 				<SpinnerLoader />
 			</template>
 			<template v-else-if="isError || !teams?.data">
-				<Alert variant="destructive" content="Something went wrong on the server" />
+				<Alert variant="destructive">Something went wrong on the server</Alert>
 			</template>
 			<template v-else-if="teams.data.length <= 0">
-				<Alert
-					variant="default"
-					content="You have no teams to collaborate. Wait for an invitation or create your one."
-				/>
+				<Alert variant="default">
+					You have no teams to collaborate. Wait for an invitation or create your one.
+				</Alert>
 			</template>
 			<template v-else-if="currentTeam">
 				<TeamTasks :team="currentTeam" />

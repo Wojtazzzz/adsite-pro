@@ -3,7 +3,6 @@ import { Alert, AlertDescription, AlertTitle } from '@/components/ui-library/ale
 import { ExclamationTriangleIcon } from '@radix-icons/vue';
 
 defineProps<{
-	content: string;
 	variant: 'default' | 'destructive';
 }>();
 </script>
@@ -17,7 +16,7 @@ defineProps<{
 			</span>
 		</AlertTitle>
 		<AlertDescription>
-			{{ content }}
+			<slot />
 		</AlertDescription>
 	</Alert>
 </template>

@@ -23,10 +23,10 @@ const { tasks, isLoading, isError } = useGetTeamTasks(computed(() => props.team)
 		<SpinnerLoader />
 	</template>
 	<template v-else-if="isError || !tasks?.data">
-		<Alert variant="destructive" content="Something went wrong on the server" />
+		<Alert variant="destructive">Something went wrong on the server</Alert>
 	</template>
 	<template v-else-if="tasks.data.categories.length <= 0">
-		<Alert variant="default" content="Your team has no task categories" />
+		<Alert variant="default">Your team has no task categories</Alert>
 	</template>
 	<template v-else>
 		<Tabs :default-tab="1">
