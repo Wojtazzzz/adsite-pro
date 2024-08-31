@@ -16,6 +16,8 @@ defineProps<{
 				<CardTitle tag="h2">
 					<span class="text-xl uppercase">{{ statusName }}</span>
 				</CardTitle>
+
+				<slot name="options" />
 			</div>
 		</CardHeader>
 

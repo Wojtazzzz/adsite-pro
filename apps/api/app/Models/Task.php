@@ -17,4 +17,13 @@ class Task extends Model
     {
         return $this->belongsTo(Category::class);
     }
+
+    protected $fillable = [
+        'user_id',
+        'category_id',
+        'name',
+        'description',
+        'status',
+        'estimation'
+    ];
 }

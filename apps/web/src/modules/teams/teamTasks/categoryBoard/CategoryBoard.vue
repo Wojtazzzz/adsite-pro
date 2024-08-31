@@ -6,8 +6,11 @@ import Droppable from '@/components/ui/dragAndDrop/Droppable.vue';
 import { useCategoryBoard } from '@/modules/teams/teamTasks/categoryBoard/useCategoryBoard';
 import { computed, toValue } from 'vue';
 import StatusBox from '@/modules/teams/teamTasks/categoryBoard/StatusBox.vue';
+import type { Team } from '@/modules/teams/useGetUserTeams';
+import CreateTask from '@/modules/teams/teamTasks/categoryBoard/CreateTask.vue';
 
 const props = defineProps<{
+	team: Team;
 	category: Category;
 }>();
 
@@ -36,6 +39,10 @@ const statuses = computed(
 						</Draggable>
 					</template>
 				</Droppable>
+
+				<template #options v-if="team.isOwner">
+					<CreateTask :team="team" :category="category" :default-status="status.key" />
+				</template>
 			</StatusBox>
 		</template>
 	</div>

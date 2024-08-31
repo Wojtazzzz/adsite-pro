@@ -16,6 +16,8 @@ use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\ServiceProvider;
 use Modules\Task\Application\Commands\CreateCategoryCommand;
 use Modules\Task\Application\Commands\CreateCategoryCommandHandler;
+use Modules\Task\Application\Commands\CreateTaskCommand;
+use Modules\Task\Application\Commands\CreateTaskCommandHandler;
 use Modules\Task\Application\Commands\CreateTeamCommand;
 use Modules\Task\Application\Commands\CreateTeamCommandHandler;
 use Modules\Task\Application\Commands\DeleteTeamCommand;
@@ -27,6 +29,8 @@ use Modules\Task\Application\Commands\UpdateTaskStatusCommandHandler;
 use Modules\Task\Application\Policies\CategoryPolicy;
 use Modules\Task\Application\Policies\TaskPolicy;
 use Modules\Task\Application\Policies\TeamPolicy;
+use Modules\Task\Application\Queries\GetTeamMembersQuery;
+use Modules\Task\Application\Queries\GetTeamMembersQueryHandler;
 use Modules\Task\Application\Queries\GetUserTeamsQuery;
 use Modules\Task\Application\Queries\GetUserTeamsQueryHandler;
 use Modules\Task\Application\Queries\GetUserTasksQuery;
@@ -34,9 +38,11 @@ use Modules\Task\Application\Queries\GetUserTasksQueryHandler;
 use Modules\Task\Domain\Repositories\CategoryRepository;
 use Modules\Task\Domain\Repositories\TaskRepository;
 use Modules\Task\Domain\Repositories\TeamRepository;
+use Modules\Task\Domain\Repositories\UserRepository;
 use Modules\Task\Infrastructure\Repositories\EloquentCategoryRepository;
 use Modules\Task\Infrastructure\Repositories\EloquentTaskRepository;
 use Modules\Task\Infrastructure\Repositories\EloquentTeamRepository;
+use Modules\Task\Infrastructure\Repositories\EloquentUserRepository;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -57,6 +63,7 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(TeamRepository::class, EloquentTeamRepository::class);
         $this->app->bind(TaskRepository::class, EloquentTaskRepository::class);
         $this->app->bind(CategoryRepository::class, EloquentCategoryRepository::class);
+        $this->app->bind(UserRepository::class, EloquentUserRepository::class);
     }
 
     /**
@@ -73,6 +80,7 @@ class AppServiceProvider extends ServiceProvider
         $queryBus->register([
             GetUserTasksQuery::class => GetUserTasksQueryHandler::class,
             GetUserTeamsQuery::class => GetUserTeamsQueryHandler::class,
+            GetTeamMembersQuery::class => GetTeamMembersQueryHandler::class,
         ]);
 
         $commandBus = app(CommandBus::class);
@@ -83,6 +91,7 @@ class AppServiceProvider extends ServiceProvider
             DeleteTeamCommand::class => DeleteTeamCommandHandler::class,
             RenameTeamCommand::class => RenameTeamCommandHandler::class,
             CreateCategoryCommand::class => CreateCategoryCommandHandler::class,
+            CreateTaskCommand::class => CreateTaskCommandHandler::class,
         ]);
 
         Gate::policy(Task::class, TaskPolicy::class);

@@ -16,7 +16,7 @@ defineProps<{
 </script>
 
 <template>
-	<FormField v-slot="{ componentField }" name="bio">
+	<FormField v-slot="{ componentField }" :name="name">
 		<FormItem>
 			<FormLabel>
 				<span class="cursor-pointer font-semibold">

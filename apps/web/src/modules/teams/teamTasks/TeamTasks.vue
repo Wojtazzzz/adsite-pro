@@ -59,7 +59,7 @@ const { tasks, isLoading, isError } = useGetTeamTasks(computed(() => props.team)
 
 				<template v-for="category in tasks.data.categories" :key="category.id">
 					<TabsContent :value="category.id">
-						<CategoryBoard :category="category" />
+						<CategoryBoard :team="team" :category="category" />
 					</TabsContent>
 				</template>
 			</div>
