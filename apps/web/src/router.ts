@@ -7,6 +7,7 @@ import HomePage from '@/modules/home/HomePage.vue';
 import { useQueryClient } from '@tanstack/vue-query';
 import { api } from '@/utils/functions';
 import TasksPage from '@/modules/teams/TasksPage.vue';
+import UsersPage from '@/modules/users/UsersPage.vue';
 
 export const router = createRouter({
 	history: createWebHistory(import.meta.env.BASE_URL),
@@ -24,6 +25,11 @@ export const router = createRouter({
 					path: '/tasks',
 					name: 'tasks',
 					component: TasksPage,
+				},
+				{
+					path: '/users',
+					name: 'users',
+					component: UsersPage,
 				},
 			],
 		},
