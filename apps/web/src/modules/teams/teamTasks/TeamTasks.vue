@@ -30,9 +30,11 @@ const { tasks, isLoading, isError } = useGetTeamTasks(computed(() => props.team)
 	<template v-else-if="tasks.data.categories.length <= 0">
 		<Alert variant="default">
 			<div>Your team has no task categories.</div>
-			<CreateCategory :teamId="team.id" v-slot:default="{ open }">
-				<button type="button" class="underline" @click="open">Create category</button>
-			</CreateCategory>
+			<template v-if="team.isOwner">
+				<CreateCategory :teamId="team.id" v-slot:default="{ open }">
+					<button type="button" class="underline" @click="open">Create category</button>
+				</CreateCategory>
+			</template>
 		</Alert>
 	</template>
 	<template v-else>
@@ -45,12 +47,14 @@ const { tasks, isLoading, isError } = useGetTeamTasks(computed(() => props.team)
 						</TabTrigger>
 					</template>
 
-					<CreateCategory :team-id="tasks.data.id" v-slot="{ open }">
-						<Button type="button" @click="open">
-							<span class="sr-only">Add category</span>
-							<IconPlus />
-						</Button>
-					</CreateCategory>
+					<template v-if="team.isOwner">
+						<CreateCategory :team-id="tasks.data.id" v-slot="{ open }">
+							<Button type="button" @click="open">
+								<span class="sr-only">Add category</span>
+								<IconPlus />
+							</Button>
+						</CreateCategory>
+					</template>
 				</TabsList>
 
 				<template v-for="category in tasks.data.categories" :key="category.id">
