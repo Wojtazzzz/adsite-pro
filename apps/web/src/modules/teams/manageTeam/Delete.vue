@@ -37,7 +37,7 @@ const { deleteTeam } = useDeleteTeam();
 			</AlertDialogHeader>
 			<AlertDialogFooter>
 				<AlertDialogCancel>
-					<Button type="button">Cancel</Button>
+					<Button variant="secondary" type="button">Cancel</Button>
 				</AlertDialogCancel>
 				<AlertDialogAction>
 					<Button type="button" @click="deleteTeam({ teamId })">Delete</Button>

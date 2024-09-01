@@ -1,12 +1,21 @@
 <script setup lang="ts">
 import { Button } from '@/components/ui-library/button';
-defineProps<{
-	type: 'button' | 'submit';
-}>();
+
+type ButtonVariant = 'default' | 'secondary';
+
+withDefaults(
+	defineProps<{
+		type: 'button' | 'submit';
+		variant?: ButtonVariant;
+	}>(),
+	{
+		variant: 'default',
+	},
+);
 </script>
 
 <template>
-	<Button :type="type">
+	<Button :type="type" :variant="variant">
 		<slot />
 	</Button>
 </template>
