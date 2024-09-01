@@ -6,6 +6,8 @@ namespace Modules\Task\Application\Commands;
 
 use Modules\Task\Application\Exceptions\UnauthorizedException;
 use Modules\Task\Domain\Entities\UserOwnedTeamsAggregate;
+use Modules\Task\Domain\Exceptions\ExceededOwnedTeamsLimit;
+use Modules\Task\Domain\Exceptions\TeamNameAlreadyTaken;
 use Modules\Task\Domain\Repositories\TeamRepository;
 
 readonly class CreateTeamCommandHandler
@@ -15,7 +17,8 @@ readonly class CreateTeamCommandHandler
     }
 
     /**
-     * @throws UnauthorizedException
+     * @throws ExceededOwnedTeamsLimit
+     * @throws TeamNameAlreadyTaken
      */
     public function handle(CreateTeamCommand $command): void
     {

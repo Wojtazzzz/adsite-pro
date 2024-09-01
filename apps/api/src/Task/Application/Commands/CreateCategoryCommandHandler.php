@@ -21,14 +21,9 @@ readonly class CreateCategoryCommandHandler
     /**
      * @throws ExceededTeamCategoriesLimit
      * @throws TeamCategoryNameAlreadyTaken
-     * @throws UnauthorizedException
      */
     public function handle(CreateCategoryCommand $command): void
     {
-        if (!Gate::allows('create', [Category::class, $command->team])) {
-            throw new UnauthorizedException();
-        }
-
         $teamCategories = $this->category->getTeamCategories($command->team->id);
 
         $teamCategoriesAggregate = new CategoriesAggregate($teamCategories);

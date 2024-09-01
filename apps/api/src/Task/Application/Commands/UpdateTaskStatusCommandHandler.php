@@ -14,15 +14,8 @@ readonly class UpdateTaskStatusCommandHandler
     {
     }
 
-    /**
-     * @throws UnauthorizedException
-     */
     public function handle(UpdateTaskStatusCommand $command): void
     {
-        if (!Gate::allows('update-status', $command->task)) {
-            throw new UnauthorizedException();
-        }
-
         $this->task->updateStatus($command->task->id, $command->newStatus);
     }
 }

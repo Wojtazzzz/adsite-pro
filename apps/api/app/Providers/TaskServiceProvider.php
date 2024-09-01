@@ -87,9 +87,5 @@ class TaskServiceProvider extends ServiceProvider
             CreateTaskCommand::class => CreateTaskCommandHandler::class,
             CreateInvitationCommand::class => CreateInvitationCommandHandler::class,
         ]);
-
-        Gate::policy(Task::class, TaskPolicy::class);
-        Gate::policy(Team::class, TeamPolicy::class);
-        Gate::policy(Category::class, CategoryPolicy::class);
     }
 }
