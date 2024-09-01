@@ -14,6 +14,7 @@ use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use Modules\Task\Api\Dto\MemberTeams;
 use Modules\Task\Api\Dto\UserTeamTasksByStatus;
 use Modules\Task\Api\Requests\RenameTeamRequest;
+use Modules\Task\Api\Requests\ShowTeamRequest;
 use Modules\Task\Api\Requests\StoreTeamRequest;
 use Modules\Task\Application\Commands\CreateTeamCommand;
 use Modules\Task\Application\Commands\DeleteTeamCommand;
@@ -39,7 +40,7 @@ class TeamController extends Controller
         return MemberTeams::collection($data);
     }
 
-    public function show(Request $request, Team $team): UserTeamTasksByStatus
+    public function show(ShowTeamRequest $request, Team $team): UserTeamTasksByStatus
     {
         $query = new GetUserTasksQuery($request->user()->id, $team);
 

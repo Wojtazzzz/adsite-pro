@@ -26,4 +26,23 @@ class TeamPolicy
 
         return false;
     }
+
+    public function show(?User $user, Team $team): bool
+    {
+        if (!$user) {
+            return false;
+        }
+
+        if ($team->user_id === $user->id) {
+            return true;
+        }
+
+        $teamMembersIds = $team->users()->pluck('users.id');
+
+        if ($teamMembersIds->contains($user->id)) {
+            return true;
+        }
+
+        return false;
+    }
 }
