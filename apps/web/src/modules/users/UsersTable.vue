@@ -21,13 +21,13 @@ defineProps<{
 				<TableHead class="w-[100px]">ID</TableHead>
 				<TableHead>Name</TableHead>
 				<TableHead>Tasks (idle / in progress / completed)</TableHead>
-				<TableHead>Overloading</TableHead>
+				<TableHead>Overloading (minutes)</TableHead>
 				<TableHead class="text-right">Options</TableHead>
 			</TableRow>
 		</TableHeader>
 		<TableBody>
 			<TableRow v-for="user in users" :key="user.id">
-				<TableCell class="font-medium">
+				<TableCell>
 					{{ user.id }}
 				</TableCell>
 				<TableCell>{{ user.name }}</TableCell>

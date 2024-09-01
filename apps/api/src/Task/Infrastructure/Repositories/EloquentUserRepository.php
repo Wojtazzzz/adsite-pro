@@ -79,4 +79,11 @@ class EloquentUserRepository implements UserRepository
                 'user_id'
             ]);
     }
+
+    public function getByEmail(string $email): User
+    {
+        return User::query()
+            ->where('email', $email)
+            ->firstOrFail();
+    }
 }

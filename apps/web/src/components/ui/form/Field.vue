@@ -10,13 +10,19 @@ import {
 import { Input } from '@/components/ui-library/input';
 import { vAutoAnimate } from '@formkit/auto-animate/vue';
 
-defineProps<{
-	label: string;
-	description?: string;
-	name: string;
-	placeholder: string;
-	type: 'text' | 'email' | 'password';
-}>();
+withDefaults(
+	defineProps<{
+		label: string;
+		description?: string;
+		name: string;
+		placeholder: string;
+		type: 'text' | 'email' | 'password';
+		visibleValidateErrors: boolean;
+	}>(),
+	{
+		visibleValidateErrors: true,
+	},
+);
 </script>
 
 <template>
@@ -37,7 +43,7 @@ defineProps<{
 					</span>
 				</FormDescription>
 			</template>
-			<FormMessage />
+			<FormMessage v-show="visibleValidateErrors" />
 		</FormItem>
 	</FormField>
 </template>

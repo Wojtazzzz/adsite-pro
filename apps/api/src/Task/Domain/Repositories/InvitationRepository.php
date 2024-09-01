@@ -7,9 +7,7 @@ namespace Modules\Task\Domain\Repositories;
 use Illuminate\Support\Collection;
 use Modules\Task\Domain\Entities\Category as TeamCategoryEntity;
 
-interface CategoryRepository
+interface InvitationRepository
 {
-    public function getTeamCategories(int $teamId): Collection;
-
     public function create(int $teamId, int $userId): void;
 }

@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use Modules\Task\Api\Controllers\CategoryController;
+use Modules\Task\Api\Controllers\InvitationController;
 use Modules\Task\Api\Controllers\TaskController;
 use Modules\Task\Api\Controllers\TeamController;
 use Modules\Task\Api\Controllers\UserController;
@@ -27,6 +28,10 @@ Route::middleware('auth')->name('.api')->group(function () {
         Route::controller(UserController::class)->prefix('/{team}/users')->name('.users')->group(function () {
             Route::get('/', 'members')->name('.index');
             Route::get('/details', 'details')->name('.details');
+        });
+
+        Route::controller(InvitationController::class)->prefix('/{team}/invitations')->name('.invitations')->group(function () {
+            Route::post('/', 'store')->name('.store');
         });
     });
 

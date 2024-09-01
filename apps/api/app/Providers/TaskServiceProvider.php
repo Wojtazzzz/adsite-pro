@@ -7,12 +7,15 @@ namespace App\Providers;
 use App\Bus\CommandBus;
 use App\Bus\QueryBus;
 use App\Models\Category;
+use App\Models\Invitation;
 use App\Models\Task;
 use App\Models\Team;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\ServiceProvider;
 use Modules\Task\Application\Commands\CreateCategoryCommand;
 use Modules\Task\Application\Commands\CreateCategoryCommandHandler;
+use Modules\Task\Application\Commands\CreateInvitationCommand;
+use Modules\Task\Application\Commands\CreateInvitationCommandHandler;
 use Modules\Task\Application\Commands\CreateTaskCommand;
 use Modules\Task\Application\Commands\CreateTaskCommandHandler;
 use Modules\Task\Application\Commands\CreateTeamCommand;
@@ -35,10 +38,12 @@ use Modules\Task\Application\Queries\GetUserTasksQueryHandler;
 use Modules\Task\Application\Queries\GetUserTeamsQuery;
 use Modules\Task\Application\Queries\GetUserTeamsQueryHandler;
 use Modules\Task\Domain\Repositories\CategoryRepository;
+use Modules\Task\Domain\Repositories\InvitationRepository;
 use Modules\Task\Domain\Repositories\TaskRepository;
 use Modules\Task\Domain\Repositories\TeamRepository;
 use Modules\Task\Domain\Repositories\UserRepository;
 use Modules\Task\Infrastructure\Repositories\EloquentCategoryRepository;
+use Modules\Task\Infrastructure\Repositories\EloquentInvitationRepository;
 use Modules\Task\Infrastructure\Repositories\EloquentTaskRepository;
 use Modules\Task\Infrastructure\Repositories\EloquentTeamRepository;
 use Modules\Task\Infrastructure\Repositories\EloquentUserRepository;
@@ -54,6 +59,7 @@ class TaskServiceProvider extends ServiceProvider
         $this->app->bind(TaskRepository::class, EloquentTaskRepository::class);
         $this->app->bind(CategoryRepository::class, EloquentCategoryRepository::class);
         $this->app->bind(UserRepository::class, EloquentUserRepository::class);
+        $this->app->bind(InvitationRepository::class, EloquentInvitationRepository::class);
     }
 
     /**
@@ -79,6 +85,7 @@ class TaskServiceProvider extends ServiceProvider
             RenameTeamCommand::class => RenameTeamCommandHandler::class,
             CreateCategoryCommand::class => CreateCategoryCommandHandler::class,
             CreateTaskCommand::class => CreateTaskCommandHandler::class,
+            CreateInvitationCommand::class => CreateInvitationCommandHandler::class,
         ]);
 
         Gate::policy(Task::class, TaskPolicy::class);

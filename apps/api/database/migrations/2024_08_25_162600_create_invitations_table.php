@@ -16,7 +16,6 @@ return new class extends Migration {
     {
         Schema::create('invitations', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
             $table->foreignIdFor(Team::class, 'team_id')->constrained()->onDelete('cascade');
             $table->foreignIdFor(User::class, 'user_id')->constrained()->onDelete('cascade');
             $table->enum('status', ['PENDING', 'REJECTED', 'ACCEPTED']);
