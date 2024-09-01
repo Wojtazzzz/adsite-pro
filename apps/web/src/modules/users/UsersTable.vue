@@ -14,37 +14,39 @@ defineProps<{
 </script>
 
 <template>
-	<Table>
-		<TableCaption>A list of your team members.</TableCaption>
-		<TableHeader>
-			<TableRow>
-				<TableHead class="w-[100px]">ID</TableHead>
-				<TableHead>Name</TableHead>
-				<TableHead>Tasks (idle / in progress / completed)</TableHead>
-				<TableHead>Overloading (minutes)</TableHead>
-				<TableHead class="text-right">Options</TableHead>
-			</TableRow>
-		</TableHeader>
-		<TableBody>
-			<TableRow v-for="user in users" :key="user.id">
-				<TableCell>
-					{{ user.id }}
-				</TableCell>
-				<TableCell>{{ user.name }}</TableCell>
-				<TableCell>
-					{{ user.tasks_count }}
-					&nbsp; ({{ user.idle_tasks_count }}
-					/
-					{{ user.in_progress_tasks_count }}
-					/
-					{{ user.completed_tasks_count }})
-				</TableCell>
-				<TableCell>
-					{{ user.total_estimation }}
-					/ 9600
-				</TableCell>
-				<TableCell> Options</TableCell>
-			</TableRow>
-		</TableBody>
-	</Table>
+	<div class="relative">
+		<Table>
+			<TableCaption>A list of your team members.</TableCaption>
+			<TableHeader>
+				<TableRow>
+					<TableHead class="w-[100px]">ID</TableHead>
+					<TableHead>Name</TableHead>
+					<TableHead>Tasks (idle / in progress / completed)</TableHead>
+					<TableHead>Overloading (minutes)</TableHead>
+					<TableHead class="text-right">Options</TableHead>
+				</TableRow>
+			</TableHeader>
+			<TableBody>
+				<TableRow v-for="user in users" :key="user.id">
+					<TableCell>
+						{{ user.id }}
+					</TableCell>
+					<TableCell>{{ user.name }}</TableCell>
+					<TableCell>
+						{{ user.tasks_count }}
+						&nbsp; ({{ user.idle_tasks_count }}
+						/
+						{{ user.in_progress_tasks_count }}
+						/
+						{{ user.completed_tasks_count }})
+					</TableCell>
+					<TableCell>
+						{{ user.total_estimation }}
+						/ 9600
+					</TableCell>
+					<TableCell> Options</TableCell>
+				</TableRow>
+			</TableBody>
+		</Table>
+	</div>
 </template>
