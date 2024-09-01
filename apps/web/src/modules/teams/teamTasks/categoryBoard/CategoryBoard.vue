@@ -29,7 +29,7 @@ const statuses = computed(
 </script>
 
 <template>
-	<div class="flex w-full justify-center gap-8">
+	<div class="w-full flex flex-wrap justify-center gap-8">
 		<template v-for="status in statuses" :key="status.key">
 			<StatusBox :status-name="status.name">
 				<Droppable as="ul" @dragover.prevent @drop.prevent="onDrop($event, status.key)">

@@ -10,19 +10,21 @@ defineProps<{
 </script>
 
 <template>
-	<Card>
-		<CardHeader>
-			<div class="flex justify-between">
-				<CardTitle tag="h2">
-					<span class="text-xl uppercase">{{ statusName }}</span>
-				</CardTitle>
+	<div class="max-w-72">
+		<Card>
+			<CardHeader>
+				<div class="flex justify-between">
+					<CardTitle tag="h2">
+						<span class="text-xl uppercase">{{ statusName }}</span>
+					</CardTitle>
 
-				<slot name="options" />
-			</div>
-		</CardHeader>
+					<slot name="options" />
+				</div>
+			</CardHeader>
 
-		<CardContent>
-			<slot />
-		</CardContent>
-	</Card>
+			<CardContent>
+				<slot />
+			</CardContent>
+		</Card>
+	</div>
 </template>
