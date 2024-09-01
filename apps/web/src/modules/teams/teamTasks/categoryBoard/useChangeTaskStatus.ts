@@ -1,10 +1,13 @@
 import { useQueryClient } from '@tanstack/vue-query';
 import { api } from '@/utils/functions';
 import { useMutate } from '@/composables/useMutate';
+import type { TaskStatus } from '@/utils/schemas';
 
 type ChangeTaskStatusPayload = {
 	id: number;
-	newStatus: 'IDLE' | 'IN_PROGRESS' | 'COMPLETED';
+	teamId: number;
+	categoryId: number;
+	newStatus: TaskStatus;
 };
 
 export const useChangeTaskStatus = () => {
@@ -14,9 +17,9 @@ export const useChangeTaskStatus = () => {
 		apiCall: async (payload: ChangeTaskStatusPayload) => {
 			return await api({
 				method: 'PATCH',
-				url: `/api/tasks/${payload.id}/status`,
+				url: `/api/teams/${payload.teamId}/categories/${payload.categoryId}/tasks/${payload.id}/status`,
 				payload: {
-					newStatus: payload.newStatus,
+					status: payload.newStatus,
 				},
 			});
 		},

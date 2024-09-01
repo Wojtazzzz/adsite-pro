@@ -40,6 +40,8 @@ export const useCategoryBoard = (category: ComputedRef<Category>) => {
 
 		changeStatus({
 			id: taskId,
+			categoryId: category.value.id,
+			teamId: category.value.team_id,
 			newStatus: type,
 		});
 	};

@@ -22,6 +22,7 @@ class UserTeamTasksByStatus extends JsonResource
             'categories' => $this->categories->map(function (object $category) {
                 return [
                     'id' => $category->id,
+                    'team_id' => $category->team_id,
                     'name' => $category->name,
                     'tasks' => $category->tasks
                 ];
