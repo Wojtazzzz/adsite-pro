@@ -13,7 +13,7 @@ const { teams, isLoading, isError, currentTeam, updateTeam } = useTeams();
 
 <template>
 	<Container>
-		<div class="w-full flex items-center justify-between">
+		<div class="w-full flex gap-x-6 items-center justify-between">
 			<SelectTeam :teams="teams?.data ?? []" @update="updateTeam" />
 
 			<div class="flex justify-center items-center gap-x-3">
