@@ -135,6 +135,27 @@ class StoreTest extends TestCase
         $response->assertCreated();
     }
 
+    public function test_owners_can_create_invitation_for_members_of_other_teams(): void
+    {
+        $user = User::factory()->create();
+        $member = User::factory()->create();
+
+        $team = Team::factory()->create([
+            'user_id' => $user->id,
+        ]);
+
+        Team::factory()->hasAttached($member)->create();
+
+        $response = $this->actingAs($user)->postJson(
+            route('api.teams.invitations.store', ['team' => $team]),
+            [
+                'email' => $member->email,
+            ]
+        );
+
+        $response->assertCreated();
+    }
+
     public function test_owners_cannot_create_invitation_for_non_existing_user(): void
     {
         $user = User::factory()->create();

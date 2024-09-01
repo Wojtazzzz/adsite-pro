@@ -41,6 +41,23 @@ class StoreTest extends TestCase
         ]);
     }
 
+    public function test_owners_cannot_create_category_for_not_owned_teams(): void
+    {
+        $user = User::factory()->create();
+        Team::factory()->create([
+            'user_id' => $user->id,
+        ]);
+
+        $team2 = Team::factory()->create();
+
+        $response = $this->actingAs($user)->postJson(route('api.teams.categories.store', ['team' => $team2]), [
+            'name' => 'Category 1'
+        ]);
+
+        $response->assertForbidden();
+        $this->assertDatabaseCount(Category::class, 0);
+    }
+
     public function test_owner_cannot_create_category_with_too_short_name(): void
     {
         $user = User::factory()->create();
@@ -80,5 +97,68 @@ class StoreTest extends TestCase
 
         $response->assertForbidden();
         $this->assertDatabaseCount(Category::class, 0);
+    }
+
+    public function test_owners_cannot_create_category_with_same_name(): void
+    {
+        $user = User::factory()->create();
+        $team = Team::factory()->create([
+            'user_id' => $user->id,
+        ]);
+
+        $this->actingAs($user)->postJson(route('api.teams.categories.store', ['team' => $team]), [
+            'name' => 'Category 1'
+        ]);
+
+        $response = $this->actingAs($user)->postJson(route('api.teams.categories.store', ['team' => $team]), [
+            'name' => 'Category 1'
+        ]);
+
+        $response->assertBadRequest();
+        $this->assertDatabaseCount(Category::class, 1);
+    }
+
+    public function test_owners_can_create_max_3_categories_for_team(): void
+    {
+        $user = User::factory()->create();
+        $team = Team::factory()->create([
+            'user_id' => $user->id,
+        ]);
+
+        $response = $this->actingAs($user)->postJson(route('api.teams.categories.store', ['team' => $team]), [
+            'name' => 'Category 1'
+        ]);
+
+        $response->assertCreated();
+
+        $response = $this->actingAs($user)->postJson(route('api.teams.categories.store', ['team' => $team]), [
+            'name' => 'Category 2'
+        ]);
+
+        $response->assertCreated();
+
+        $response = $this->actingAs($user)->postJson(route('api.teams.categories.store', ['team' => $team]), [
+            'name' => 'Category 3'
+        ]);
+
+        $response->assertCreated();
+
+        $response = $this->actingAs($user)->postJson(route('api.teams.categories.store', ['team' => $team]), [
+            'name' => 'Category 4'
+        ]);
+
+        $response->assertBadRequest();
+        $this->assertDatabaseCount(Category::class, 3);
+
+        $team2 = Team::factory()->create([
+            'user_id' => $user->id,
+        ]);
+
+        $response = $this->actingAs($user)->postJson(route('api.teams.categories.store', ['team' => $team2]), [
+            'name' => 'Category 1'
+        ]);
+
+        $response->assertCreated();
+        $this->assertDatabaseCount(Category::class, 4);
     }
 }

@@ -89,4 +89,27 @@ class RenameTest extends TestCase
             'name' => 'Team 1',
         ]);
     }
+
+    public function test_owners_cannot_rename_foreign_teams(): void
+    {
+        $user = User::factory()->create();
+
+        Team::factory()->create([
+            'user_id' => $user->id,
+            'name' => 'Team 1',
+        ]);
+
+        $team2 = Team::factory()->create([
+            'name' => 'Team 2',
+        ]);
+
+        $response = $this->actingAs($user)->patchJson(route('api.teams.rename', ['team' => $team2]), [
+            'name' => 'Team 55'
+        ]);
+
+        $response->assertForbidden();
+        $this->assertDatabaseMissing(Team::class, [
+            'name' => 'Team 55',
+        ]);
+    }
 }

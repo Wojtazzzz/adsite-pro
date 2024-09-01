@@ -34,6 +34,22 @@ class StoreTest extends TestCase
         ]);
     }
 
+    public function test_users_cannot_create_teams_with_same_name(): void
+    {
+        $user = User::factory()->create();
+
+        $this->actingAs($user)->postJson(route('api.teams.store'), [
+            'name' => 'Team 1'
+        ]);
+
+        $response = $this->actingAs($user)->postJson(route('api.teams.store'), [
+            'name' => 'Team 1'
+        ]);
+
+        $response->assertBadRequest();
+        $this->assertDatabaseCount(Team::class, 1);
+    }
+
     public function test_users_can_create_max_3_teams(): void
     {
         $user = User::factory()->create();

@@ -242,6 +242,20 @@ class StoreTest extends TestCase
             'estimation' => 15,
             'status' => TaskStatus::COMPLETED->value,
         ]);
+
+        $response = $this->actingAs($user)->postJson(
+            route('api.teams.categories.tasks.store', ['team' => $team, 'category' => $category]),
+            [
+                'user_id' => $user->id,
+                'name' => 'Task 4',
+                'description' => 'Task 4 description',
+                'estimation' => 15,
+                'status' => 'INVALID',
+            ]
+        );
+
+        $response->assertUnprocessable();
+        $this->assertDatabaseCount(Task::class, 3);
     }
 
     public function test_owner_cannot_create_task_for_a_stranger(): void
@@ -297,6 +311,36 @@ class StoreTest extends TestCase
         );
 
         $response->assertForbidden();
+        $this->assertDatabaseCount(Task::class, 0);
+    }
+
+    public function test_owners_cannot_create_task_for_members_of_other_teams(): void
+    {
+        $user = User::factory()->create();
+        $member = User::factory()->create();
+
+        $team = Team::factory()->create([
+            'user_id' => $user->id
+        ]);
+
+        $team2 = Team::factory()->hasAttached($member)->create();
+
+        $category = Category::factory()->create([
+            'team_id' => $team2->id,
+        ]);
+
+        $response = $this->actingAs($user)->postJson(
+            route('api.teams.categories.tasks.store', ['team' => $team, 'category' => $category]),
+            [
+                'user_id' => $member->id,
+                'name' => 'Task 1',
+                'description' => 'Task 1 description',
+                'estimation' => 15,
+                'status' => TaskStatus::IDLE->value,
+            ]
+        );
+
+        $response->assertUnprocessable();
         $this->assertDatabaseCount(Task::class, 0);
     }
 }

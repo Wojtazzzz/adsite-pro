@@ -235,4 +235,36 @@ class UpdateStatusTest extends TestCase
             'status' => TaskStatus::IDLE->value,
         ]);
     }
+
+    public function test_owners_can_update_status_only_with_correct_status(): void
+    {
+        $user = User::factory()->create();
+
+        $team = Team::factory()->create([
+            'user_id' => $user->id,
+        ]);
+
+        $category = Category::factory()->create(['team_id' => $team->id]);
+
+        $task = Task::factory()->create([
+            'category_id' => $category->id,
+            'user_id' => $user->id,
+            'name' => 'Task 1',
+            'description' => 'Task 1 description',
+            'status' => TaskStatus::IDLE->value
+        ]);
+
+        $response = $this->actingAs($user)->patchJson(
+            route('api.teams.categories.tasks.update.status', ['team' => $team, 'category' => $category, 'task' => $task]),
+            [
+                'status' => 'INVALID',
+            ]
+        );
+
+        $response->assertUnprocessable();
+        $this->assertDatabaseHas(Task::class, [
+            'id' => $task->id,
+            'status' => TaskStatus::IDLE->value,
+        ]);
+    }
 }
