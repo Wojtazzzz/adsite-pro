@@ -22,6 +22,8 @@ use Modules\Task\Application\Commands\CreateTeamCommand;
 use Modules\Task\Application\Commands\CreateTeamCommandHandler;
 use Modules\Task\Application\Commands\DeleteTeamCommand;
 use Modules\Task\Application\Commands\DeleteTeamCommandHandler;
+use Modules\Task\Application\Commands\DeleteTeamMemberCommand;
+use Modules\Task\Application\Commands\DeleteTeamMemberCommandHandler;
 use Modules\Task\Application\Commands\RenameTeamCommand;
 use Modules\Task\Application\Commands\RenameTeamCommandHandler;
 use Modules\Task\Application\Commands\UpdateTaskStatusCommand;
@@ -86,6 +88,7 @@ class TaskServiceProvider extends ServiceProvider
             CreateCategoryCommand::class => CreateCategoryCommandHandler::class,
             CreateTaskCommand::class => CreateTaskCommandHandler::class,
             CreateInvitationCommand::class => CreateInvitationCommandHandler::class,
+            DeleteTeamMemberCommand::class => DeleteTeamMemberCommandHandler::class,
         ]);
     }
 }

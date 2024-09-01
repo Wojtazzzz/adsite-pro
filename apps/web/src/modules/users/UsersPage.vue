@@ -4,7 +4,7 @@ import { useGetTeamMembersDetails } from '@/modules/users/useGetTeamMembersDetai
 import SpinnerLoader from '@/components/ui/SpinnerLoader.vue';
 import Alert from '@/components/ui/Alert.vue';
 import InviteUser from '@/modules/users/inviteUser/InviteUser.vue';
-import UsersTable from '@/modules/users/UsersTable.vue';
+import UsersTable from '@/modules/users/usersTable/UsersTable.vue';
 
 const { users, isLoading, isError } = useGetTeamMembersDetails();
 </script>

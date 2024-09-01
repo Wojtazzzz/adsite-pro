@@ -8,7 +8,7 @@ use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
 use Modules\Task\Application\Policies\UserPolicy;
 
-class DetailsUserRequest extends FormRequest
+class DestroyUserRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -17,7 +17,7 @@ class DetailsUserRequest extends FormRequest
     {
         $policy = new UserPolicy();
 
-        return $policy->details(
+        return $policy->destroy(
             user: $this->user(),
             team: $this->team,
         );

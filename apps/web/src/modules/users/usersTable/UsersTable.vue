@@ -7,10 +7,16 @@ import TableCaption from '@/components/ui/table/TableCaption.vue';
 import TableHeader from '@/components/ui/table/TableHeader.vue';
 import TableBody from '@/components/ui/table/TableBody.vue';
 import type { User } from '@/modules/users/useGetTeamMembersDetails';
+import DeleteTeamMember from '@/modules/users/usersTable/DeleteTeamMember.vue';
+import { useGetTeamId } from '@/modules/users/useGetTeamId';
+import { useMe } from '@/composables/useMe';
 
 defineProps<{
 	users: User[];
 }>();
+
+const { user: loggedUser } = useMe();
+const teamId = useGetTeamId();
 </script>
 
 <template>
@@ -31,7 +37,12 @@ defineProps<{
 					<TableCell>
 						{{ user.id }}
 					</TableCell>
-					<TableCell>{{ user.name }}</TableCell>
+					<TableCell>
+						{{ user.name }}
+						<template v-if="loggedUser?.id === user.id">
+							<span>(you)</span>
+						</template>
+					</TableCell>
 					<TableCell>
 						{{ user.tasks_count }}
 						&nbsp; ({{ user.idle_tasks_count }}
@@ -44,7 +55,11 @@ defineProps<{
 						{{ user.total_estimation }}
 						/ 9600
 					</TableCell>
-					<TableCell> Options</TableCell>
+					<TableCell class="text-right">
+						<template v-if="loggedUser?.id !== user.id">
+							<DeleteTeamMember :team-id="teamId" :user-id="user.id" />
+						</template>
+					</TableCell>
 				</TableRow>
 			</TableBody>
 		</Table>

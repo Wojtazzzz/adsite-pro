@@ -16,4 +16,6 @@ interface UserRepository
     public function getTasksByTeamFromCurrentMonth(int $userId, int $teamId): Collection;
 
     public function getByEmail(string $email): User;
+
+    public function deleteTeam(int $userId, int $teamId): void;
 }

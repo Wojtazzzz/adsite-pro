@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Modules\Task\Infrastructure\Repositories;
 
+use App\Models\Team;
 use App\Models\User;
 use App\Models\Category;
 use Illuminate\Support\Collection;
@@ -90,5 +91,14 @@ class EloquentUserRepository implements UserRepository
         return User::query()
             ->where('email', $email)
             ->firstOrFail();
+    }
+
+    public function deleteTeam(int $userId, int $teamId): void
+    {
+        User::query()
+            ->where('id', $userId)
+            ->firstOrFail()
+            ->teams()
+            ->detach($teamId);
     }
 }

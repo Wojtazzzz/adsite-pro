@@ -6,7 +6,6 @@ namespace Modules\Task\Api\Requests;
 
 use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
-use Modules\Task\Application\Policies\TeamPolicy;
 use Modules\Task\Application\Policies\UserPolicy;
 
 class IndexUserRequest extends FormRequest

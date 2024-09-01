@@ -41,6 +41,7 @@ Route::name('api.')->group(function () {
         Route::controller(UserController::class)->prefix('/{team}/users')->name('users.')->group(function () {
             Route::get('/', 'index')->name('index');
             Route::get('/details', 'details')->name('details');
+            Route::delete('/{user}', 'destroy')->name('destroy');
         });
 
         Route::controller(InvitationController::class)->prefix('/{team}/invitations')->name('invitations.')->group(function () {
