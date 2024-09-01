@@ -106,6 +106,7 @@ class ShowTest extends TestCase
                 $json->has('categories.0', function (AssertableJson $json) use ($category, $task) {
                     $json->where('id', $category->id);
                     $json->where('name', $category->name);
+                    $json->where('team_id', $category->team_id);
                     $json->has('tasks.0', function (AssertableJson $json) use ($task) {
                         $json->where('id', $task->id);
                         $json->where('user_id', $task->user_id);
@@ -142,6 +143,7 @@ class ShowTest extends TestCase
                 $json->has('categories.0', function (AssertableJson $json) use ($category, $task) {
                     $json->where('id', $category->id);
                     $json->where('name', $category->name);
+                    $json->where('team_id', $category->team_id);
                     $json->has('tasks.0', function (AssertableJson $json) use ($task) {
                         $json->where('id', $task->id);
                         $json->where('user_id', $task->user_id);
@@ -176,6 +178,7 @@ class ShowTest extends TestCase
                 $json->has('categories.0', function (AssertableJson $json) use ($category, $task) {
                     $json->where('id', $category->id);
                     $json->where('name', $category->name);
+                    $json->where('team_id', $category->team_id);
                     $json->has('tasks.0', function (AssertableJson $json) use ($task) {
                         $json->where('id', $task->id);
                         $json->where('user_id', $task->user_id);
@@ -217,6 +220,7 @@ class ShowTest extends TestCase
                     [
                         'id' => $category->id,
                         'name' => $category->name,
+                        'team_id' => $category->team_id,
                         'tasks' => []
                     ]
                 ]

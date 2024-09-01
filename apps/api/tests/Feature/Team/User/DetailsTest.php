@@ -148,6 +148,20 @@ class DetailsTest extends TestCase
             'status' => TaskStatus::COMPLETED->value,
         ]);
 
+        $team2 = Team::factory()->create();
+        $category2 = Category::factory()->create([
+            'team_id' => $team2->id,
+        ]);
+
+        Task::factory(3)->create([
+            'user_id' => $user->id,
+            'category_id' => $category2->id,
+            'name' => 'Task 2',
+            'description' => 'Task 2 description',
+            'estimation' => 60,
+            'status' => TaskStatus::COMPLETED->value,
+        ]);
+
         $response = $this->actingAs($user)->getJson(route('api.teams.users.details', ['team' => $team]));
 
         $response->assertOk();
