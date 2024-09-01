@@ -77,4 +77,18 @@ class IndexTest extends TestCase
 
         $response->assertForbidden();
     }
+
+    public function test_strangers_cannot_get_users(): void
+    {
+        $user = User::factory()->create();
+        $member = User::factory()->create();
+
+        $team = Team::factory()->create([
+            'user_id' => $user->id,
+        ]);
+
+        $response = $this->actingAs($member)->getJson(route('api.teams.users.index', ['team' => $team]));
+
+        $response->assertForbidden();
+    }
 }

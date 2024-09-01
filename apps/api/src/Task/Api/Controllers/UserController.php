@@ -10,6 +10,7 @@ use App\Models\Team;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use Modules\Task\Api\Dto\TeamMembers;
 use Modules\Task\Api\Dto\TeamMembersDetails;
+use Modules\Task\Api\Requests\DetailsUserRequest;
 use Modules\Task\Api\Requests\IndexUserRequest;
 use Modules\Task\Application\Queries\GetTeamMembersDetailsQuery;
 use Modules\Task\Application\Queries\GetTeamMembersQuery;
@@ -31,7 +32,7 @@ class UserController extends Controller
         return TeamMembers::collection($data);
     }
 
-    public function details(Team $team)
+    public function details(DetailsUserRequest $request, Team $team)
     {
         $query = new GetTeamMembersDetailsQuery($team->id);
 

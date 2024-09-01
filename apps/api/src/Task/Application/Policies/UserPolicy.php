@@ -21,4 +21,17 @@ class UserPolicy
 
         return false;
     }
+
+    public function details(?User $user, Team $team): bool
+    {
+        if (!$user) {
+            return false;
+        }
+
+        if ($team->user_id === $user->id) {
+            return true;
+        }
+
+        return false;
+    }
 }
