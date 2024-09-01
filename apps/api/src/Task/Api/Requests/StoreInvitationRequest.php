@@ -5,10 +5,8 @@ declare(strict_types=1);
 namespace Modules\Task\Api\Requests;
 
 use Illuminate\Contracts\Validation\ValidationRule;
-use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Validation\Rule;
+use Modules\Task\Application\Policies\InvitationPolicy;
 use Modules\Task\Application\Rules\EmailNotInvited;
 use Modules\Task\Application\Rules\EmailNotTeamMember;
 
@@ -19,7 +17,12 @@ class StoreInvitationRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return (bool)$this->user();
+        $policy = new InvitationPolicy();
+
+        return $policy->store(
+            user: $this->user(),
+            team: $this->team,
+        );
     }
 
     /**

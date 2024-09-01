@@ -10,9 +10,11 @@ use Modules\Task\Domain\Repositories\TaskRepository;
 
 class EloquentTaskRepository implements TaskRepository
 {
-    public function updateStatus(int $taskId, string $newStatus): void
+    public function updateStatus(int $taskId, string $status): void
     {
-        Task::query()->where('id', $taskId)->update(['status' => $newStatus]);
+        Task::query()
+            ->where('id', $taskId)
+            ->update(['status' => $status]);
     }
 
     public function create(TaskEntity $entity): void

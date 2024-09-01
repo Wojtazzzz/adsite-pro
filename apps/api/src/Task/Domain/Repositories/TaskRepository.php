@@ -8,7 +8,7 @@ use Modules\Task\Domain\Entities\Task;
 
 interface TaskRepository
 {
-    public function updateStatus(int $taskId, string $newStatus): void;
+    public function updateStatus(int $taskId, string $status): void;
 
     public function create(Task $entity): void;
 }

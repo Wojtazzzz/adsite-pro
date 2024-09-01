@@ -6,6 +6,7 @@ namespace Modules\Task\Api\Requests;
 
 use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
+use Modules\Task\Application\Policies\TaskPolicy;
 
 class UpdateTaskStatusRequest extends FormRequest
 {
@@ -14,7 +15,12 @@ class UpdateTaskStatusRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return (bool)$this->user();
+        $policy = new TaskPolicy();
+
+        return $policy->updateStatus(
+            user: $this->user(),
+            task: $this->task,
+        );
     }
 
     /**
@@ -25,7 +31,7 @@ class UpdateTaskStatusRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'newStatus' => [
+            'status' => [
                 'required',
                 'string',
                 'in:IDLE,IN_PROGRESS,COMPLETED'

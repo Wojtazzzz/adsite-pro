@@ -34,7 +34,7 @@ class TaskController extends Controller
         return response()->json([], 201);
     }
 
-    public function updateStatus(UpdateTaskStatusRequest $request, Task $task)
+    public function updateStatus(UpdateTaskStatusRequest $request, Team $team, Category $category, Task $task)
     {
         $command = UpdateTaskStatusCommand::from(['task' => $task, ...$request->validated()]);
 

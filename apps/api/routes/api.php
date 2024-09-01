@@ -34,6 +34,7 @@ Route::name('api.')->group(function () {
 
             Route::controller(TaskController::class)->prefix('/{category}/tasks')->name('tasks.')->group(function () {
                 Route::post('/', 'store')->name('store');
+                Route::patch('/{task}/status', 'updateStatus')->name('update.status');
             });
         });
 
@@ -42,13 +43,9 @@ Route::name('api.')->group(function () {
             Route::get('/details', 'details')->name('details');
         });
 
-        Route::controller(InvitationController::class)->prefix('/{team}/invitations')->name('invitations')->group(function () {
+        Route::controller(InvitationController::class)->prefix('/{team}/invitations')->name('invitations.')->group(function () {
             Route::post('/', 'store')->name('store');
         });
-    });
-
-    Route::controller(TaskController::class)->prefix('/tasks')->name('tasks')->group(function () {
-        Route::patch('/{task}/status', 'updateStatus')->name('update.status');
     });
 });
 

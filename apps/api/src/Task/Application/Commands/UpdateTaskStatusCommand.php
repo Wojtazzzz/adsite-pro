@@ -11,13 +11,13 @@ class UpdateTaskStatusCommand extends Command
 {
     public function __construct(
         public readonly Task $task,
-        public readonly string $newStatus,
+        public readonly string $status,
     )
     {
     }
 
     public static function from(array $payloads): self
     {
-        return new self($payloads['task'], $payloads['newStatus']);
+        return new self($payloads['task'], $payloads['status']);
     }
 }
