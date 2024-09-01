@@ -22,7 +22,7 @@ defineEmits<{
 	<DialogContent
 		@closeClick="$emit('closeClick')"
 		:class="{
-			'top-40': verticalPosition === 'top',
+			'top-36': verticalPosition === 'top',
 		}"
 	>
 		<slot />
