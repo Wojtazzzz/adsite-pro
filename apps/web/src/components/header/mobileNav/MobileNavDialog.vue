@@ -24,7 +24,7 @@ import Button from '@/components/ui/Button.vue';
 				<RouterLink to="/" aria-label="Home page" class="inline-flex items-center w-fit">
 					<Logo />
 
-					<span class="ml-2.5 text-xl font-bold tracking-wide text-gray-800 uppercase">
+					<span class="ml-2.5 text-xl font-bold tracking-wide text-foreground uppercase">
 						Teamer
 					</span>
 				</RouterLink>
