@@ -9,7 +9,7 @@ use Closure;
 use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Translation\PotentiallyTranslatedString;
 
-readonly class EmailNotTeamMember implements ValidationRule
+readonly class TeamMember implements ValidationRule
 {
     public function __construct(private Team $team)
     {
@@ -22,13 +22,13 @@ readonly class EmailNotTeamMember implements ValidationRule
      */
     public function validate(string $attribute, mixed $value, Closure $fail): void
     {
-        $teamMembersByEmail = [
-            $this->team->user->email,
-            ...$this->team->users->pluck('email'),
+        $members = [
+            $this->team->user->id,
+            ...$this->team->users->pluck('id'),
         ];
 
-        if (in_array($value, $teamMembersByEmail)) {
-            $fail('User is already member of this team.');
+        if (!in_array($value, $members)) {
+            $fail('User is not member of this team.');
         }
     }
 }

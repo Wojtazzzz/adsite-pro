@@ -8,6 +8,8 @@ use App\Enums\TaskStatus;
 use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
+use Modules\Task\Application\Policies\TaskPolicy;
+use Modules\Task\Application\Rules\TeamMember;
 
 class StoreTaskRequest extends FormRequest
 {
@@ -16,7 +18,12 @@ class StoreTaskRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return (bool)$this->user();
+        $policy = new TaskPolicy();
+
+        return $policy->store(
+            user: $this->user(),
+            team: $this->team,
+        );
     }
 
     /**
@@ -30,6 +37,7 @@ class StoreTaskRequest extends FormRequest
             'user_id' => [
                 'required',
                 'exists:users,id',
+                new TeamMember($this->team)
             ],
             'name' => [
                 'required',
