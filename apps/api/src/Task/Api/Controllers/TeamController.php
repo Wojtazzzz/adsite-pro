@@ -13,6 +13,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use Modules\Task\Api\Dto\MemberTeams;
 use Modules\Task\Api\Dto\UserTeamTasksByStatus;
+use Modules\Task\Api\Requests\DestroyTeamRequest;
 use Modules\Task\Api\Requests\RenameTeamRequest;
 use Modules\Task\Api\Requests\ShowTeamRequest;
 use Modules\Task\Api\Requests\StoreTeamRequest;
@@ -58,7 +59,7 @@ class TeamController extends Controller
         return response()->json([], 201);
     }
 
-    public function destroy(Team $team): JsonResponse
+    public function destroy(DestroyTeamRequest $request, Team $team): JsonResponse
     {
         $command = new DeleteTeamCommand($team);
 
