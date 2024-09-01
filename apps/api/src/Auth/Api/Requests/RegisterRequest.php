@@ -37,7 +37,7 @@ class RegisterRequest extends FormRequest
                 'lowercase',
                 'email',
                 'max:255',
-                'unique:users,email'
+                'unique:App\Models\User,email'
             ],
             'password' => [
                 'required',
