@@ -5,9 +5,9 @@ declare(strict_types=1);
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
-use Illuminate\Validation\UnauthorizedException;
 use Laravel\Sanctum\Http\Middleware\EnsureFrontendRequestsAreStateful;
 use App\Exceptions\DomainException;
+use Modules\Task\Application\Exceptions\UnauthorizedException;
 
 return Application::configure(basePath: dirname(__DIR__))
     ->withRouting(
@@ -21,7 +21,6 @@ return Application::configure(basePath: dirname(__DIR__))
             EnsureFrontendRequestsAreStateful::class,
             Illuminate\Cookie\Middleware\EncryptCookies::class,
             Illuminate\Session\Middleware\StartSession::class,
-
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions) {
