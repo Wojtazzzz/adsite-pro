@@ -7,7 +7,7 @@ import ToggleTheme from '@/components/ui/ToggleTheme.vue';
 </script>
 
 <template>
-	<div class="border-b fixed top-0 left-0 z-30 background w-full">
+	<div class="border-b fixed top-0 left-0 z-30 bg-background w-full">
 		<Container>
 			<header class="relative flex items-center justify-between">
 				<RouterLink to="/" aria-label="Home page" class="inline-flex items-center">
