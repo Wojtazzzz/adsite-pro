@@ -6,7 +6,7 @@ namespace Modules\Task\Infrastructure\Repositories;
 
 use App\Models\Category;
 use Illuminate\Database\Eloquent\Collection;
-use Modules\Task\Domain\Entities\Category as TeamCategoryEntity;
+use Modules\Task\Domain\Entities\Category as CategoryEntity;
 use Modules\Task\Domain\Repositories\CategoryRepository;
 
 class EloquentCategoryRepository implements CategoryRepository
@@ -18,7 +18,7 @@ class EloquentCategoryRepository implements CategoryRepository
             ->get();
     }
 
-    public function create(int $teamId, TeamCategoryEntity $entity): void
+    public function create(int $teamId, CategoryEntity $entity): void
     {
         Category::query()->create([
             'name' => $entity->name,

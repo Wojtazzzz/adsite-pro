@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace tests\Feature\Teams;
+namespace tests\Feature\Teams\Teams;
 
 use App\Models\Team;
 use App\Models\User;
@@ -75,5 +75,17 @@ class StoreTest extends TestCase
             'name' => 'Team 4',
             'user_id' => $user->id,
         ]);
+    }
+
+    public function test_user_cannot_create_team_with_too_short_name(): void
+    {
+        $user = User::factory()->create();
+
+        $response = $this->actingAs($user)->postJson(route('api.teams.store'), [
+            'name' => 'T'
+        ]);
+
+        $response->assertUnprocessable();
+        $this->assertDatabaseCount(Team::class, 0);
     }
 }

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace tests\Feature\Teams;
+namespace tests\Feature\Teams\Teams;
 
 use App\Models\Category;
 use App\Models\Task;
