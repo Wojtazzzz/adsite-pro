@@ -9,24 +9,6 @@ use App\Models\Team;
 
 class TeamPolicy
 {
-    public function delete(User $user, Team $team): bool
-    {
-        if ($user->id === $team->user_id) {
-            return true;
-        }
-
-        return false;
-    }
-
-    public function updateName(User $user, Team $team): bool
-    {
-        if ($user->id === $team->user_id) {
-            return true;
-        }
-
-        return false;
-    }
-
     public function show(?User $user, Team $team): bool
     {
         if (!$user) {
@@ -40,6 +22,32 @@ class TeamPolicy
         $teamMembersIds = $team->users()->pluck('users.id');
 
         if ($teamMembersIds->contains($user->id)) {
+            return true;
+        }
+
+        return false;
+    }
+
+    public function rename(?User $user, Team $team): bool
+    {
+        if (!$user) {
+            return false;
+        }
+
+        if ($user->id === $team->user_id) {
+            return true;
+        }
+
+        return false;
+    }
+
+    public function delete(?User $user, Team $team): bool
+    {
+        if (!$user) {
+            return false;
+        }
+
+        if ($user->id === $team->user_id) {
             return true;
         }
 
