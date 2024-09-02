@@ -14,5 +14,6 @@ module.exports = {
     },
     parserOptions: {
         ecmaVersion: 'latest'
-    }
+    },
+    ignorePatterns: ["src/components/ui-library/*"]
 }
