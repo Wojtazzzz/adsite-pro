@@ -18,7 +18,7 @@ class UserInvitationsResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'team_name' => $this->team->name,
+            'teamName' => $this->team->name,
         ];
     }
 }

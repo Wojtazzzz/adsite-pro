@@ -19,11 +19,11 @@ class TeamMembersDetailsResource extends JsonResource
         return [
             'id' => $this->id,
             'name' => $this->name,
-            'tasks_count' => $this->tasks_count,
-            'idle_tasks_count' => $this->idle_tasks_count,
-            'in_progress_tasks_count' => $this->in_progress_tasks_count,
-            'completed_tasks_count' => $this->completed_tasks_count,
-            'total_estimation' => $this->total_estimation ?? 0,
+            'tasksCount' => $this->tasks_count,
+            'idleTasksCount' => $this->idle_tasks_count,
+            'inProgressTasksCount' => $this->in_progress_tasks_count,
+            'completedTasksCount' => $this->completed_tasks_count,
+            'totalEstimation' => $this->total_estimation ?? 0,
         ];
     }
 }

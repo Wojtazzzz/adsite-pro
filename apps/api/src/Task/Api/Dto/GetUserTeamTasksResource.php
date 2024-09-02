@@ -24,18 +24,18 @@ class GetUserTeamTasksResource extends JsonResource
             'categories' => $this->categories->map(function (Category $category) {
                 return [
                     'id' => $category->id,
-                    'team_id' => $category->team_id,
+                    'teamId' => $category->team_id,
                     'name' => $category->name,
                     'tasks' => $category->tasks->map(function (Task $task) {
                         return [
                             'id' => $task->id,
-                            'category_id' => $task->category_id,
-                            'user_id' => $task->user_id,
+                            'categoryId' => $task->category_id,
+                            'userId' => $task->user_id,
                             'name' => $task->name,
                             'description' => $task->description,
                             'status' => $task->status,
                             'estimation' => $task->estimation,
-                            'created_at' => $task->created_at,
+                            'createdAt' => $task->created_at,
                             'user' => [
                                 'id' => $task->user->id,
                                 'name' => $task->user->name,
