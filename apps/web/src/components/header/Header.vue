@@ -5,6 +5,9 @@ import MobileNavDialog from '@/components/header/mobileNav/MobileNavDialog.vue';
 import Container from '@/components/ui/Container.vue';
 import ToggleTheme from '@/components/ui/ToggleTheme.vue';
 import Invitations from '@/components/header/invitations/Invitations.vue';
+import { useMe } from '@/composables/useMe';
+
+const { isUserLogged } = useMe();
 </script>
 
 <template>
@@ -27,7 +30,10 @@ import Invitations from '@/components/header/invitations/Invitations.vue';
 					</div>
 
 					<div class="flex gap-x-1.5">
-						<Invitations />
+						<template v-if="isUserLogged">
+							<Invitations />
+						</template>
+
 						<ToggleTheme />
 
 						<div class="md:hidden">
