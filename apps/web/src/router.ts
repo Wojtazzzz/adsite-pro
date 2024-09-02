@@ -6,7 +6,7 @@ import MainLayout from '@/components/layouts/MainLayout.vue';
 import HomePage from '@/modules/home/HomePage.vue';
 import { useQueryClient } from '@tanstack/vue-query';
 import { api } from '@/utils/functions';
-import TasksPage from '@/modules/teams/TasksPage.vue';
+import TeamsPage from '@/modules/teams/TeamsPage.vue';
 import UsersPage from '@/modules/users/UsersPage.vue';
 
 export const router = createRouter({
@@ -24,7 +24,7 @@ export const router = createRouter({
 				{
 					path: '/tasks',
 					name: 'tasks',
-					component: TasksPage,
+					component: TeamsPage,
 				},
 				{
 					path: '/users/:teamId',
