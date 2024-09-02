@@ -36,11 +36,11 @@ class DetailsTest extends TestCase
                 [
                     'id' => $user->id,
                     'name' => $user->name,
-                    'tasks_count' => 0,
-                    'idle_tasks_count' => 0,
-                    'in_progress_tasks_count' => 0,
-                    'completed_tasks_count' => 0,
-                    'total_estimation' => 0,
+                    'tasksCount' => 0,
+                    'idleTasksCount' => 0,
+                    'inProgressTasksCount' => 0,
+                    'completedTasksCount' => 0,
+                    'totalEstimation' => 0,
                 ]
             ]
         ]);
@@ -63,20 +63,20 @@ class DetailsTest extends TestCase
                 [
                     'id' => $user->id,
                     'name' => $user->name,
-                    'tasks_count' => 0,
-                    'idle_tasks_count' => 0,
-                    'in_progress_tasks_count' => 0,
-                    'completed_tasks_count' => 0,
-                    'total_estimation' => 0,
+                    'tasksCount' => 0,
+                    'idleTasksCount' => 0,
+                    'inProgressTasksCount' => 0,
+                    'completedTasksCount' => 0,
+                    'totalEstimation' => 0,
                 ],
                 [
                     'id' => $member->id,
                     'name' => $member->name,
-                    'tasks_count' => 0,
-                    'idle_tasks_count' => 0,
-                    'in_progress_tasks_count' => 0,
-                    'completed_tasks_count' => 0,
-                    'total_estimation' => 0,
+                    'tasksCount' => 0,
+                    'idleTasksCount' => 0,
+                    'inProgressTasksCount' => 0,
+                    'completedTasksCount' => 0,
+                    'totalEstimation' => 0,
                 ]
             ]
         ]);
@@ -170,11 +170,11 @@ class DetailsTest extends TestCase
                 [
                     'id' => $user->id,
                     'name' => $user->name,
-                    'tasks_count' => 6,
-                    'idle_tasks_count' => 1,
-                    'in_progress_tasks_count' => 2,
-                    'completed_tasks_count' => 3,
-                    'total_estimation' => 255,
+                    'tasksCount' => 6,
+                    'idleTasksCount' => 1,
+                    'inProgressTasksCount' => 2,
+                    'completedTasksCount' => 3,
+                    'totalEstimation' => 255,
                 ]
             ]
         ]);
