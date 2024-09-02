@@ -11,6 +11,7 @@ app.use(VueQueryPlugin, {
 		defaultOptions: {
 			queries: {
 				retry: 0,
+				staleTime: 1000 * 10,
 			},
 		},
 	},
