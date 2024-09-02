@@ -60,25 +60,26 @@ Frontend:
 cp apps/web/.env.example apps/web/.env
 ```
 
-3. Install backend dependendies and generate app key
+3. Run docker compose
+
+**Warning!** For convenience postgres default port 5432 is mapped to local 5437
+```sh
+cd ../../ && docker compose up -d
+```
+
+4. Install backend dependendies and generate app key
 ```sh
 cd apps/api && composer install && php artisan key:generate
 ```
 
-4. Run migrations and seed table
+5. Run migrations and seed table
 ```
 php artisan migrate && php artisan db:seed
 ```
 
-5. Install frontend dependendies
+6. Install frontend dependendies
 ```sh
 cd ../web && pnpm install
-```
-
-6. Run docker compose
-**Warning!** For convenience postgres default port 5432 is mapped to local 5437
-```sh
-cd ../../ && docker compose up -d
 ```
 
 7. Run backend
