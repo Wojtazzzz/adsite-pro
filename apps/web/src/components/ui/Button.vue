@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { Button } from '@/components/ui-library/button';
 
-type ButtonVariant = 'default' | 'secondary';
+type ButtonVariant = 'default' | 'secondary' | 'outline';
 
 withDefaults(
 	defineProps<{

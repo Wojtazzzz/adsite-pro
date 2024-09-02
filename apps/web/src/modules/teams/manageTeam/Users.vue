@@ -6,7 +6,7 @@ defineProps<{ teamId: number }>();
 </script>
 
 <template>
-	<ButtonLink :to="`/users/${teamId}`">
+	<ButtonLink variant="outline" :to="`/users/${teamId}`">
 		<span class="sr-only">Manage users</span>
 		<IconUser />
 	</ButtonLink>

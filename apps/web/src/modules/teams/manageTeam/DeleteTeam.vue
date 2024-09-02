@@ -22,7 +22,7 @@ const { deleteTeam } = useDeleteTeam();
 <template>
 	<AlertDialog>
 		<AlertDialogTrigger>
-			<Button type="button">
+			<Button type="button" variant="outline">
 				<span class="sr-only">Delete team</span>
 				<IconTrash />
 			</Button>

@@ -36,7 +36,7 @@ const onSubmit = (values: RenameTeamFormValues) => {
 <template>
 	<Dialog :open="isOpen">
 		<DialogTrigger>
-			<Button type="button" @click="open">
+			<Button type="button" variant="outline" @click="open">
 				<span class="sr-only">Rename team</span>
 				<IconPencil />
 			</Button>

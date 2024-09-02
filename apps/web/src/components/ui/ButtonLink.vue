@@ -2,13 +2,21 @@
 import { Button } from '@/components/ui-library/button';
 import { RouterLink } from 'vue-router';
 
-defineProps<{
-	to: string;
-}>();
+type ButtonLinkVariant = 'default' | 'secondary' | 'outline';
+
+withDefaults(
+	defineProps<{
+		variant?: ButtonLinkVariant;
+		to: string;
+	}>(),
+	{
+		variant: 'default',
+	},
+);
 </script>
 
 <template>
-	<Button :as="RouterLink" :to="to">
+	<Button :variant="variant" :as="RouterLink" :to="to">
 		<slot />
 	</Button>
 </template>
