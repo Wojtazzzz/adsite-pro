@@ -22,36 +22,38 @@ Route::name('api.')->group(function () {
         });
     });
 
-    Route::controller(TeamController::class)->prefix('/teams')->middleware('auth')->name('teams.')->group(function () {
-        Route::get('/', 'index')->name('index');
-        Route::post('/', 'store')->name('store');
-        Route::get('/{team}', 'show')->name('show');
-        Route::delete('/{team}', 'destroy')->name('delete');
-        Route::patch('/{team}/rename', 'rename')->name('rename');
-
-        Route::controller(CategoryController::class)->prefix('/{team}/categories')->name('categories.')->group(function () {
+    Route::middleware('auth')->group(function () {
+        Route::controller(TeamController::class)->prefix('/teams')->name('teams.')->group(function () {
+            Route::get('/', 'index')->name('index');
             Route::post('/', 'store')->name('store');
+            Route::get('/{team}', 'show')->name('show');
+            Route::delete('/{team}', 'destroy')->name('delete');
+            Route::patch('/{team}/rename', 'rename')->name('rename');
 
-            Route::controller(TaskController::class)->prefix('/{category}/tasks')->name('tasks.')->group(function () {
+            Route::controller(CategoryController::class)->prefix('/{team}/categories')->name('categories.')->group(function () {
                 Route::post('/', 'store')->name('store');
-                Route::patch('/{task}/status', 'updateStatus')->name('update.status');
+
+                Route::controller(TaskController::class)->prefix('/{category}/tasks')->name('tasks.')->group(function () {
+                    Route::post('/', 'store')->name('store');
+                    Route::patch('/{task}/status', 'updateStatus')->name('update.status');
+                });
+            });
+
+            Route::controller(UserController::class)->prefix('/{team}/users')->name('users.')->group(function () {
+                Route::get('/', 'index')->name('index');
+                Route::get('/details', 'details')->name('details');
+                Route::delete('/{user}', 'destroy')->name('destroy');
+            });
+
+            Route::controller(InvitationController::class)->prefix('/{team}/invitations')->name('invitations.')->group(function () {
+                Route::post('/', 'store')->name('store');
             });
         });
 
-        Route::controller(UserController::class)->prefix('/{team}/users')->name('users.')->group(function () {
+        Route::controller(InvitationController::class)->prefix('/invitations')->name('invitations.')->group(function () {
             Route::get('/', 'index')->name('index');
-            Route::get('/details', 'details')->name('details');
-            Route::delete('/{user}', 'destroy')->name('destroy');
+            Route::patch('/{invitation}', 'update')->name('update');
         });
-
-        Route::controller(InvitationController::class)->prefix('/{team}/invitations')->name('invitations.')->group(function () {
-            Route::post('/', 'store')->name('store');
-        });
-    });
-
-    Route::controller(InvitationController::class)->prefix('/invitations')->name('invitations.')->group(function () {
-        Route::get('/', 'index')->name('index');
-        Route::patch('/{invitation}', 'update')->name('update');
     });
 });
 
