@@ -5,8 +5,8 @@ import type { Team } from '@/modules/teams/utils';
 
 export const useGetTeamTasks = (team: ComputedRef<Team>) => {
 	const { isSuccess, isLoading, isError, data, error } = useQuery({
-		cacheKey: ['team-tasks', team],
-		url: computed(() => `/api/teams/${team.value.id}`).value,
+		cacheKey: computed(() => ['team-tasks', team]),
+		url: computed(() => `/api/teams/${team.value.id}`),
 		schema: getTeamTasksResponseSchema,
 	});
 

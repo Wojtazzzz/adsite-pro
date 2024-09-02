@@ -8,7 +8,7 @@ export const useGetTeamMembersDetails = () => {
 
 	const { isSuccess, isLoading, isError, data, error } = useQuery({
 		cacheKey: ['team-members-details', teamId],
-		url: computed(() => `/api/teams/${teamId}/users/details`).value,
+		url: computed(() => `/api/teams/${teamId}/users/details`),
 		schema: getTeamMembersDetailsResponseSchema,
 	});
 
