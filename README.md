@@ -45,7 +45,7 @@ An application designed for efficient team task management. Developed specifical
 gh repo clone Wojtazzzz/adsite-pro && cd adsite-pro
 ```
 
-2. Setup env variables and fill them with your custom credentials
+2. Setup env variables, by default there is no need to change anything
 
 Root:
 ```sh
@@ -92,14 +92,20 @@ cd ../api && php artisan serve
 cd ../web && pnpm run dev
 ```
 
+9. You can also run feature tests in laravel
+```sh
+php artisan test
+```
+
 Now your application runs in:
 - backend: http://localhost:8000/
 - frontend: http://localhost:5173/
 - postgres: on local port 5437
 
 You can login to an auto-generated account with credentials:
-email: `john@smith.com`
-password: `password`
+
+Email: john@smith.com
+Password: password
 
 ## Documentation
 Database schema: https://drawsql.app/teams/teamer-4/diagrams/teamer-app
