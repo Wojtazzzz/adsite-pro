@@ -7,8 +7,7 @@ An application designed for efficient team task management. Developed specifical
 [Features](#features) •
 [Tools](#tools) •
 [Installation](#installation) •
-[Documentation](#documentation) •
-[License](#license)
+[Documentation](#documentation)
 
 </div>
 
