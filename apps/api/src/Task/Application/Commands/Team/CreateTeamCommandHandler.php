@@ -2,9 +2,8 @@
 
 declare(strict_types=1);
 
-namespace Modules\Task\Application\Commands;
+namespace Modules\Task\Application\Commands\Team;
 
-use Modules\Task\Application\Exceptions\UnauthorizedException;
 use Modules\Task\Domain\Entities\UserOwnedTeamsAggregate;
 use Modules\Task\Domain\Exceptions\ExceededOwnedTeamsLimit;
 use Modules\Task\Domain\Exceptions\TeamNameAlreadyTaken;

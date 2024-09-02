@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Modules\Task\Application\Commands;
+namespace Modules\Task\Application\Commands\Invitation;
 
 use Modules\Task\Domain\Repositories\InvitationRepository;
 use Modules\Task\Domain\Repositories\UserRepository;

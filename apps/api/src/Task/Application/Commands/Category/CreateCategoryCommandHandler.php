@@ -2,11 +2,8 @@
 
 declare(strict_types=1);
 
-namespace Modules\Task\Application\Commands;
+namespace Modules\Task\Application\Commands\Category;
 
-use App\Models\Category;
-use Illuminate\Support\Facades\Gate;
-use Modules\Task\Application\Exceptions\UnauthorizedException;
 use Modules\Task\Domain\Entities\CategoriesAggregate;
 use Modules\Task\Domain\Exceptions\ExceededTeamCategoriesLimit;
 use Modules\Task\Domain\Exceptions\TeamCategoryNameAlreadyTaken;

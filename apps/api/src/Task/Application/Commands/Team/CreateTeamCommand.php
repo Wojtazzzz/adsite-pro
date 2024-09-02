@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Modules\Task\Application\Commands;
+namespace Modules\Task\Application\Commands\Team;
 
 use App\Bus\Command;
 

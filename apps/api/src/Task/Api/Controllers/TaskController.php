@@ -12,8 +12,8 @@ use App\Models\Team;
 use Illuminate\Http\JsonResponse;
 use Modules\Task\Api\Requests\StoreTaskRequest;
 use Modules\Task\Api\Requests\UpdateTaskStatusRequest;
-use Modules\Task\Application\Commands\CreateTaskCommand;
-use Modules\Task\Application\Commands\UpdateTaskStatusCommand;
+use Modules\Task\Application\Commands\Task\CreateTaskCommand;
+use Modules\Task\Application\Commands\Task\UpdateTaskStatusCommand;
 
 class TaskController extends Controller
 {

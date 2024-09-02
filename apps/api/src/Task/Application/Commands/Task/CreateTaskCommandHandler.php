@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Modules\Task\Application\Commands;
+namespace Modules\Task\Application\Commands\Task;
 
 use Modules\Task\Domain\Entities\Task;
 use Modules\Task\Domain\Entities\UserTeamMonthTasksAggregate;

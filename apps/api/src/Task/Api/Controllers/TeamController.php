@@ -11,17 +11,17 @@ use App\Models\Team;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
-use Modules\Task\Api\Dto\MemberTeamsResource;
 use Modules\Task\Api\Dto\GetUserTeamTasksResource;
+use Modules\Task\Api\Dto\MemberTeamsResource;
 use Modules\Task\Api\Requests\DestroyTeamRequest;
 use Modules\Task\Api\Requests\RenameTeamRequest;
 use Modules\Task\Api\Requests\ShowTeamRequest;
 use Modules\Task\Api\Requests\StoreTeamRequest;
-use Modules\Task\Application\Commands\CreateTeamCommand;
-use Modules\Task\Application\Commands\DeleteTeamCommand;
-use Modules\Task\Application\Commands\RenameTeamCommand;
-use Modules\Task\Application\Queries\GetUserTeamsQuery;
+use Modules\Task\Application\Commands\Team\CreateTeamCommand;
+use Modules\Task\Application\Commands\Team\DeleteTeamCommand;
+use Modules\Task\Application\Commands\Team\RenameTeamCommand;
 use Modules\Task\Application\Queries\GetUserTasksQuery;
+use Modules\Task\Application\Queries\GetUserTeamsQuery;
 
 class TeamController extends Controller
 {

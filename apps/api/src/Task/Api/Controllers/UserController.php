@@ -11,12 +11,12 @@ use App\Models\Team;
 use App\Models\User;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use Illuminate\Http\Response;
-use Modules\Task\Api\Dto\TeamMembersResource;
 use Modules\Task\Api\Dto\TeamMembersDetailsResource;
+use Modules\Task\Api\Dto\TeamMembersResource;
 use Modules\Task\Api\Requests\DestroyUserRequest;
 use Modules\Task\Api\Requests\DetailsUserRequest;
 use Modules\Task\Api\Requests\IndexUserRequest;
-use Modules\Task\Application\Commands\DeleteTeamMemberCommand;
+use Modules\Task\Application\Commands\Team\DeleteTeamMemberCommand;
 use Modules\Task\Application\Queries\GetTeamMembersDetailsQuery;
 use Modules\Task\Application\Queries\GetTeamMembersQuery;
 

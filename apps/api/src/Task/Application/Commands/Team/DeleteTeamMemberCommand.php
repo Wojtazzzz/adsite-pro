@@ -2,15 +2,17 @@
 
 declare(strict_types=1);
 
-namespace Modules\Task\Application\Commands;
+namespace Modules\Task\Application\Commands\Team;
 
 use App\Bus\Command;
 use App\Models\Team;
+use App\Models\User;
 
-class DeleteTeamCommand extends Command
+class DeleteTeamMemberCommand extends Command
 {
     public function __construct(
         public readonly Team $team,
+        public readonly User $user,
     )
     {
     }

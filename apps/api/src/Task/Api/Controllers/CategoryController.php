@@ -9,7 +9,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Team;
 use Illuminate\Http\JsonResponse;
 use Modules\Task\Api\Requests\StoreCategoryRequest;
-use Modules\Task\Application\Commands\CreateCategoryCommand;
+use Modules\Task\Application\Commands\Category\CreateCategoryCommand;
 
 class CategoryController extends Controller
 {

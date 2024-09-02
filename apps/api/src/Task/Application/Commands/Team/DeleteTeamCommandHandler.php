@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Modules\Task\Application\Commands;
+namespace Modules\Task\Application\Commands\Team;
 
 use Modules\Task\Domain\Repositories\TeamRepository;
 

@@ -15,8 +15,8 @@ use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use Modules\Task\Api\Dto\UserInvitationsResource;
 use Modules\Task\Api\Requests\StoreInvitationRequest;
 use Modules\Task\Api\Requests\UpdateInvitationRequest;
-use Modules\Task\Application\Commands\CreateInvitationCommand;
-use Modules\Task\Application\Commands\UpdateInvitationCommand;
+use Modules\Task\Application\Commands\Invitation\CreateInvitationCommand;
+use Modules\Task\Application\Commands\Invitation\UpdateInvitationCommand;
 use Modules\Task\Application\Queries\GetUserInvitationsQuery;
 
 class InvitationController extends Controller
