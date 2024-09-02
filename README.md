@@ -64,7 +64,7 @@ cp apps/web/.env.example apps/web/.env
 
 **Warning!** For convenience postgres default port 5432 is mapped to local 5437
 ```sh
-cd docker compose up -d
+docker compose up -d
 ```
 
 4. Install backend dependendies and generate app key
