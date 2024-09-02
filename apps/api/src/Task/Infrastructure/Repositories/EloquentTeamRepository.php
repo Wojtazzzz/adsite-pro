@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Modules\Task\Infrastructure\Repositories;
 
 use App\Models\Team;
+use App\Models\User;
 use Illuminate\Support\Collection;
 use Modules\Task\Domain\Repositories\TeamRepository;
 use Modules\Task\Domain\Entities\Team as TeamEntity;
@@ -52,9 +53,9 @@ class EloquentTeamRepository implements TeamRepository
             ]);
     }
 
-    public function createTeam(int $userId, TeamEntity $teamEntity): Team
+    public function createTeam(int $userId, TeamEntity $teamEntity): void
     {
-        return Team::query()->create([
+        Team::query()->create([
             'user_id' => $userId,
             'name' => $teamEntity->name
         ]);
@@ -65,10 +66,20 @@ class EloquentTeamRepository implements TeamRepository
         Team::query()->where('id', $teamId)->delete();
     }
 
-    public function updateName(int $teamId, string $newName): int
+    public function updateName(int $teamId, string $newName): void
     {
-        return Team::query()
+        Team::query()
             ->where('id', $teamId)
             ->update(['name' => $newName]);
+    }
+
+    public function addMember(int $teamId, int $userId): void
+    {
+        $user = User::findOrFail($userId);
+
+        Team::query()
+            ->findOrFail($teamId)
+            ->users()
+            ->attach($user);
     }
 }

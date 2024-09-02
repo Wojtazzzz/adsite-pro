@@ -6,11 +6,6 @@ namespace App\Providers;
 
 use App\Bus\CommandBus;
 use App\Bus\QueryBus;
-use App\Models\Category;
-use App\Models\Invitation;
-use App\Models\Task;
-use App\Models\Team;
-use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\ServiceProvider;
 use Modules\Task\Application\Commands\CreateCategoryCommand;
 use Modules\Task\Application\Commands\CreateCategoryCommandHandler;
@@ -26,16 +21,17 @@ use Modules\Task\Application\Commands\DeleteTeamMemberCommand;
 use Modules\Task\Application\Commands\DeleteTeamMemberCommandHandler;
 use Modules\Task\Application\Commands\RenameTeamCommand;
 use Modules\Task\Application\Commands\RenameTeamCommandHandler;
+use Modules\Task\Application\Commands\UpdateInvitationCommand;
+use Modules\Task\Application\Commands\UpdateInvitationCommandHandler;
 use Modules\Task\Application\Commands\UpdateTaskStatusCommand;
 use Modules\Task\Application\Commands\UpdateTaskStatusCommandHandler;
-use Modules\Task\Application\Policies\CategoryPolicy;
-use Modules\Task\Application\Policies\TaskPolicy;
-use Modules\Task\Application\Policies\TeamPolicy;
 use Modules\Task\Application\Queries\GetTeamMembersDetailsQuery;
 use Modules\Task\Application\Queries\GetTeamMembersDetailsQueryHandler;
 use Modules\Task\Application\Queries\GetTeamMembersQuery;
 use Modules\Task\Application\Queries\GetTeamMembersQueryHandler;
+use Modules\Task\Application\Queries\GetUserInvitationsQuery;
 use Modules\Task\Application\Queries\GetUserTasksQuery;
+use Modules\Task\Application\Queries\GetUserInvitationsQueryHandler;
 use Modules\Task\Application\Queries\GetUserTasksQueryHandler;
 use Modules\Task\Application\Queries\GetUserTeamsQuery;
 use Modules\Task\Application\Queries\GetUserTeamsQueryHandler;
@@ -76,6 +72,7 @@ class TaskServiceProvider extends ServiceProvider
             GetUserTeamsQuery::class => GetUserTeamsQueryHandler::class,
             GetTeamMembersQuery::class => GetTeamMembersQueryHandler::class,
             GetTeamMembersDetailsQuery::class => GetTeamMembersDetailsQueryHandler::class,
+            GetUserInvitationsQuery::class => GetUserInvitationsQueryHandler::class,
         ]);
 
         $commandBus = app(CommandBus::class);
@@ -89,6 +86,7 @@ class TaskServiceProvider extends ServiceProvider
             CreateTaskCommand::class => CreateTaskCommandHandler::class,
             CreateInvitationCommand::class => CreateInvitationCommandHandler::class,
             DeleteTeamMemberCommand::class => DeleteTeamMemberCommandHandler::class,
+            UpdateInvitationCommand::class => UpdateInvitationCommandHandler::class,
         ]);
     }
 }

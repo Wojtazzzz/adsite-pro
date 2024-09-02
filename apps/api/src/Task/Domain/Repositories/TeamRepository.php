@@ -14,9 +14,11 @@ interface TeamRepository
 
     public function getConnectedWithUsers(int $userId): Collection;
 
-    public function createTeam(int $userId, TeamEntity $teamEntity);
+    public function createTeam(int $userId, TeamEntity $teamEntity): void;
 
-    public function delete(int $teamId);
+    public function delete(int $teamId): void;
 
-    public function updateName(int $teamId, string $newName);
+    public function updateName(int $teamId, string $newName): void;
+
+    public function addMember(int $teamId, int $userId): void;
 }

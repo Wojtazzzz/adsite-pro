@@ -48,6 +48,11 @@ Route::name('api.')->group(function () {
             Route::post('/', 'store')->name('store');
         });
     });
+
+    Route::controller(InvitationController::class)->prefix('/invitations')->name('invitations.')->group(function () {
+        Route::get('/', 'index')->name('index');
+        Route::patch('/{invitation}', 'update')->name('update');
+    });
 });
 
 

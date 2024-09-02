@@ -4,6 +4,7 @@ import DesktopNav from '@/components/header/DesktopNav.vue';
 import MobileNavDialog from '@/components/header/mobileNav/MobileNavDialog.vue';
 import Container from '@/components/ui/Container.vue';
 import ToggleTheme from '@/components/ui/ToggleTheme.vue';
+import Invitations from '@/components/header/invitations/Invitations.vue';
 </script>
 
 <template>
@@ -20,15 +21,18 @@ import ToggleTheme from '@/components/ui/ToggleTheme.vue';
 					</span>
 				</RouterLink>
 
-				<div class="flex gap-x-3 md:gap-x-5">
+				<div class="flex gap-x-3 md:gap-x-4">
 					<div class="hidden md:block">
 						<DesktopNav />
 					</div>
 
-					<ToggleTheme />
+					<div class="flex gap-x-1.5">
+						<Invitations />
+						<ToggleTheme />
 
-					<div class="md:hidden">
-						<MobileNavDialog />
+						<div class="md:hidden">
+							<MobileNavDialog />
+						</div>
 					</div>
 				</div>
 			</header>
