@@ -2,8 +2,6 @@
 import CardTitle from '@/components/ui/card/CardTitle.vue';
 import CardHeader from '@/components/ui/card/CardHeader.vue';
 import Card from '@/components/ui/card/Card.vue';
-import type { Category, Task } from '@/modules/teams/teamTasks/useGetTeamTasks';
-import { type RenameTeamFormValues } from '@/modules/teams/manageTeam/utils';
 import DialogTrigger from '@/components/ui/card/dialog/DialogTrigger.vue';
 import DialogContent from '@/components/ui/card/dialog/DialogContent.vue';
 import DialogTitle from '@/components/ui/card/dialog/DialogTitle.vue';
@@ -20,6 +18,7 @@ import {
 import Select from '@/components/ui/Select.vue';
 import { toRef, watch } from 'vue';
 import { useChangeTaskStatus } from '@/modules/teams/teamTasks/categoryBoard/useChangeTaskStatus';
+import type { Category, Task } from '@/modules/teams/teamTasks/utils';
 
 const props = defineProps<{
 	task: Task;
@@ -34,8 +33,8 @@ const status = toRef(props.task.status);
 watch(status, () => {
 	if (status.value !== props.task.status) {
 		changeStatus({
-			teamId: props.category.team_id,
-			categoryId: props.task.category_id,
+			teamId: props.category.teamId,
+			categoryId: props.task.categoryId,
 			id: props.task.id,
 			newStatus: status.value,
 		});

@@ -1,21 +1,20 @@
-import { useQuery } from '@tanstack/vue-query';
-import { api } from '@/utils/functions';
+import { useQuery } from '@/composables/useQuery';
+import { z } from 'zod';
 
-export type GetTasksResponse = {
-	data: {
-		id: number;
-		team_name: string;
-	}[];
-};
+const schema = z.object({
+	data: z.array(
+		z.object({
+			id: z.number(),
+			teamName: z.string(),
+		}),
+	),
+});
 
 export const useGetInvitations = () => {
 	const { isSuccess, isLoading, isError, data, error } = useQuery({
-		queryKey: ['invitations'],
-		queryFn: async () =>
-			(await api({
-				url: '/api/invitations',
-				method: 'GET',
-			})) as Promise<GetTasksResponse>,
+		cacheKey: ['invitations'],
+		url: '/api/invitations',
+		schema,
 	});
 
 	return {

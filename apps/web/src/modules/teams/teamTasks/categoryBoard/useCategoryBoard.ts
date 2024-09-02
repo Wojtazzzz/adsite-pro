@@ -1,6 +1,6 @@
-import type { Category, Task } from '@/modules/teams/teamTasks/useGetTeamTasks';
 import { useChangeTaskStatus } from '@/modules/teams/teamTasks/categoryBoard/useChangeTaskStatus';
 import { computed, type ComputedRef } from 'vue';
+import type { Category, Task } from '@/modules/teams/teamTasks/utils';
 
 export const useCategoryBoard = (category: ComputedRef<Category>) => {
 	const { changeStatus } = useChangeTaskStatus();
@@ -41,7 +41,7 @@ export const useCategoryBoard = (category: ComputedRef<Category>) => {
 		changeStatus({
 			id: taskId,
 			categoryId: category.value.id,
-			teamId: category.value.team_id,
+			teamId: category.value.teamId,
 			newStatus: type,
 		});
 	};

@@ -4,7 +4,7 @@ import { z } from 'zod';
 
 type UseQueryOptions<T extends z.ZodTypeAny> = {
 	url: string;
-	cacheKey: string[];
+	cacheKey: unknown[];
 	schema: T;
 };
 

@@ -6,10 +6,8 @@ import DialogTitle from '@/components/ui/card/dialog/DialogTitle.vue';
 import Dialog from '@/components/ui/card/dialog/Dialog.vue';
 import DialogTrigger from '@/components/ui/card/dialog/DialogTrigger.vue';
 import Button from '@/components/ui/Button.vue';
-import type { Team } from '@/modules/teams/useGetUserTeams';
 import Form from '@/components/ui/form/Form.vue';
 import Field from '@/components/ui/form/Field.vue';
-import { useRenameTeam } from '@/modules/teams/manageTeam/useRenameTeam';
 import { useBoolean } from '@/composables/useBoolean';
 import {
 	createCategorySchema,

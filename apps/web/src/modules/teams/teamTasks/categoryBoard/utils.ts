@@ -2,7 +2,6 @@ import * as z from 'zod';
 import { type TaskStatus, taskStatusSchema } from '@/utils/schemas';
 import type { SelectOption } from '@/components/ui/form/Select.vue';
 import type { Ref } from 'vue';
-import type { User } from '@/modules/teams/teamTasks/categoryBoard/useGetTeamMembers';
 
 export const createTaskFormSchema = z.object({
 	name: z
@@ -64,3 +63,14 @@ export const formatTaskEstimation = (estimation: number) => {
 
 	return `${hours} hour/s ${minutes} minutes`;
 };
+
+const userSchema = z.object({
+	id: z.number(),
+	name: z.string(),
+});
+
+export const getTeamMembersResponseSchema = z.object({
+	data: z.array(userSchema),
+});
+
+export type User = z.infer<typeof userSchema>;

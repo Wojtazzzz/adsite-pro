@@ -1,25 +1,13 @@
-import { useQuery } from '@tanstack/vue-query';
-import { api } from '@/utils/functions';
 import { computed, type ComputedRef } from 'vue';
-import type { Team } from '@/modules/teams/useGetUserTeams';
-
-export type User = {
-	id: number;
-	name: string;
-};
-
-export type GetTeamMembersResponse = {
-	data: User[];
-};
+import { useQuery } from '@/composables/useQuery';
+import { getTeamMembersResponseSchema } from '@/modules/teams/teamTasks/categoryBoard/utils';
+import type { Team } from '@/modules/teams/utils';
 
 export const useGetTeamMembers = (team: ComputedRef<Team>) => {
 	const { isSuccess, isLoading, isError, data, error } = useQuery({
-		queryKey: ['team-members', team],
-		queryFn: async () =>
-			(await api({
-				url: computed(() => `/api/teams/${team.value.id}/users`).value,
-				method: 'GET',
-			})) as Promise<GetTeamMembersResponse>,
+		cacheKey: ['team-members', team],
+		url: computed(() => `/api/teams/${team.value.id}/users`).value,
+		schema: getTeamMembersResponseSchema,
 	});
 
 	return {
