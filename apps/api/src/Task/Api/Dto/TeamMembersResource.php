@@ -7,7 +7,7 @@ namespace Modules\Task\Api\Dto;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class TeamMembersDetails extends JsonResource
+class TeamMembersResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -19,11 +19,6 @@ class TeamMembersDetails extends JsonResource
         return [
             'id' => $this->id,
             'name' => $this->name,
-            'tasks_count' => $this->tasks_count,
-            'idle_tasks_count' => $this->idle_tasks_count,
-            'in_progress_tasks_count' => $this->in_progress_tasks_count,
-            'completed_tasks_count' => $this->completed_tasks_count,
-            'total_estimation' => $this->total_estimation ?? 0,
         ];
     }
 }

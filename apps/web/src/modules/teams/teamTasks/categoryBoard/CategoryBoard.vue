@@ -35,7 +35,7 @@ const statuses = computed(
 				<Droppable as="ul" @dragover.prevent @drop.prevent="onDrop($event, status.key)">
 					<template v-for="task in status.tasks" :key="task.id">
 						<Draggable as="li" @dragstart="onDragStart($event, task)">
-							<TaskBox :task-name="task.name" />
+							<TaskBox :task="task" :category="category" />
 						</Draggable>
 					</template>
 				</Droppable>

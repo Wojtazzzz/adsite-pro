@@ -7,7 +7,7 @@ namespace Modules\Task\Api\Dto;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class UserTeamTasksByStatus extends JsonResource
+class MemberTeamsResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -19,14 +19,7 @@ class UserTeamTasksByStatus extends JsonResource
         return [
             'id' => $this->id,
             'name' => $this->name,
-            'categories' => $this->categories->map(function (object $category) {
-                return [
-                    'id' => $category->id,
-                    'team_id' => $category->team_id,
-                    'name' => $category->name,
-                    'tasks' => $category->tasks
-                ];
-            })
+            'isOwner' => $this->user_id === $request->user()->id,
         ];
     }
 }

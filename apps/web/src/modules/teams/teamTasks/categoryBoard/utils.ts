@@ -1,6 +1,6 @@
 import * as z from 'zod';
 import { type TaskStatus, taskStatusSchema } from '@/utils/schemas';
-import type { SelectOption } from '@/components/ui/Select.vue';
+import type { SelectOption } from '@/components/ui/form/Select.vue';
 import type { Ref } from 'vue';
 import type { User } from '@/modules/teams/teamTasks/categoryBoard/useGetTeamMembers';
 
@@ -48,4 +48,19 @@ export const mapUsersToSelectOptions = (users: Ref<User[] | undefined>) => {
 		value: String(user.id),
 		label: user.name,
 	}));
+};
+
+export const formatTaskEstimation = (estimation: number) => {
+	if (estimation < 60) {
+		return `${estimation} minutes`;
+	}
+
+	if (estimation % 60 === 0) {
+		return `${estimation / 60} hour/s`;
+	}
+
+	const hours = Math.floor(estimation / 60);
+	const minutes = estimation % 60;
+
+	return `${hours} hour/s ${minutes} minutes`;
 };

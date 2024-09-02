@@ -10,7 +10,7 @@ defineProps<{
 </script>
 
 <template>
-	<div class="max-w-72">
+	<div class="w-full max-w-80">
 		<Card>
 			<CardHeader>
 				<div class="flex justify-between">

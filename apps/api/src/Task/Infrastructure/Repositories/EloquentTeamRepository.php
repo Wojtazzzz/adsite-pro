@@ -20,7 +20,8 @@ class EloquentTeamRepository implements TeamRepository
                     $query->when($onlyUserTasks, function ($query) use ($userId) {
                         $query->where('user_id', $userId);
                     });
-                }
+                },
+                'categories.tasks.user',
             ])
             ->where('id', $teamId)
             ->userRelated($userId)

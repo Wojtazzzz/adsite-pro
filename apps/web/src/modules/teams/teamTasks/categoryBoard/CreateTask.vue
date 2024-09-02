@@ -18,8 +18,8 @@ import {
 	taskStatusOptions,
 	mapUsersToSelectOptions,
 } from '@/modules/teams/teamTasks/categoryBoard/utils';
-import Textarea from '@/components/ui/Textarea.vue';
-import Select from '@/components/ui/Select.vue';
+import Textarea from '@/components/ui/form/Textarea.vue';
+import Select from '@/components/ui/form/Select.vue';
 import { useCreateTask } from '@/modules/teams/teamTasks/categoryBoard/useCreateTask';
 import Number from '@/components/ui/number/Number.vue';
 import { useGetTeamMembers } from '@/modules/teams/teamTasks/categoryBoard/useGetTeamMembers';

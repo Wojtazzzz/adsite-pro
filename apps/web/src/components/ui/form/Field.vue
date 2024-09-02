@@ -17,7 +17,7 @@ withDefaults(
 		name: string;
 		placeholder: string;
 		type: 'text' | 'email' | 'password';
-		visibleValidateErrors: boolean;
+		visibleValidateErrors?: boolean;
 	}>(),
 	{
 		visibleValidateErrors: true,

@@ -11,8 +11,8 @@ use App\Models\Team;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
-use Modules\Task\Api\Dto\MemberTeams;
-use Modules\Task\Api\Dto\UserTeamTasksByStatus;
+use Modules\Task\Api\Dto\MemberTeamsResource;
+use Modules\Task\Api\Dto\GetUserTeamTasksResource;
 use Modules\Task\Api\Requests\DestroyTeamRequest;
 use Modules\Task\Api\Requests\RenameTeamRequest;
 use Modules\Task\Api\Requests\ShowTeamRequest;
@@ -38,16 +38,16 @@ class TeamController extends Controller
 
         $data = $this->queryBus->query($query);
 
-        return MemberTeams::collection($data);
+        return MemberTeamsResource::collection($data);
     }
 
-    public function show(ShowTeamRequest $request, Team $team): UserTeamTasksByStatus
+    public function show(ShowTeamRequest $request, Team $team): GetUserTeamTasksResource
     {
         $query = new GetUserTasksQuery($request->user()->id, $team);
 
         $data = $this->queryBus->query($query);
 
-        return new UserTeamTasksByStatus($data);
+        return new GetUserTeamTasksResource($data);
     }
 
     public function store(StoreTeamRequest $request): JsonResponse

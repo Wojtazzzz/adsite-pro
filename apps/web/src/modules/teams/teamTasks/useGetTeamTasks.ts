@@ -13,11 +13,18 @@ export type Category = {
 export type Task = {
 	id: number;
 	category_id: number;
+	user_id: number;
 	name: string;
 	description: string;
 	estimation: number;
 	status: 'IDLE' | 'IN_PROGRESS' | 'COMPLETED';
 	created_at: string;
+	user: TaskUser;
+};
+
+type TaskUser = {
+	id: number;
+	name: string;
 };
 
 export type GetTasksResponse = {
